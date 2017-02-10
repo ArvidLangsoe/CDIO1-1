@@ -19,8 +19,40 @@ public class UserCreator {
 	}
 
 	public String generatePassword() {
-
-		return null;
+		String password="";
+		
+		int passLength=8;
+		for(int i=0;i<passLength;i++){
+			char newCharacther;
+			int randGroup= (int)(Math.random()*100);
+			
+			//Add a special characther
+			if(randGroup<5){
+				String specialCharacthers=".-_+!?=";
+				int rand= (int)(Math.random()*specialCharacthers.length());
+				newCharacther=specialCharacthers.charAt(rand);
+			}
+			//Add a small letter.
+			else if(randGroup<30){
+				int rand= (int)(Math.random()*(122-97+1)+97);
+				newCharacther=(char)rand;
+				
+			}
+			//Add a large letter.
+			else if(randGroup<55){
+				int rand= (int)(Math.random()*(90-65+1)+65);
+				newCharacther=(char)rand;
+			}
+			//Add a number.
+			else{
+				int rand= (int)(Math.random()*(57-48+1)+48);
+				newCharacther=(char)rand;
+			}
+			
+			password+=newCharacther+"";
+		}
+		
+		return password;
 	}
 
 	public boolean isPasswordValid(String password) {
@@ -67,12 +99,14 @@ public class UserCreator {
 					groupCount++;
 					specialCharFlag = true;
 				}
-			} else {
+			}
+			//If the char is not allowed.
+			else {
 				return false;
 			}
 
 		}
-
+		//If the password dosen't contain chars from atleast 3 groups.
 		if (groupCount < 3) {
 			return false;
 		}
