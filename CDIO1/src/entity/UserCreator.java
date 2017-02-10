@@ -3,6 +3,7 @@ package entity;
 import java.util.List;
 
 import dal.IUserDAO;
+import dal.IUserDAO.DALException;
 import dto.UserDTO;
 import entity.IFun.InputException;
 
@@ -29,9 +30,14 @@ public class UserCreator {
 			
 		}
 		
+		try {
+			data.createUser(newUser);
+		} catch (DALException e) {
+			return "Failure. Something went wrong when creating the user.";
+		}
 		
 		
-		return null;
+		return "Succes.";
 	}
 
 	public String generatePassword() {
