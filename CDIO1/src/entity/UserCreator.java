@@ -1,7 +1,5 @@
 package entity;
 
-import java.util.ArrayList;
-import java.util.List;
 
 import dal.IUserDAO;
 import dal.IUserDAO.DALException;
