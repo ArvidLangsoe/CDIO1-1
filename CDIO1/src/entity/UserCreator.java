@@ -52,7 +52,7 @@ public class UserCreator {
 		newUser.addRole(role);
 	}
 
-	public String addUserToData() throws InputException {
+	public String endUserCreation() throws InputException {
 
 		newUser.setPassword(generatePassword());
 
@@ -61,7 +61,8 @@ public class UserCreator {
 		} catch (DALException e) {
 			return "Failure. Something went wrong when creating the user.";
 		}
-
+		
+		newUser=null;
 		return "Succes.";
 	}
 
