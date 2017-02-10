@@ -15,48 +15,66 @@ public class UserCreator {
 		this.data = data;
 	}
 
-	public String createUser(String userID,String userName, String ini, String cpr, String[] roles) throws InputException {
-		
-		UserDTO newUser= new UserDTO();
+	public String createUser(String userID, String userName, String ini, String cpr, String[] roles)
+			throws InputException {
+
+		UserDTO newUser = new UserDTO();
 		newUser.setUserName(userName);
 		newUser.setIni(ini);
 		isCprValid(cpr);
 		newUser.setCpr(cpr);
 		newUser.setPassword(generatePassword());
-		for(int i=0;i<roles.length;i++){
-			if(roles[i]=="Admin"||roles[i]=="Pharmacis"||roles[i]=="Foreman"||roles[i]=="Operator"){
+		for (int i = 0; i < roles.length; i++) {
+			if (roles[i].equals("Admin") || roles[i].equals("Pharmacis") || roles[i].equals("Foreman")
+					|| roles[i].equals("Operator")) {
 				newUser.addRole(roles[i]);
 			}
-			
+
 		}
-		
+
 		try {
 			data.createUser(newUser);
 		} catch (DALException e) {
 			return "Failure. Something went wrong when creating the user.";
 		}
-		
-		
+
 		return "Succes.";
 	}
-	
-	
-	public boolean isUserIDValid(int userID) throws InputException{
-		if(userID<11||userID>99){
+
+	public boolean isUserIDValid(int userID) throws InputException {
+		if (userID < 11 || userID > 99) {
 			throw new InputException("This user id is invalid. User ID has to be between 11 and 99");
 		}
-		
+
 		try {
-			UserDTO user=data.getUser(userID);
-			if(user!=null){
+			UserDTO user = data.getUser(userID);
+			if (user != null) {
 				throw new InputException("This user id is already taken.");
 			}
 		} catch (DALException e) {
 			return true;
 		}
-		
+
 		return true;
-		
+
+	}
+
+	public boolean isUserNameValid(String userName) throws InputException {
+
+		if (userName.length() < 2 || userName.length() > 20) {
+			throw new InputException(
+					"This username is invalid. Usernames has to be between 2 and 20 characthers long.");
+		}
+		return true;
+	}
+
+	public boolean isIniValid(String userName) throws InputException {
+
+		if (userName.length() < 2 || userName.length() > 4) {
+			throw new InputException(
+					"These initials are invalid. initials has to be between 2 and 4 characthers long.");
+		}
+		return true;
 	}
 
 	public String generatePassword() {
