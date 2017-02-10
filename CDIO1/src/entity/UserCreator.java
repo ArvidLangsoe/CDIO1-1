@@ -15,7 +15,7 @@ public class UserCreator {
 		this.data = data;
 	}
 
-	public String createUser(String userName, String ini, String cpr, String[] roles) throws InputException {
+	public String createUser(String userID,String userName, String ini, String cpr, String[] roles) throws InputException {
 		
 		UserDTO newUser= new UserDTO();
 		newUser.setUserName(userName);
@@ -38,6 +38,25 @@ public class UserCreator {
 		
 		
 		return "Succes.";
+	}
+	
+	
+	public boolean isUserIDValid(int userID) throws InputException{
+		if(userID<11||userID>99){
+			throw new InputException("This user id is invalid. User ID has to be between 11 and 99");
+		}
+		
+		try {
+			UserDTO user=data.getUser(userID);
+			if(user!=null){
+				throw new InputException("This user id is already taken.");
+			}
+		} catch (DALException e) {
+			return true;
+		}
+		
+		return true;
+		
 	}
 
 	public String generatePassword() {
@@ -160,7 +179,7 @@ public class UserCreator {
 			throw new InputException(cprArray[2] + "" + cprArray[3] + "is not a valid month.");
 		}
 
-		// Calculate the controle cifre:
+		// Calculate the validation number:
 		int sum = 0;
 		for (int i = 0; i < 9; i++) {
 			sum += cprArray[i] * validationNumber[i];
