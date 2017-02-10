@@ -9,7 +9,7 @@ import entity.IFun.InputException;
 public class UserCreator {
 
 	private IUserDAO data;
-	UserDTO newUser;
+	private UserDTO newUser;
 
 	public UserCreator(IUserDAO data) {
 		this.data = data;
