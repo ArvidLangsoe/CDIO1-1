@@ -7,45 +7,47 @@ import java.util.List;
 import dal.IUserDAO.DALException;
 import entity.IFun.InputException;
 
-public class UserDTO implements Serializable{
+public class UserDTO implements Serializable {
 
 	private static final long serialVersionUID = 4545864587995944260L;
-	private int	userId;                     
-	private String userName;                
+	private int userId;
+	private String userName;
 	private String ini;
 	private String cpr;
 	private String password;
 	private List<String> roles;
-	//TODO Add relevant fields
-	
+	// TODO Add relevant fields
+
 	public UserDTO() {
 		this.roles = new ArrayList<>();
 	}
-	
+
 	public int getUserId() {
 		return userId;
 	}
+
 	public void setUserId(int userId) throws InputException {
 		isUserIDValid(userId);
 		this.userId = userId;
 	}
+
 	public boolean isUserIDValid(int userID) throws InputException {
 		if (userID < 11 || userID > 99) {
 			throw new InputException("This user id is invalid. User ID's has to be between 11 and 99");
 		}
-		
+
 		return true;
 	}
-	
-	
+
 	public String getUserName() {
 		return userName;
 	}
+
 	public void setUserName(String userName) throws InputException {
 		isUserNameValid(userName);
 		this.userName = userName;
 	}
-	
+
 	public boolean isUserNameValid(String userName) throws InputException {
 
 		if (userName.length() < 2 || userName.length() > 20) {
@@ -54,15 +56,16 @@ public class UserDTO implements Serializable{
 		}
 		return true;
 	}
-	
+
 	public String getIni() {
 		return ini;
 	}
+
 	public void setIni(String ini) throws InputException {
 		isIniValid(ini);
 		this.ini = ini;
 	}
-	
+
 	public boolean isIniValid(String ini) throws InputException {
 
 		if (ini.length() < 2 || ini.length() > 4) {
@@ -76,10 +79,11 @@ public class UserDTO implements Serializable{
 		return cpr;
 	}
 
-	public void setCpr(String cpr) throws InputException{
+	public void setCpr(String cpr) throws InputException {
 		isCprValid(cpr);
 		this.cpr = cpr;
 	}
+
 	public boolean isCprValid(String cpr) throws InputException {
 		int[] validationNumber = new int[] { 4, 3, 2, 7, 6, 5, 4, 3, 2 };
 		int[] cprArray = new int[10];
@@ -128,7 +132,7 @@ public class UserDTO implements Serializable{
 		isPasswordValid(password);
 		this.password = password;
 	}
-	
+
 	public boolean isPasswordValid(String password) throws InputException {
 		boolean smallLetterFlag = false;
 		boolean bigLetterFlag = false;
@@ -176,29 +180,31 @@ public class UserDTO implements Serializable{
 			}
 			// If the char is not allowed.
 			else {
-				throw new InputException("This does not contain characthers from 3 different groups.\n The groups are: 'a-z' , 'A-Z','0-9', {'.', '-', '_', '+', '!', '?', '='}");
+				throw new InputException(currentChar + " is not a valid characther.");
+
 			}
 
 		}
 		// If the password dosen't contain chars from atleast 3 groups.
 		if (groupCount < 3) {
-			return false;
+			throw new InputException(
+					"This password does not contain characthers from 3 different groups.\n The groups are: 'a-z' , 'A-Z','0-9', {'.', '-', '_', '+', '!', '?', '='}");
+
 		}
 
 		return true;
 
 	}
 
-
 	public List<String> getRoles() {
 		return roles;
 	}
+
 	public void setRoles(List<String> roles) {
 		this.roles = roles;
 	}
-	
 
-	public void addRole(String role) throws InputException{
+	public void addRole(String role) throws InputException {
 		isRoleValid(role);
 		for (int i = 0; i < roles.size(); i++) {
 			if (roles.get(i).equals(role)) {
@@ -207,23 +213,24 @@ public class UserDTO implements Serializable{
 		}
 		this.roles.add(role);
 	}
-	
+
 	public boolean isRoleValid(String role) throws InputException {
 
-		String[] validRoles= new String[] {"Admin", "Pharmacist", "Foreman", "Operator"};
-		for(int i=0;i<validRoles.length;i++){
-			if(!role.equals(validRoles[i])){
+		String[] validRoles = new String[] { "Admin", "Pharmacist", "Foreman", "Operator" };
+		for (int i = 0; i < validRoles.length; i++) {
+			if (!role.equals(validRoles[i])) {
 				throw new InputException("This is not a valid role.");
 			}
 		}
 		return true;
 	}
+
 	/**
 	 * 
 	 * @param role
 	 * @return true if role existed, false if not
 	 */
-	public boolean removeRole(String role){
+	public boolean removeRole(String role) {
 		return this.roles.remove(role);
 	}
 
@@ -231,7 +238,5 @@ public class UserDTO implements Serializable{
 	public String toString() {
 		return "UserDTO [userId=" + userId + ", userName=" + userName + ", ini=" + ini + ", roles=" + roles + "]";
 	}
-	
-	
-	
+
 }
