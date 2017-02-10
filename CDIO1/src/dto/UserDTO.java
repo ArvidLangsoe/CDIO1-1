@@ -9,7 +9,9 @@ public class UserDTO implements Serializable{
 	private static final long serialVersionUID = 4545864587995944260L;
 	private int	userId;                     
 	private String userName;                
-	private String ini;                 
+	private String ini;
+	private String cpr;
+	private String password;
 	private List<String> roles;
 	//TODO Add relevant fields
 	
@@ -34,6 +36,22 @@ public class UserDTO implements Serializable{
 	}
 	public void setIni(String ini) {
 		this.ini = ini;
+	}
+
+	public String getCpr() {
+		return cpr;
+	}
+
+	public void setCpr(String cpr) {
+		this.cpr = cpr;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public List<String> getRoles() {

@@ -3,6 +3,7 @@ package entity;
 import java.util.List;
 
 import dal.IUserDAO;
+import dto.UserDTO;
 import entity.IFun.InputException;
 
 public class UserCreator {
@@ -13,45 +14,64 @@ public class UserCreator {
 		this.data = data;
 	}
 
-	public String createUser(String userName, String ini, String cpr, List<String> roles) {
-
+	public String createUser(String userName, String ini, String cpr, String[] roles) throws InputException {
+		
+		UserDTO newUser= new UserDTO();
+		newUser.setUserName(userName);
+		newUser.setIni(ini);
+		isCprValid(cpr);
+		newUser.setCpr(cpr);
+		newUser.setPassword(generatePassword());
+		for(int i=0;i<roles.length;i++){
+			if(roles[i]=="Admin"||roles[i]=="Pharmacis"||roles[i]=="Foreman"||roles[i]=="Operator"){
+				newUser.addRole(roles[i]);
+			}
+			
+		}
+		
+		
+		
 		return null;
 	}
 
 	public String generatePassword() {
-		String password="";
-		
-		int passLength=8;
-		for(int i=0;i<passLength;i++){
-			char newCharacther;
-			int randGroup= (int)(Math.random()*100);
-			
-			//Add a special characther
-			if(randGroup<5){
-				String specialCharacthers=".-_+!?=";
-				int rand= (int)(Math.random()*specialCharacthers.length());
-				newCharacther=specialCharacthers.charAt(rand);
+		String password = "";
+
+		int passLength = 8;
+
+		while (!isPasswordValid(password)) {
+			password = "";
+			for (int i = 0; i < passLength; i++) {
+				char newCharacther;
+				int randGroup = (int) (Math.random() * 100);
+
+				// Add a special characther
+				if (randGroup < 5) {
+					String specialCharacthers = ".-_+!?=";
+					int rand = (int) (Math.random() * specialCharacthers.length());
+					newCharacther = specialCharacthers.charAt(rand);
+				}
+				// Add a small letter.
+				else if (randGroup < 30) {
+					int rand = (int) (Math.random() * (122 - 97 + 1) + 97);
+					newCharacther = (char) rand;
+
+				}
+				// Add a large letter.
+				else if (randGroup < 55) {
+					int rand = (int) (Math.random() * (90 - 65 + 1) + 65);
+					newCharacther = (char) rand;
+				}
+				// Add a number.
+				else {
+					int rand = (int) (Math.random() * (57 - 48 + 1) + 48);
+					newCharacther = (char) rand;
+				}
+
+				password += newCharacther + "";
 			}
-			//Add a small letter.
-			else if(randGroup<30){
-				int rand= (int)(Math.random()*(122-97+1)+97);
-				newCharacther=(char)rand;
-				
-			}
-			//Add a large letter.
-			else if(randGroup<55){
-				int rand= (int)(Math.random()*(90-65+1)+65);
-				newCharacther=(char)rand;
-			}
-			//Add a number.
-			else{
-				int rand= (int)(Math.random()*(57-48+1)+48);
-				newCharacther=(char)rand;
-			}
-			
-			password+=newCharacther+"";
 		}
-		
+
 		return password;
 	}
 
@@ -100,13 +120,13 @@ public class UserCreator {
 					specialCharFlag = true;
 				}
 			}
-			//If the char is not allowed.
+			// If the char is not allowed.
 			else {
 				return false;
 			}
 
 		}
-		//If the password dosen't contain chars from atleast 3 groups.
+		// If the password dosen't contain chars from atleast 3 groups.
 		if (groupCount < 3) {
 			return false;
 		}
