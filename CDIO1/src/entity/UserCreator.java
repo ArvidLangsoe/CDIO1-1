@@ -1,5 +1,6 @@
 package entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import dal.IUserDAO;
@@ -10,26 +11,70 @@ import entity.IFun.InputException;
 public class UserCreator {
 
 	private IUserDAO data;
+	int userID;
+	String userName;
+	String ini;
+	String cpr;
+	List<String> roles;
 
 	public UserCreator(IUserDAO data) {
 		this.data = data;
 	}
 
-	public String createUser(String userID, String userName, String ini, String cpr, String[] roles)
-			throws InputException {
+	public void startUserCreation() {
+		userID = 0;
+		userName = "";
+		ini = "";
+		cpr = "";
+		roles = new ArrayList<>();
+	}
+
+	public void setUserID(int userID) throws InputException {
+		isUserIDValid(userID);
+		this.userID = userID;
+	}
+
+	public void setUserName(String userName) throws InputException {
+		isUserNameValid(userName);
+		this.userName = userName;
+	}
+
+	public void setIni(String ini) throws InputException {
+		isIniValid(userName);
+		this.ini = ini;
+	}
+
+	public void setCpr(String cpr) throws InputException {
+		isCprValid(cpr);
+		this.cpr = cpr;
+	}
+
+	public void addRole(String role) throws InputException {
+		isRoleValid(role);
+		for (int i = 0; i < roles.size(); i++) {
+			if (roles.get(i).equals(role)) {
+				return;
+			}
+		}
+		
+		this.roles.add(role);
+	}
+
+	public String addUserToData() throws InputException {
 
 		UserDTO newUser = new UserDTO();
+		isUserIDValid(userID);
+		newUser.setUserId(userID);
+		isUserNameValid(userName);
 		newUser.setUserName(userName);
+		isIniValid(userName);
 		newUser.setIni(ini);
 		isCprValid(cpr);
 		newUser.setCpr(cpr);
 		newUser.setPassword(generatePassword());
-		for (int i = 0; i < roles.length; i++) {
-			if (roles[i].equals("Admin") || roles[i].equals("Pharmacis") || roles[i].equals("Foreman")
-					|| roles[i].equals("Operator")) {
-				newUser.addRole(roles[i]);
-			}
 
+		for(int i=0;i<roles.size();i++){
+			newUser.addRole(roles.get(i));
 		}
 
 		try {
@@ -43,19 +88,19 @@ public class UserCreator {
 
 	public boolean isUserIDValid(int userID) throws InputException {
 		if (userID < 11 || userID > 99) {
-			throw new InputException("This user id is invalid. User ID has to be between 11 and 99");
+			throw new InputException("This user id is invalid. User ID's has to be between 11 and 99");
 		}
 
 		try {
 			UserDTO user = data.getUser(userID);
-			if (user != null) {
-				throw new InputException("This user id is already taken.");
+			if(user==null){
+				return true;
 			}
+			throw new InputException("This user id is already taken.");
 		} catch (DALException e) {
 			return true;
 		}
 
-		return true;
 
 	}
 
@@ -68,16 +113,27 @@ public class UserCreator {
 		return true;
 	}
 
-	public boolean isIniValid(String userName) throws InputException {
+	public boolean isIniValid(String ini) throws InputException {
 
-		if (userName.length() < 2 || userName.length() > 4) {
+		if (ini.length() < 2 || ini.length() > 4) {
 			throw new InputException(
-					"These initials are invalid. initials has to be between 2 and 4 characthers long.");
+					"These initials are invalid. Initials has to be between 2 and 4 characthers long.");
 		}
 		return true;
 	}
 
-	public String generatePassword() {
+	public boolean isRoleValid(String role) throws InputException {
+
+		String[] validRoles= new String[] {"Admin", "Pharmacist", "Foreman", "Operator"};
+		for(int i=0;i<validRoles.length;i++){
+			if(!role.equals(validRoles[i])){
+				throw new InputException("This is not a valid role.");
+			}
+		}
+		return true;
+	}
+
+	private String generatePassword() {
 		String password = "";
 
 		int passLength = 8;
