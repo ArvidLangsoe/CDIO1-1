@@ -9,6 +9,8 @@ import entity.IFun.InputException;
 public class UserDTO implements Serializable {
 
 	private static final long serialVersionUID = 4545864587995944260L;
+	
+	public final String[] validRoles = new String[] { "Admin", "Pharmacist", "Foreman", "Operator" };
 	private int userId;
 	private String userName;
 	private String ini;
@@ -213,9 +215,10 @@ public class UserDTO implements Serializable {
 		this.roles.add(role);
 	}
 
+
 	public boolean isRoleValid(String role) throws InputException {
 
-		String[] validRoles = new String[] { "Admin", "Pharmacist", "Foreman", "Operator" };
+		
 		for (int i = 0; i < validRoles.length; i++) {
 			if (!role.equals(validRoles[i])) {
 				throw new InputException("This is not a valid role.");

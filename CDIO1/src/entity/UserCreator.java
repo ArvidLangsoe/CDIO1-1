@@ -49,6 +49,10 @@ public class UserCreator {
 	public void addRole(String role) throws InputException {
 		newUser.addRole(role);
 	}
+	
+	public String[] getValidroles(){
+		return newUser.validRoles;
+	}
 
 	public String endUserCreation() throws InputException {
 
@@ -57,7 +61,7 @@ public class UserCreator {
 		try {
 			data.createUser(newUser);
 		} catch (DALException e) {
-			return "Failure. Something went wrong when creating the user.";
+			return "Failure.";
 		}
 		
 		newUser=null;
