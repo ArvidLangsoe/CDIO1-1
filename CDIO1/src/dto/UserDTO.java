@@ -9,7 +9,7 @@ import entity.IFun.InputException;
 public class UserDTO implements Serializable {
 
 	private static final long serialVersionUID = 4545864587995944260L;
-	
+	private static int nextUserId=12;
 	public final String[] validRoles = new String[] { "Admin", "Pharmacist", "Foreman", "Operator" };
 	private int userId; 
 	private String userName;
@@ -34,7 +34,7 @@ public class UserDTO implements Serializable {
 	}
 	//HVorfor har vi brug for den her???? -Arvid
 	//Only used for system admin
-	public UserDTO() 
+	public UserDTO(String temp) 
 	{
 		this.userId = 11;
 		this.userName = "System Admin";
@@ -64,7 +64,7 @@ public class UserDTO implements Serializable {
 
 		return true;
 	}
-//Det her virker ikke, fordi userid er ikke persistent når programmet slukkes -Arvid
+	//Det her virker ikke, fordi userid er ikke persistent når programmet slukkes -Arvid
 	public int createUserId() throws InputException
 	{
 		this.userId = nextUserId;
@@ -167,6 +167,8 @@ public class UserDTO implements Serializable {
 	}
 
 	//Consider to delete this method. You shouldn't be able to get a password..
+	//Men du skal tjekke at passwordet er korrekt, og den der skal tjekke det skal have mulighed for at få den information? - Arvid
+	//Vi fik desuden at vide at vi ikke skulle tænke på sikkerhed. "Kryptering af passwords vil blive overvejet senere." står i opgaven.
 	public String getPassword() {
 		return password;
 	}
