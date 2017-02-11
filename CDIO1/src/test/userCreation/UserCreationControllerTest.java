@@ -36,6 +36,7 @@ public class UserCreationControllerTest {
 		tui = new TUIStub(userInputs);
 		TUIStub tuiTest = (TUIStub) tui;
 		con = new UserCreationController(userCreator, tui);
+		con.startUserCreation();
 
 		for (int i = 0; i < expectedAnswers.length; i++) {
 			assertEquals("The messages: '" + expectedAnswers[i] + "' and '" + tuiTest.responses.get(i)
