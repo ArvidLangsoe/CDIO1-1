@@ -1,5 +1,7 @@
 package test.userCreation;
 
+import java.util.ArrayList;
+
 import boundary.ITUI;
 
 public class TUIStub implements ITUI{
@@ -7,9 +9,13 @@ public class TUIStub implements ITUI{
 	private String[] userInputs;
 	private int index;
 	
+	
+	private ArrayList<String> responses;
+	
 	public TUIStub(String[] userInputs){
 		this.userInputs=userInputs;
 		index=0;
+		responses=new ArrayList<String>();
 		
 	}
 	@Override
@@ -19,7 +25,7 @@ public class TUIStub implements ITUI{
 
 	@Override
 	public void showResponse(String response) {
-		
+		responses.add(response);
 	}
 
 }
