@@ -1,6 +1,5 @@
 package entity;
 
-
 import dal.IUserDAO;
 import dal.IUserDAO.DALException;
 import dto.UserDTO;
@@ -23,12 +22,11 @@ public class UserCreator {
 
 		try {
 			UserDTO user = data.getUser(userID);
-			if (user != null) {
-				throw new InputException("This user id is already taken.");
-			}
+
+			throw new InputException("This user id is already taken.");
 
 		} catch (DALException e) {
-			
+
 		}
 
 		newUser.setUserId(userID);
@@ -49,12 +47,12 @@ public class UserCreator {
 	public void addRole(String role) throws InputException {
 		newUser.addRole(role);
 	}
-	
-	public String[] getValidroles(){
+
+	public String[] getValidroles() {
 		return newUser.validRoles;
 	}
 
-	public String endUserCreation() throws InputException,DALException {
+	public String endUserCreation() throws InputException, DALException {
 
 		newUser.setPassword(newUser.generateValidPassword());
 
@@ -62,7 +60,5 @@ public class UserCreator {
 
 		return "Succesfully created the user.";
 	}
-
-	
 
 }
