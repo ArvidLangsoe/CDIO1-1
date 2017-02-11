@@ -10,16 +10,22 @@ import entity.IFun.InputException;
 public class UserDTO implements Serializable{
 
 	private static final long serialVersionUID = 4545864587995944260L;
-	private int	userId;                     
-	private String userName;                
-	private String ini;
-	private String cpr;
+	private int	userId;              
+	private static int nextUserId = 11; //Global userId count.
+	private String userName;            //userName first and last name.
+	private String ini; //Initials created from name
+	private String cpr; 
 	private String password;
-	private List<String> roles;
-	//TODO Add relevant fields
+	private List<String> roles; //List of roles a user can have.
 	
-	public UserDTO() {
-		this.roles = new ArrayList<>();
+	public UserDTO(String name, String cpr, ArrayList<String> roles) throws InputException{
+		
+		this.userId = createUserId();
+		setUserName(name);
+		setIni(name);
+		setCpr(cpr);
+		this.password = createPassword();
+		this.roles = roles;
 	}
 	
 	public int getUserId() {
@@ -36,6 +42,15 @@ public class UserDTO implements Serializable{
 		
 		return true;
 	}
+	
+	public int createUserId() throws InputException
+	{
+		this.userId = nextUserId;
+		isUserIDValid(userId);
+		nextUserId++;
+		return userId;
+	}
+	
 	
 	
 	public String getUserName() {
@@ -58,9 +73,13 @@ public class UserDTO implements Serializable{
 	public String getIni() {
 		return ini;
 	}
-	public void setIni(String ini) throws InputException {
+	public void setIni(String name) throws InputException {
+		
+		String[] nameParts = name.split(" ");
+		String newIni = "";
+		ini = nameParts[0].substring(0, 2) + nameParts[1].substring(0, 2);
 		isIniValid(ini);
-		this.ini = ini;
+		this.ini = newIni;
 	}
 	
 	public boolean isIniValid(String ini) throws InputException {
@@ -120,10 +139,16 @@ public class UserDTO implements Serializable{
 		return true;
 	}
 
+	//Consider to delete this method. You shouldn't be able to get a password..
 	public String getPassword() {
 		return password;
 	}
 
+	public String createPassword()
+	{
+		return null;
+	}
+	
 	public void setPassword(String password) throws InputException {
 		isPasswordValid(password);
 		this.password = password;
