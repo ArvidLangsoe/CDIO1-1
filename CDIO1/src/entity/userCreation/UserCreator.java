@@ -6,7 +6,7 @@ import dto.UserDTO;
 import entity.IFun;
 import entity.IFun.InputException;
 
-public class UserCreator {
+public class UserCreator implements IUserCreation {
 
 	private IUserDAO data;
 	private UserDTO newUser;
