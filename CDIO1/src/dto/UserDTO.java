@@ -249,6 +249,52 @@ public class UserDTO implements Serializable {
 		return true;
 
 	}
+	public String generateValidPassword() {
+		String password = "";
+
+		int passLength = 8;
+		boolean passwordValid = false;
+		while (!passwordValid) {
+			password = "";
+			for (int i = 0; i < passLength; i++) {
+				char newCharacther;
+				int randGroup = (int) (Math.random() * 100);
+
+				// Add a special characther
+				if (randGroup < 5) {
+					String specialCharacthers = ".-_+!?=";
+					int rand = (int) (Math.random() * specialCharacthers.length());
+					newCharacther = specialCharacthers.charAt(rand);
+				}
+				// Add a small letter.
+				else if (randGroup < 30) {
+					int rand = (int) (Math.random() * (122 - 97 + 1) + 97);
+					newCharacther = (char) rand;
+
+				}
+				// Add a large letter.
+				else if (randGroup < 55) {
+					int rand = (int) (Math.random() * (90 - 65 + 1) + 65);
+					newCharacther = (char) rand;
+				}
+				// Add a number.
+				else {
+					int rand = (int) (Math.random() * (57 - 48 + 1) + 48);
+					newCharacther = (char) rand;
+				}
+
+				password += newCharacther + "";
+			}
+			try {
+				isPasswordValid(password);
+				passwordValid = true;
+			} catch (InputException e) {
+
+			}
+		}
+
+		return password;
+	}
 
 	public List<String> getRoles() {
 		return roles;
