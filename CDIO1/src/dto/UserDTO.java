@@ -11,7 +11,7 @@ public class UserDTO implements Serializable{
 
 	private static final long serialVersionUID = 4545864587995944260L;
 	private int	userId;              
-	private static int nextUserId = 11; //Global userId count.
+	private static int nextUserId = 12; //Global userId count.
 	private String userName;            //userName first and last name.
 	private String ini; //Initials created from name
 	private String cpr; 
@@ -26,6 +26,21 @@ public class UserDTO implements Serializable{
 		setCpr(cpr);
 		this.password = createPassword();
 		this.roles = roles;
+	}
+	
+	//Only used for system admin
+	public UserDTO() 
+	{
+		this.userId = 11;
+		this.userName = "System Admin";
+		this.ini = "SyAd";
+		this.cpr = "999999-9999";
+		this.password = "SystemAdmin!9";
+		this.roles.add("System Admin"); //Because system Admin is better than Admin.
+		this.roles.add("Admin");
+		this.roles.add("Pharmacist");
+		this.roles.add("Foreman");
+		this.roles.add("Operator");
 	}
 	
 	public int getUserId() {
@@ -244,13 +259,27 @@ public class UserDTO implements Serializable{
 		return true;
 	}
 	/**
-	 * 
+	 *
 	 * @param role
 	 * @return true if role existed, false if not
 	 */
 	public boolean removeRole(String role){
 		return this.roles.remove(role);
 	}
+	
+	public boolean hasRole(String role)
+	{
+		boolean hasRole = false;
+		for(int i = 0; i < roles.size(); i++)
+		{
+			if (roles.get(i).equals(role))
+			{
+				hasRole = true;
+			}
+		}
+		return hasRole;
+	}
+	
 
 	@Override
 	public String toString() {
