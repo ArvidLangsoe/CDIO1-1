@@ -30,7 +30,11 @@ public class UserCreationControllerTest {
 
 	@Test
 	public void testStartUserCreationNoExceptions() {
-		String[] expectedAnswers = new String[] { "User creation has begun." };
+		String[] expectedAnswers = new String[] { "User creation has begun.",
+				"Please enter the ID of the new user. It has to be between 11 and 99",
+				"Please enter a username. The username has to have a length between 2 and 20.",
+				"Please enter initials. The intials have to contain 2-4 letters.",
+				"Please enter the users cpr number." };
 		String[] userInputs = new String[] { "10", "name", "ini", "cpr", "1", "5" };
 
 		tui = new TUIStub(userInputs);
