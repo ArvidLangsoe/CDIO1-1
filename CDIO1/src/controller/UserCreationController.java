@@ -4,7 +4,7 @@ import boundary.ITUI;
 import dal.IUserDAO;
 import dal.IUserDAO.DALException;
 import entity.IFun.InputException;
-import entity.UserCreator;
+import entity.userCreation.UserCreator;
 
 public class UserCreationController {
 

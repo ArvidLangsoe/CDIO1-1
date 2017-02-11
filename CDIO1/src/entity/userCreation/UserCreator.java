@@ -1,8 +1,9 @@
-package entity;
+package entity.userCreation;
 
 import dal.IUserDAO;
 import dal.IUserDAO.DALException;
 import dto.UserDTO;
+import entity.IFun;
 import entity.IFun.InputException;
 
 public class UserCreator {
