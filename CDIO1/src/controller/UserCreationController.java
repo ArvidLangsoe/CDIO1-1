@@ -4,16 +4,17 @@ import boundary.ITUI;
 import dal.IUserDAO;
 import dal.IUserDAO.DALException;
 import entity.IFun.InputException;
+import entity.userCreation.IUserCreation;
 import entity.userCreation.UserCreator;
 
 public class UserCreationController {
 
 	private ITUI tui;
-	private UserCreator userCreator;
+	private IUserCreation userCreator;
 
-	UserCreationController(IUserDAO data, ITUI tui) {
+	public UserCreationController( IUserCreation userCreator, ITUI tui) {
 		this.tui = tui;
-		this.userCreator = new UserCreator(data);
+		this.userCreator = userCreator;
 	}
 
 	public void startUserCreation() {

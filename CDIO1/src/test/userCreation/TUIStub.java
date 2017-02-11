@@ -10,7 +10,7 @@ public class TUIStub implements ITUI{
 	private int index;
 	
 	
-	private ArrayList<String> responses;
+	public ArrayList<String> responses;
 	
 	public TUIStub(String[] userInputs){
 		this.userInputs=userInputs;
