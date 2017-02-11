@@ -11,7 +11,7 @@ public class UserDTO implements Serializable {
 	private static final long serialVersionUID = 4545864587995944260L;
 	
 	public final String[] validRoles = new String[] { "Admin", "Pharmacist", "Foreman", "Operator" };
-	private int userId;
+	private int userId; 
 	private String userName;
 	private String ini;
 	private String cpr;
@@ -21,6 +21,31 @@ public class UserDTO implements Serializable {
 
 	public UserDTO() {
 		this.roles = new ArrayList<>();
+	}
+	
+	public UserDTO(String name, String cpr, ArrayList<String> roles) throws InputException{
+		
+		this.userId = createUserId();
+		setUserName(name);
+		setIni(name);
+		setCpr(cpr);
+		this.password = createPassword();
+		this.roles = roles;
+	}
+	//HVorfor har vi brug for den her???? -Arvid
+	//Only used for system admin
+	public UserDTO() 
+	{
+		this.userId = 11;
+		this.userName = "System Admin";
+		this.ini = "SyAd";
+		this.cpr = "999999-9999";
+		this.password = "SystemAdmin!9";
+		this.roles.add("System Admin"); //Because system Admin is better than Admin.
+		this.roles.add("Admin");
+		this.roles.add("Pharmacist");
+		this.roles.add("Foreman");
+		this.roles.add("Operator");
 	}
 
 	public int getUserId() {
@@ -38,6 +63,14 @@ public class UserDTO implements Serializable {
 		}
 
 		return true;
+	}
+//Det her virker ikke, fordi userid er ikke persistent når programmet slukkes -Arvid
+	public int createUserId() throws InputException
+	{
+		this.userId = nextUserId;
+		isUserIDValid(userId);
+		nextUserId++;
+		return userId;
 	}
 
 	public String getUserName() {
@@ -61,6 +94,14 @@ public class UserDTO implements Serializable {
 	public String getIni() {
 		return ini;
 	}
+	public void generateIni(String name) throws InputException {
+		
+		String[] nameParts = name.split(" ");
+		String newIni = "";
+		ini = nameParts[0].substring(0, 2) + nameParts[1].substring(0, 2);
+		isIniValid(ini);
+		this.ini = newIni;
+	}
 
 	public void setIni(String ini) throws InputException {
 		isIniValid(ini);
@@ -80,7 +121,7 @@ public class UserDTO implements Serializable {
 		return cpr;
 	}
 
-	public void setCpr(String cpr) throws InputException {
+	public void setCpr(String cpr) throws InputException{
 		isCprValid(cpr);
 		this.cpr = cpr;
 	}
@@ -125,10 +166,16 @@ public class UserDTO implements Serializable {
 		return true;
 	}
 
+	//Consider to delete this method. You shouldn't be able to get a password..
 	public String getPassword() {
 		return password;
 	}
 
+	public String createPassword()
+	{
+		return null;
+	}
+	
 	public void setPassword(String password) throws InputException {
 		isPasswordValid(password);
 		this.password = password;
