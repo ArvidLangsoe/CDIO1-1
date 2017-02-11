@@ -284,6 +284,19 @@ public class UserDTO implements Serializable {
 	public boolean removeRole(String role) {
 		return this.roles.remove(role);
 	}
+	
+	public boolean hasRole(String role)
+	{
+		boolean hasRole = false;
+		for(int i = 0; i < roles.size(); i++)
+		{
+			if (roles.get(i).equals(role))
+			{
+				hasRole = true;
+			}
+		}
+		return hasRole;
+	}
 
 	@Override
 	public String toString() {
