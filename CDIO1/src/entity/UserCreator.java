@@ -28,7 +28,7 @@ public class UserCreator {
 			}
 
 		} catch (DALException e) {
-
+			
 		}
 
 		newUser.setUserId(userID);

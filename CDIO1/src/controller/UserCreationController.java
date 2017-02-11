@@ -33,6 +33,7 @@ public class UserCreationController {
 			String userInput = askAndHold(question);
 			try {
 				userCreator.setUserID(Integer.parseInt(userInput));
+				break;
 			} catch (NumberFormatException e) {
 				tui.showResponse("That is not a number.");
 			} catch (InputException e) {
@@ -47,6 +48,7 @@ public class UserCreationController {
 			String userInput = askAndHold(question);
 			try {
 				userCreator.setUserName(userInput);
+				break;
 			} catch (InputException e) {
 				tui.showResponse(e.getMessage());
 			}
@@ -60,6 +62,7 @@ public class UserCreationController {
 			String userInput = askAndHold(question);
 			try {
 				userCreator.setIni(userInput);
+				break;
 			} catch (InputException e) {
 				tui.showResponse(e.getMessage());
 			}
@@ -72,6 +75,7 @@ public class UserCreationController {
 			String userInput = askAndHold(question);
 			try {
 				userCreator.setCpr(userInput);
+				break;
 			} catch (InputException e) {
 				tui.showResponse(e.getMessage());
 			}
