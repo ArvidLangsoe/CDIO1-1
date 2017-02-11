@@ -54,17 +54,12 @@ public class UserCreator {
 		return newUser.validRoles;
 	}
 
-	public String endUserCreation() throws InputException {
+	public String endUserCreation() throws InputException,DALException {
 
 		newUser.setPassword(generatePassword());
 
-		try {
-			data.createUser(newUser);
-		} catch (DALException e) {
-			return "Failure.";
-		}
-		
-		newUser=null;
+		data.createUser(newUser);
+
 		return "Succes.";
 	}
 

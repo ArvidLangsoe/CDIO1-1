@@ -41,7 +41,7 @@ public class UserDTO implements Serializable {
 		this.ini = "SyAd";
 		this.cpr = "999999-9999";
 		this.password = "SystemAdmin!9";
-		this.roles.add("System Admin"); //Because system Admin is better than Admin.
+		this.roles.add("System Admin"); //Because system Admin is better than Admin.    Jeg ser ingen grund til dette -Arvid
 		this.roles.add("Admin");
 		this.roles.add("Pharmacist");
 		this.roles.add("Foreman");
@@ -102,7 +102,7 @@ public class UserDTO implements Serializable {
 		
 		String[] nameParts = name.split(" ");
 		String newIni = "";
-		ini = nameParts[0].substring(0, 2) + nameParts[1].substring(0, 2);
+		ini = nameParts[0].substring(0, 2) + nameParts[1].substring(0, 2); //Hvad hvis de har skrevet tre navne?
 		isIniValid(ini);
 		this.ini = newIni;
 	}

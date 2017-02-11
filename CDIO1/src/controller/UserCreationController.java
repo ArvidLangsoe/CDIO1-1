@@ -2,6 +2,7 @@ package controller;
 
 import boundary.ITUI;
 import dal.IUserDAO;
+import dal.IUserDAO.DALException;
 import entity.IFun.InputException;
 import entity.UserCreator;
 
@@ -24,6 +25,14 @@ public class UserCreationController {
 		getInitials();
 		getCpr();
 		getRoles();
+		
+		try {
+			userCreator.endUserCreation();
+		} catch (InputException e) {
+			System.out.println("Something went wrong with the password generation.");
+		} catch (DALException e) {
+			System.out.println("Something went wromg when trying to add a user.");
+		}
 
 	}
 
