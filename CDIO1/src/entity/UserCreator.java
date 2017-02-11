@@ -21,7 +21,7 @@ public class UserCreator {
 	public void setUserID(int userID) throws InputException {
 
 		try {
-			UserDTO user = data.getUser(userID);
+			data.getUser(userID);
 
 			throw new InputException("This user id is already taken.");
 
