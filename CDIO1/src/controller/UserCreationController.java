@@ -105,14 +105,17 @@ public class UserCreationController {
 			String out = question;
 			for (int i = 0; i < chosenRoles.length; i++) {
 				if (chosenRoles[i] == false) {
-					out += "\n" + i + ": " + validRoles[i]+".";
+					out += ("\n" + i + ": " + validRoles[i]+".");
 				}
 			}
 			out+="\n"+chosenRoles.length+": Stop selecting roles.";
 			try {
-				int userInput = Integer.parseInt(askAndHold(question));
+				int userInput = Integer.parseInt(askAndHold(out));
 				if(userInput==chosenRoles.length){
 					break;
+				}
+				else if(userInput>chosenRoles.length||userInput<0){
+					tui.showResponse("That is not a valid choice.");
 				}
 				else{
 					userCreator.addRole(validRoles[userInput]);

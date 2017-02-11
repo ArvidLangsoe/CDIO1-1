@@ -21,31 +21,31 @@ public class UserCreatorStub implements IUserCreation {
 	@Override
 	public void setUserID(int userID) throws InputException {
 		if(userID>1000){
-			new InputException("UserIDTest");
+			throw new InputException("UserIDTest");
 		}
 		
 	}
 
 	@Override
 	public void setUserName(String userName) throws InputException {
-		if(userName.length()>20){
-			new InputException("UserNameTest");
+		if(userName.length()<2){
+			throw new InputException("UserNameTest");
 		}
 	}
 
 	@Override
 	public void setIni(String ini) throws InputException {
 		
-		if(ini.length()>20){
-			new InputException("IniTest");
+		if(ini.length()<2){
+			throw new InputException("IniTest");
 		}
 	}
 
 	@Override
 	public void setCpr(String cpr) throws InputException {
 		// TODO Auto-generated method stub
-		if(cpr.length()>20){
-			new InputException("CprTest");
+		if(cpr.length()<2){
+			throw new InputException("CprTest");
 		}
 	}
 
@@ -63,7 +63,7 @@ public class UserCreatorStub implements IUserCreation {
 	@Override
 	public String endUserCreation() throws InputException, DALException {
 		// TODO This method need to be tested when it has been completely used in the Creation Controller.
-		return null;
+		return "Succes.";
 	}
 
 	
