@@ -27,11 +27,11 @@ public class UserCreationController {
 		getRoles();
 		
 		try {
-			userCreator.endUserCreation();
+			tui.showResponse(userCreator.endUserCreation());
 		} catch (InputException e) {
 			System.out.println("Something went wrong with the password generation.");
 		} catch (DALException e) {
-			System.out.println("Something went wromg when trying to add a user.");
+			System.out.println("Something went wrong when trying to add a user.");
 		}
 
 	}

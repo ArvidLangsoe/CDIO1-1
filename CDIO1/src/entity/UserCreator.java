@@ -60,7 +60,7 @@ public class UserCreator {
 
 		data.createUser(newUser);
 
-		return "Succes.";
+		return "Succesfully created the user.";
 	}
 
 	
