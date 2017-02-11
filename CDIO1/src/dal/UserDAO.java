@@ -42,7 +42,7 @@ public class UserDAO implements IUserDAO {
 	 * 
 	 * @return a list of users.
 	 */
-	public List<UserDTO> getUserList() throws DALException {
+	public List<UserDTO> getUserList() {
 		return users;
 	}
 
@@ -52,7 +52,7 @@ public class UserDAO implements IUserDAO {
 	 * @param user.
 	 *            The user to be added.
 	 */
-	public void createUser(UserDTO user) throws DALException {
+	public void createUser(UserDTO user) {
 		users.add(user);
 	}
 
