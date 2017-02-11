@@ -65,6 +65,10 @@ public class UserDTO implements Serializable {
 		return true;
 	}
 	//Det her virker ikke, fordi userid er ikke persistent når programmet slukkes -Arvid
+	//Desuden står der i opgaven at userid valg foretages af brugeren..
+	/*
+	 * "Valg af userID foretages af brugeren i intervallet 11-99."
+	 * */
 	public int createUserId() throws InputException
 	{
 		this.userId = nextUserId;
