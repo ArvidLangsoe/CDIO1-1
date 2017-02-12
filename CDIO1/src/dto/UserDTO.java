@@ -7,6 +7,10 @@ import java.util.List;
 import dal.IUserDAO.DALException;
 import entity.IFun.InputException;
 
+/*
+ * Denne klasse er entity for User.
+ * */
+
 public class UserDTO implements Serializable{
 
 	private static final long serialVersionUID = 4545864587995944260L;

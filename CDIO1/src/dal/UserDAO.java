@@ -4,6 +4,10 @@ import dto.UserDTO;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Denne klasse skal snakke med databasen (CRUD operations).
+ * */
+
 public class UserDAO implements IUserDAO {
 
 	// Instance variables
