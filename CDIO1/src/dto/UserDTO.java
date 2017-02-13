@@ -9,7 +9,6 @@ import entity.IFun.InputException;
 public class UserDTO implements Serializable {
 
 	private static final long serialVersionUID = 4545864587995944260L;
-	private static int nextUserId=12;
 	public final String[] validRoles = new String[] { "Admin", "Pharmacist", "Foreman", "Operator" };
 	private int userId; 
 	private String userName;
@@ -21,26 +20,17 @@ public class UserDTO implements Serializable {
 
 	public UserDTO() {
 		this.roles = new ArrayList<>();
+		
 	}
 	
-	public UserDTO(String name, String cpr, ArrayList<String> roles) throws InputException{
-		
-		this.userId = createUserId();
-		setUserName(name);
-		setIni(name);
-		setCpr(cpr);
-		this.password = createPassword();
-		this.roles = roles;
-	}
-	//HVorfor har vi brug for den her???? -Arvid
 	//Only used for system admin
 	public UserDTO(String temp) 
 	{
-		this.userId = 11;
+		this.userId = 10;
 		this.userName = "System Admin";
-		this.ini = "SyAd";
-		this.cpr = "999999-9999";
-		this.password = "SystemAdmin!9";
+		this.ini = null;
+		this.cpr = null;
+		this.password = "Password";
 		this.roles.add("System Admin"); //Because system Admin is better than Admin.    Jeg ser ingen grund til dette -Arvid
 		this.roles.add("Admin");
 		this.roles.add("Pharmacist");
@@ -64,23 +54,13 @@ public class UserDTO implements Serializable {
 
 		return true;
 	}
-	//Det her virker ikke, fordi userid er ikke persistent når programmet slukkes -Arvid
-	//Desuden står der i opgaven at userid valg foretages af brugeren..
-	/*
-	 * "Valg af userID foretages af brugeren i intervallet 11-99."
-	 * */
-	public int createUserId() throws InputException
-	{
-		this.userId = nextUserId;
-		isUserIDValid(userId);
-		nextUserId++;
-		return userId;
-	}
+
 
 	public String getUserName() {
 		return userName;
 	}
 
+	
 	public void setUserName(String userName) throws InputException {
 		isUserNameValid(userName);
 		this.userName = userName;
@@ -171,16 +151,12 @@ public class UserDTO implements Serializable {
 	}
 
 	//Consider to delete this method. You shouldn't be able to get a password..
-	//Men du skal tjekke at passwordet er korrekt, og den der skal tjekke det skal have mulighed for at få den information? - Arvid
-	//Vi fik desuden at vide at vi ikke skulle tænke på sikkerhed. "Kryptering af passwords vil blive overvejet senere." står i opgaven.
+	//Men du skal tjekke at passwordet er korrekt, og den der skal tjekke det skal have mulighed for at fï¿½ den information? - Arvid
+	//Vi fik desuden at vide at vi ikke skulle tï¿½nke pï¿½ sikkerhed. "Kryptering af passwords vil blive overvejet senere." stï¿½r i opgaven.
 	public String getPassword() {
 		return password;
 	}
 
-	public String createPassword()
-	{
-		return null;
-	}
 	
 	public void setPassword(String password) throws InputException {
 		isPasswordValid(password);
@@ -300,9 +276,6 @@ public class UserDTO implements Serializable {
 		return roles;
 	}
 
-	public void setRoles(List<String> roles) {
-		this.roles = roles;
-	}
 
 	public void addRole(String role) throws InputException {
 		isRoleValid(role);
@@ -331,9 +304,22 @@ public class UserDTO implements Serializable {
 	 * @param role
 	 * @return true if role existed, false if not
 	 */
-	public boolean removeRole(String role) {
-		return this.roles.remove(role);
+	public void removeRole(String role) throws InputException{
+		isRoleValid(role);
+		
+		if(!this.roles.remove(role))
+			throw new InputException("This user doesn't have role: "+role);
 	}
+	
+	/**
+	 * 
+	 * @param role
+	 * @return true if role existed, false if not
+	 */
+	public void removeAllRoles() {
+		this.roles.clear();
+	}
+	
 	
 	public boolean hasRole(String role)
 	{
