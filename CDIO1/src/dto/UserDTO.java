@@ -3,7 +3,7 @@ package dto;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-
+ 
 import entity.IFun.InputException;
 
 public class UserDTO implements Serializable {
