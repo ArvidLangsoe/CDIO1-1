@@ -14,7 +14,6 @@ public class UserDTO implements Serializable {
 	private String cpr;
 	private String password;
 	private List<String> roles;
-	// TODO Add relevant fields
 
 	public UserDTO() {
 		this.roles = new ArrayList<>();
@@ -61,13 +60,23 @@ public class UserDTO implements Serializable {
 	public String getIni() {
 		return ini;
 	}
-	public void generateIni(String name) throws InputException {
-		
+	
+	public String generateInitials (String name)
+	{
 		String[] nameParts = name.split(" ");
 		String newIni = "";
-		ini = nameParts[0].substring(0, 2) + nameParts[1].substring(0, 2); //Hvad hvis de har skrevet tre navne?
-		isIniValid(ini);
-		this.ini = newIni;
+		if (nameParts.length == 1)
+		{
+			newIni = nameParts[0].substring(0, 2);
+		}
+		else
+		{
+			for(String namePart : nameParts)
+			{
+				newIni = newIni + namePart.substring(0, 1);
+			}
+		}
+		return newIni;
 	}
 
 	public void setIni(String ini) throws InputException {
