@@ -17,7 +17,7 @@ public class UserEditor {
 
 	}
 
-	private void changeUserName(int userId, String changedUserName) throws DALException, InputException {
+	public void changeUserName(int userId, String changedUserName) throws DALException, InputException {
 		try {
 			UserDTO user = userDAO.getUser(userId);
 
@@ -34,7 +34,7 @@ public class UserEditor {
 		}
 	}
 
-	private void changeUserIni(int userId, String changedUserIni) throws DALException, InputException {
+	public void changeUserIni(int userId, String changedUserIni) throws DALException, InputException {
 		try {
 			UserDTO user = userDAO.getUser(userId);
 
@@ -51,7 +51,7 @@ public class UserEditor {
 		}
 	}
 
-	private void changeUserCPR(int userId, String changedUserCPR) throws DALException, InputException {
+	public void changeUserCPR(int userId, String changedUserCPR) throws DALException, InputException {
 		try {
 			UserDTO user = userDAO.getUser(userId);
 
@@ -67,7 +67,7 @@ public class UserEditor {
 		}
 	}
 
-	private void changeUserPassword(int userId, String ChangedUserPassword) {
+	public void changeUserPassword(int userId, String ChangedUserPassword) {
 		try {
 			UserDTO user = userDAO.getUser(userId);
 				
@@ -82,7 +82,7 @@ public class UserEditor {
 		
 	}
 
-	private void removeUserRoles(int userId) throws DALException, InputException {
+	public void removeUserRoles(int userId) throws DALException, InputException {
 		try {
 			UserDTO user = userDAO.getUser(userId);
 
@@ -96,7 +96,7 @@ public class UserEditor {
 		}
 	}
 
-	private void removeOneUserRole(int userId, String role) throws DALException, InputException {
+	public void removeOneUserRole(int userId, String role) throws DALException, InputException {
 		try {
 			UserDTO user = userDAO.getUser(userId);
 
@@ -112,7 +112,7 @@ public class UserEditor {
 		}
 	}
 
-	private void addUserRole(int userId, String role) throws DALException, InputException {
+	public void addUserRole(int userId, String role) throws DALException, InputException {
 		try {
 			UserDTO user = userDAO.getUser(userId);
 
