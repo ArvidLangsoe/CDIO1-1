@@ -12,7 +12,7 @@ public class UserCreationBoundary implements IUserCreationBoundary {
 	private Scanner sc;
 
 	@Override
-	public UserDTO getNewUser() {
+	public UserDTO createNewUser() {
 		sc = new Scanner(System.in);
 		newUser = new UserDTO();
 		try {
@@ -30,7 +30,7 @@ public class UserCreationBoundary implements IUserCreationBoundary {
 		return newUser;
 	}
 
-	@Override
+
 	public UserDTO editUserId() {
 		System.out.println("The userId already exist in the database. Please chose another:");
 		getUserID();
