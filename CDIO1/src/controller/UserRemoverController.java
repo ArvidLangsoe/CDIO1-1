@@ -5,6 +5,7 @@ import controller.interfaces.IUserDeletionController;
 import dal.IUserDAO;
 import dal.IUserDAO.DALException;
 
+
 public class UserRemoverController implements IUserDeletionController {
 	UserDeletetionBoundary boundary;
 	IUserDAO data;

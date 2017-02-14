@@ -10,6 +10,7 @@ public class UserDeletetionBoundary implements IUserDeletetionBoundary {
 		tui = new TUI();
 	}
 	
+	
 	@Override
 	public int getId(){
 		
