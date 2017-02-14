@@ -15,7 +15,11 @@ public class UserRemoverController implements IUserDeletionController {
 	}
 
 	@Override
-	public void deleteUser() throws DALException{
-		data.deleteUser(boundary.getId());
+	public void deleteUser(){
+		try{
+			data.deleteUser(boundary.getId());
+		}catch(DALException e){
+			boundary.showException(e);
+		}
 	}
 }

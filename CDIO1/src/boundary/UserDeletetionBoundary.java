@@ -27,6 +27,10 @@ public class UserDeletetionBoundary implements IUserDeletetionBoundary {
 		return id;
 	}
 	
+	public void showException(Exception e){
+		tui.show(e.getMessage());
+	}
+	
 	
 
 }
