@@ -11,9 +11,6 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Denne klasse skal snakke med databasen (CRUD operations).
- * */
 
 public class UserDAO implements IUserDAO {
 
@@ -62,13 +59,13 @@ public class UserDAO implements IUserDAO {
 	 * @param user.
 	 *            The user to be added.
 	 */
-	public void createUser(UserDTO user) {
+	public void createUser(UserDTO user) throws DALException {
 		users.add(user);
+		saveUsers(users);
 	}
 
 	/**
-	 * Deletes a user from the DAO object with the specified userId. You cannot
-	 * delete the System Admin.
+	 * Deletes a user from the DAO object with the specified userId.
 	 * 
 	 * @param userId
 	 *            The id of the user to be deleted.
@@ -78,6 +75,7 @@ public class UserDAO implements IUserDAO {
 			if (users.get(i).getUserId() == userId) {
 				if (!users.get(i).hasRole("System Admin")) {
 					users.remove(i);
+					saveUsers(users);
 					return;
 				} else {
 					throw new DALException("You cannot delete the System Admin user.");
@@ -93,13 +91,8 @@ public class UserDAO implements IUserDAO {
 	 * @param user
 	 *            The updated user.
 	 */
-	public void updateUser(UserDTO user) {
-		for (int i = 0; i < users.size(); i++) {
-			if (users.get(i).getUserId() == user.getUserId()) {
-				users.remove(i);
-				users.add(user);
-			}
-		}
+	public void updateUser(UserDTO user) throws DALException {
+		saveUsers(users);
 	}
 	
 	private ArrayList<UserDTO> loadUsers() throws DALException {
