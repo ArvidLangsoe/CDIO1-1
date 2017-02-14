@@ -20,8 +20,6 @@ public class UserDAO implements IUserDAO {
 	public UserDAO() {
 		users = new ArrayList<UserDTO>();
 
-		// Adds System Admin.
-		users.add(new UserDTO());
 	}
 
 	/**

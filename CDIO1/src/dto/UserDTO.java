@@ -18,24 +18,9 @@ public class UserDTO implements Serializable {
 
 	public UserDTO() {
 		this.roles = new ArrayList<>();
-		
-	}
-	
-	//Only used for system admin
-	public UserDTO(String temp) 
-	{
-		this.userId = 10;
-		this.userName = "System Admin";
-		this.ini = null;
-		this.cpr = null;
-		this.password = "Password";
-		this.roles.add("System Admin"); //Because system Admin is better than Admin.    Jeg ser ingen grund til dette -Arvid
-		this.roles.add("Admin");
-		this.roles.add("Pharmacist");
-		this.roles.add("Foreman");
-		this.roles.add("Operator");
 	}
 
+	
 	public int getUserId() {
 		return userId;
 	}
