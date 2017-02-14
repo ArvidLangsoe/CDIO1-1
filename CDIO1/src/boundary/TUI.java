@@ -24,8 +24,8 @@ public class TUI implements UI
 
 
 		}
-		catch(Exception e){
-			show("must be an integer");
+		catch(NumberFormatException e){
+			show("must be an integer. Try again");
 			getInt();
 		}
 		return 0;
