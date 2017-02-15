@@ -100,8 +100,8 @@ public class UserEditor implements IUserEditorBoundary {
 
 		while (true) {
 			try {
-				System.out.println("Are you sure you want to remove *ALL* roles for " + userDTO.getUserName() + "? \n"
-						+ "Type 1 for Yes. \n" + "Type 2 for No.");
+				System.out.println("Are you sure you want to remove *ALL* roles for " + userDTO.getUserName()
+						+ "? This choice is not revertable. \n" + "Type 1 for Yes. \n" + "Type 2 for No.");
 
 				int playerChoice = tui.getInt;
 
@@ -112,7 +112,7 @@ public class UserEditor implements IUserEditorBoundary {
 					break;
 
 				case 2:
-					System.out.println("No roles have been removed.");
+					System.out.println("No roles have been removed from " + userDTO.getUserName());
 					break;
 				}
 
@@ -135,7 +135,8 @@ public class UserEditor implements IUserEditorBoundary {
 					System.out.println("Please specify the role you want removed from " + userDTO.getUserName() + ".");
 					String roleChoice = tui.getString;
 					userDTO.removeRole(roleChoice);
-					System.out.println("You have succesfully removed " + roleChoice + " from " + userDTO.getUserName() + ".");
+					System.out.println(
+							"You have succesfully removed " + roleChoice + " from " + userDTO.getUserName() + ".");
 					break;
 
 				case 2:
@@ -157,14 +158,22 @@ public class UserEditor implements IUserEditorBoundary {
 			try {
 				System.out.println("Are you sure you want to add a role to " + userDTO.getUserName() + "? \n"
 						+ "Type 1 for Yes. \n" + "Type 2 for No.");
-				
-				int playerChoice = 
-				System.out.println("Please list the desired role to be added to " + userDTO.getUserName()
-						+ ": Admin, Pharmacist, Foreman or Operator.");
 
-				String playerChoice = tui.getString;
+				int playerChoice = tui.getInt;
 
-				System.out.println("Added " + playerChoice + " to the list of " + userDTO.getUserName() + "'s roles.");
+				switch (playerChoice) {
+				case 1:
+					System.out.println("Please list the desired role to be added to " + userDTO.getUserName()
+							+ ": Admin, Pharmacist, Foreman or Operator.");
+					String playerChoice = tui.getString;
+					userDTO.addRole(playerChoice);
+					System.out.println(
+							"Added " + playerChoice + " to the list of " + userDTO.getUserName() + "'s roles.");
+					break;
+
+				case 2:
+					System.out.println("No roles added to " + userDTO.getUserName());
+				}
 			} catch (DALException e) {
 				System.out.println("No user exists with the specified user ID.");
 			} catch (InputException e) {
@@ -214,7 +223,7 @@ public class UserEditor implements IUserEditorBoundary {
 			break;
 
 		case 3:
-
+			
 			break;
 
 		case 4:
