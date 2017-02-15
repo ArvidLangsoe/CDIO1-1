@@ -2,7 +2,6 @@ package entity;
 
 import dal.UserDAO;
 import dto.UserDTO;
-import controller.UserEditorController;
 import boundary.interfaces.IUserEditorBoundary;
 import dto.InputException;
 import dal.IUserDAO.DALException;
@@ -10,11 +9,9 @@ import dal.IUserDAO.DALException;
 public class UserEditor implements IUserEditorBoundary {
 
 	private UserDAO userDAO;
-	private UserEditorController userEditorController;
 
-	public UserEditor(UserDAO userDAO, UserEditorController userEditorController) {
+	public UserEditor(UserDAO userDAO) {
 		this.userDAO = userDAO;
-		this.userEditorController = userEditorController;
 
 	}
 
@@ -28,10 +25,11 @@ public class UserEditor implements IUserEditorBoundary {
 
 				userDTO.setUserName(changedUserName);
 
-				System.out.println("Username updated to " + userDTO.getUserName());
+				System.out.println("Username updated for " + userDTO.getUserName());
+
 				return;
 			} catch (DALException e) {
-				System.out.println("There exists no user with the specified user: " + userDTO);
+				System.out.println("No user exists with the specified user ID.");
 			} catch (InputException e) {
 				System.out.println(e.getMessage());
 			}
@@ -47,90 +45,131 @@ public class UserEditor implements IUserEditorBoundary {
 
 				userDTO.setIni(changedUserIni);
 
-				System.out.println("Username updated to " + userDTO.getUserName());
+				System.out.println("Username updated for " + userDTO.getUserName());
 
 			} catch (DALException e) {
-				System.out.println("There exists no user with the specified user ID: " + userDTO);
+				System.out.println("No user exists with the specified user ID.");
 			} catch (InputException e) {
 				System.out.println(e.getMessage());
 			}
 		}
 	}
 
-	public void changeUserCPR(int userId, String changedUserCPR) throws DALException, InputException {
-		try {
-			UserDTO user = userDAO.getUser(userId);
+	public void changeUserCPR(UserDTO userDTO) {
 
-			user.setCpr(changedUserCPR);
+		while (true) {
+			try {
+				System.out
+						.println("Please enter new user CPR number (6 numbers followed by a '-' and then 4 numbers.)");
 
-			userDAO.updateUser(user);
+				String changedUserCpr = tui.getString;
 
-			System.out.println("User CPR number changed to " + user.getCpr());
-		} catch (DALException e) {
-			System.out.println("THere exists no user with the specified user ID: " + userId);
-		} catch (InputException e) {
-			System.out.println("Input not recognised.");
+				userDTO.setCpr(changedUserCpr);
+
+				System.out.println("User CPR number updated for " + userDTO.getCpr());
+
+			} catch (DALException e) {
+				System.out.println("No user exists with the specified user ID.");
+			} catch (InputException e) {
+				System.out.println(e.getMessage());
+			}
 		}
 	}
 
-	public void changeUserPassword(int userId, String ChangedUserPassword) {
-		try {
-			UserDTO user = userDAO.getUser(userId);
+	public void changeUserPassword(UserDTO userDTO) {
 
-			user.setPassword(ChangedUserPassword);
+		while (true) {
+			try {
+				System.out.println("Please enter a new password (");
 
-			userDAO.updateUser(user);
-		} catch (DALException e) {
-			System.out.println("THere exists no user with the specified user ID: " + userId);
-		} catch (InputException e) {
-			System.out.println("Input not recognised.");
-		}
+				String changedUserPassword = tui.getString;
 
-	}
+				userDTO.setPassword(changedUserPassword);
 
-	public void removeUserRoles(int userId) throws DALException, InputException {
-		try {
-			UserDTO user = userDAO.getUser(userId);
+				System.out.println("User CPR number updated for " + userDTO.getUserName());
 
-			user.removeAllRoles();
-
-			userDAO.updateUser(user);
-
-			System.out.println("All of " + user.getUserName() + "'s roles have been removed.");
-		} catch (DALException e) {
-			System.out.println("There exists no user with the specified user ID: " + userId);
+			} catch (DALException e) {
+				System.out.println("No user exists with the specified user ID.");
+			} catch (InputException e) {
+				System.out.println(e.getMessage());
+			}
 		}
 	}
 
-	public void removeOneUserRole(int userId, String role) throws DALException, InputException {
-		try {
-			UserDTO user = userDAO.getUser(userId);
+	public void removeUserRoles(UserDTO userDTO) {
 
-			user.removeRole(role);
+		while (true) {
+			try {
+				System.out.println("Are you sure you want to remove *ALL* roles for " + userDTO.getUserName() + "? \n"
+						+ "Type 1 for Yes. \n" + "Type 2 for No.");
 
-			userDAO.updateUser(user);
+				int playerChoice = tui.getInt;
 
-			System.out.println("Removed " + role + "from the list of " + userId + "'s roles.");
-		} catch (DALException e) {
-			System.out.println("There exists no user with the specified user ID: " + userId);
-		} catch (InputException e) {
-			System.out.println("Input not recognised.");
+				switch (playerChoice) {
+				case 1:
+					userDTO.removeAllRoles();
+					System.out.println("All of " + userDTO.getUserName() + "'s roles have been removed.");
+					break;
+
+				case 2:
+					System.out.println("No roles have been removed.");
+					break;
+				}
+
+			} catch (DALException e) {
+				System.out.println(e.getMessage());
+			}
 		}
 	}
 
-	public void addUserRole(int userId, String role) throws DALException, InputException {
-		try {
-			UserDTO user = userDAO.getUser(userId);
+	public void removeOneUserRole(UserDTO userDTO) {
+		while (true) {
+			try {
+				System.out.println("Are you sure you want to remove a role from " + userDTO.getUserName() + "? \n"
+						+ "Type 1 for Yes. \n" + "Type 2 for No.");
 
-			user.addRole(role);
+				int playerChoice = tui.getInt;
 
-			userDAO.updateUser(user);
+				switch (playerChoice) {
+				case 1:
+					System.out.println("Please specify the role you want removed from " + userDTO.getUserName() + ".");
+					String roleChoice = tui.getString;
+					userDTO.removeRole(roleChoice);
+					System.out.println("You have succesfully removed " + roleChoice + " from " + userDTO.getUserName() + ".");
+					break;
 
-			System.out.println("Added " + role + " to the list of " + userId + "'s roles.");
-		} catch (DALException e) {
-			System.out.println("There exists no user with the specified user ID: " + userId);
-		} catch (InputException e) {
-			System.out.println("Input not recognised.");
+				case 2:
+					System.out.println("You have chosen not to remove any roles from " + userDTO.getUserName() + ".");
+					break;
+				}
+
+			} catch (DALException e) {
+				System.out.println("No user exists with the specified user ID.");
+			} catch (InputException e) {
+				System.out.println(e.getMessage());
+			}
+		}
+	}
+
+	public void addUserRole(UserDTO userDTO) {
+
+		while (true) {
+			try {
+				System.out.println("Are you sure you want to add a role to " + userDTO.getUserName() + "? \n"
+						+ "Type 1 for Yes. \n" + "Type 2 for No.");
+				
+				int playerChoice = 
+				System.out.println("Please list the desired role to be added to " + userDTO.getUserName()
+						+ ": Admin, Pharmacist, Foreman or Operator.");
+
+				String playerChoice = tui.getString;
+
+				System.out.println("Added " + playerChoice + " to the list of " + userDTO.getUserName() + "'s roles.");
+			} catch (DALException e) {
+				System.out.println("No user exists with the specified user ID.");
+			} catch (InputException e) {
+				System.out.println(e.getMessage());
+			}
 		}
 	}
 
