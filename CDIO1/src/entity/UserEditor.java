@@ -17,8 +17,26 @@ public class UserEditor implements IUserEditorBoundary {
 
 	public void changeUserName(UserDTO userDTO) {
 		while (true) {
-
 			try {
+				System.out.println("Are you sure you want to change the username for " + userDTO.getUserName() + "? \n"
+						+ "Type 1 for Yes. \n" + "Type 2 for No.");
+				int userChoice = tui.getInt;
+
+				switch (userChoice) {
+				case 1:
+					System.out.println("Please type in the new username: ");
+
+					String changedUserName = tui.getString;
+
+					userDTO.setIni(changedUserName);
+
+					System.out.println("Username updated for " + userDTO.getUserName());
+
+				case 2:
+					System.out.println("The username has not been changed for " + userDTO.getUserName());
+					editUser(userDTO);
+
+				}
 				System.out.println("Please list new username:");
 
 				String changedUserName = tui.getString;
@@ -41,18 +59,14 @@ public class UserEditor implements IUserEditorBoundary {
 			try {
 				System.out.println("Are you sure you want to change the initials for " + userDTO.getUserName() + "? \n"
 						+ "Type 1 for Yes. \n" + "Type 2 for No.");
+				int userChoice = tui.getInt;
 
-				int playerChoice = tui.getInt;
-
-				switch (playerChoice) {
+				switch (userChoice) {
 				case 1:
 					System.out.println("Please list new user Initials (2-4 characters long): ");
 
 					String changedUserIni = tui.getString;
 
-					while (!userDTO.isIniValid(changedUserIni)) {
-						System.out.println("The listed initials are not a valid input. Please list a valid input.");
-					}
 					userDTO.setIni(changedUserIni);
 
 					System.out.println("Username updated for " + userDTO.getUserName());
@@ -79,16 +93,14 @@ public class UserEditor implements IUserEditorBoundary {
 				System.out.println("Are you sure you want to change the CPR number for" + userDTO.getUserName() + "? \n"
 						+ "Type 1 for Yes. \n" + "Type 2 for No.");
 
-				int playerChoice = tui.getInt;
+				int userChoice = tui.getInt;
 
-				switch (playerChoice) {
+				switch (userChoice) {
 				case 1:
 					System.out.println(
 							"Please enter new user CPR number (6 numbers followed by a '-' and then 4 numbers.)");
 
 					String changedUserCpr = tui.getString;
-
-					userDTO.isCprValid(changedUserCpr);
 					while (!userDTO.isCprValid(changedUserCpr)) {
 						System.out.println("The listed CPR number is not a valid input. Please list a valid input.");
 
@@ -120,7 +132,6 @@ public class UserEditor implements IUserEditorBoundary {
 
 				String changedUserPassword = tui.getString;
 
-				userDTO.isPasswordValid(changedUserPassword);
 				while (!userDTO.isPasswordValid(changedUserPassword)) {
 					System.out.println("The listed password is not a valid input. Please list a valid input.");
 				}
@@ -143,9 +154,9 @@ public class UserEditor implements IUserEditorBoundary {
 				System.out.println("Please select how you wish to manipulate user roles for " + userDTO.getUserName()
 						+ ". \n" + "1: Add a new role. \n" + "2: Remove a role. \n" + "3: Remove *ALL* roles."
 						+ "4: Exit role manipulator");
-				int playerChoice = tui.getInt;
+				int userChoice = tui.getInt;
 
-				switch (playerChoice) {
+				switch (userChoice) {
 				case 1:
 					System.out.println("Preparing to add role to user...");
 					addUserRole(userDTO);
@@ -180,22 +191,21 @@ public class UserEditor implements IUserEditorBoundary {
 				System.out.println("Are you sure you want to add a role to " + userDTO.getUserName() + "? \n"
 						+ "Type 1 for Yes. \n" + "Type 2 for No.");
 
-				int playerChoice = tui.getInt;
+				int userChoice = tui.getInt;
 
-				switch (playerChoice) {
+				switch (userChoice) {
 				case 1:
 					System.out.println("Please list the desired role to be added to " + userDTO.getUserName()
 							+ ": Admin, Pharmacist, Foreman or Operator.");
-					String playerChoice = tui.getString;
+					String userRoleChoice = tui.getString;
 
-					userDTO.isRoleValid(playerChoice);
-					while (!userDTO.isRoleValid(playerChoice)) {
+					while (!userDTO.isRoleValid(userRoleChoice)) {
 						System.out.println("The listed password is not a valid input. Please list a valid input.");
 					}
 
-					userDTO.addRole(playerChoice);
-					System.out.println(
-							"Added " + playerChoice + " to the list of " + userDTO.getUserName() + "'s roles.");
+					userDTO.addRole(userRoleChoice);
+					System.out
+							.println("Added " + userChoice + " to the list of " + userDTO.getUserName() + "'s roles.");
 					break;
 
 				case 2:
@@ -215,9 +225,9 @@ public class UserEditor implements IUserEditorBoundary {
 				System.out.println("Are you sure you want to remove a role from " + userDTO.getUserName() + "? \n"
 						+ "Type 1 for Yes. \n" + "Type 2 for No.");
 
-				int playerChoice = tui.getInt;
+				int userChoice = tui.getInt;
 
-				switch (playerChoice) {
+				switch (userChoice) {
 				case 1:
 					System.out.println("Please specify the role you want removed from " + userDTO.getUserName() + ".");
 					String roleChoice = tui.getString;
@@ -246,9 +256,9 @@ public class UserEditor implements IUserEditorBoundary {
 				System.out.println("Are you sure you want to remove *ALL* roles for " + userDTO.getUserName()
 						+ "? This choice is not revertable. \n" + "Type 1 for Yes. \n" + "Type 2 for No.");
 
-				int playerChoice = tui.getInt;
+				int userChoice = tui.getInt;
 
-				switch (playerChoice) {
+				switch (userChoice) {
 				case 1:
 					userDTO.removeAllRoles();
 					System.out.println("All of " + userDTO.getUserName() + "'s roles have been removed.");
@@ -313,7 +323,9 @@ public class UserEditor implements IUserEditorBoundary {
 			manipulateUserRoles(userDTO);
 			break;
 
+		// !EXIT TO THE MAIN CONTROLLER HERE!
 		case 5:
+
 			break;
 		}
 		return null;
