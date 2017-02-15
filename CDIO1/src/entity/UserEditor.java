@@ -59,14 +59,26 @@ public class UserEditor implements IUserEditorBoundary {
 
 		while (true) {
 			try {
-				System.out
-						.println("Please enter new user CPR number (6 numbers followed by a '-' and then 4 numbers.)");
+				System.out.println("Are you sure you want to change the CPR number for" + userDTO.getUserName() + "? \n"
+						+ "Type 1 for Yes. \n" + "Type 2 for No.");
 
-				String changedUserCpr = tui.getString;
+				int playerChoice = tui.getInt;
 
-				userDTO.setCpr(changedUserCpr);
+				switch (playerChoice) {
+				case 1:
+					System.out.println(
+							"Please enter new user CPR number (6 numbers followed by a '-' and then 4 numbers.)");
 
-				System.out.println("User CPR number updated for " + userDTO.getCpr());
+					String changedUserCpr = tui.getString;
+
+					userDTO.setCpr(changedUserCpr);
+
+					System.out.println("User CPR number updated for " + userDTO.getCpr());
+					break;
+				case 2:
+					System.out.println("The CPR number has not been changed for " + userDTO.getUserName() + ".");
+					break;
+				}
 
 			} catch (DALException e) {
 				System.out.println("No user exists with the specified user ID.");
@@ -80,6 +92,7 @@ public class UserEditor implements IUserEditorBoundary {
 
 		while (true) {
 			try {
+
 				System.out.println("Please enter a new password (");
 
 				String changedUserPassword = tui.getString;
@@ -223,7 +236,7 @@ public class UserEditor implements IUserEditorBoundary {
 			break;
 
 		case 3:
-			
+
 			break;
 
 		case 4:
