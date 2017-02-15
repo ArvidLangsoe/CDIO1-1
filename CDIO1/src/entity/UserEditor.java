@@ -109,6 +109,31 @@ public class UserEditor implements IUserEditorBoundary {
 		}
 	}
 
+	public void manipulateUserRoles(UserDTO userDTO) {
+		while (true) {
+			try {
+				System.out.println(
+						"Please select how you wish to manipulate user roles for " + userDTO.getUserName() + ". \n"
+								+ "");
+				int playerChoice = tui.getInt;
+				
+				switch (playerChoice) {
+				case 1:
+					userDTO.removeAllRoles();
+					System.out.println("All of " + userDTO.getUserName() + "'s roles have been removed.");
+					break;
+
+				case 2:
+					System.out.println("No roles have been removed from " + userDTO.getUserName());
+					break;
+				}
+				
+			} catch (DALException e) {
+				System.out.println("No user exists with the specified user ID.");
+			}
+		}
+	}
+
 	public void removeUserRoles(UserDTO userDTO) {
 
 		while (true) {
@@ -236,7 +261,7 @@ public class UserEditor implements IUserEditorBoundary {
 			break;
 
 		case 3:
-
+			changeUserPassword(userDTO);
 			break;
 
 		case 4:
