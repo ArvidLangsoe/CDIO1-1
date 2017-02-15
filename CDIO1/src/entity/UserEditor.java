@@ -49,7 +49,6 @@ public class UserEditor implements IUserEditorBoundary {
 					System.out.println("Please list new user Initials (2-4 characters long): ");
 
 					String changedUserIni = tui.getString;
-					userDTO.isIniValid(changedUserIni);
 
 					while (!userDTO.isIniValid(changedUserIni)) {
 						System.out.println("The listed initials are not a valid input. Please list a valid input.");
@@ -91,13 +90,12 @@ public class UserEditor implements IUserEditorBoundary {
 
 					userDTO.isCprValid(changedUserCpr);
 					while (!userDTO.isCprValid(changedUserCpr)) {
-						System.out.println("The listed initials are not a valid input. Please list a valid input.");
-					
-					
+						System.out.println("The listed CPR number is not a valid input. Please list a valid input.");
+
+					}
 					userDTO.setCpr(changedUserCpr);
 
 					System.out.println("User CPR number updated for " + userDTO.getCpr());
-					}
 
 				case 2:
 					System.out.println("The CPR number has not been changed for " + userDTO.getUserName() + ".");
@@ -121,6 +119,11 @@ public class UserEditor implements IUserEditorBoundary {
 				System.out.println("Please enter a new password (");
 
 				String changedUserPassword = tui.getString;
+
+				userDTO.isPasswordValid(changedUserPassword);
+				while (!userDTO.isPasswordValid(changedUserPassword)) {
+					System.out.println("The listed password is not a valid input. Please list a valid input.");
+				}
 
 				userDTO.setPassword(changedUserPassword);
 
@@ -184,6 +187,12 @@ public class UserEditor implements IUserEditorBoundary {
 					System.out.println("Please list the desired role to be added to " + userDTO.getUserName()
 							+ ": Admin, Pharmacist, Foreman or Operator.");
 					String playerChoice = tui.getString;
+
+					userDTO.isRoleValid(playerChoice);
+					while (!userDTO.isRoleValid(playerChoice)) {
+						System.out.println("The listed password is not a valid input. Please list a valid input.");
+					}
+
 					userDTO.addRole(playerChoice);
 					System.out.println(
 							"Added " + playerChoice + " to the list of " + userDTO.getUserName() + "'s roles.");
