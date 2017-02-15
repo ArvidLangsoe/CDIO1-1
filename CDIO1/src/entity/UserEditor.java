@@ -39,13 +39,30 @@ public class UserEditor implements IUserEditorBoundary {
 	public void changeUserIni(UserDTO userDTO) {
 		while (true) {
 			try {
-				System.out.println("Please list new user Initials (2-4 characters long): ");
+				System.out.println("Are you sure you want to change the initials for " + userDTO.getUserName() + "? \n"
+						+ "Type 1 for Yes. \n" + "Type 2 for No.");
 
-				String changedUserIni = tui.getString;
+				int playerChoice = tui.getInt;
 
-				userDTO.setIni(changedUserIni);
+				switch (playerChoice) {
+				case 1:
+					System.out.println("Please list new user Initials (2-4 characters long): ");
 
-				System.out.println("Username updated for " + userDTO.getUserName());
+					String changedUserIni = tui.getString;
+					userDTO.isIniValid(changedUserIni);
+
+					while (!userDTO.isIniValid(changedUserIni)) {
+						System.out.println("The listed initials are not a valid input. Please list a valid input.");
+					}
+					userDTO.setIni(changedUserIni);
+
+					System.out.println("Username updated for " + userDTO.getUserName());
+
+				case 2:
+					System.out.println("The initials have not been changed for " + userDTO.getUserName());
+					editUser(userDTO);
+
+				}
 
 			} catch (DALException e) {
 				System.out.println("No user exists with the specified user ID.");
@@ -53,6 +70,7 @@ public class UserEditor implements IUserEditorBoundary {
 				System.out.println(e.getMessage());
 			}
 		}
+
 	}
 
 	public void changeUserCPR(UserDTO userDTO) {
@@ -71,13 +89,20 @@ public class UserEditor implements IUserEditorBoundary {
 
 					String changedUserCpr = tui.getString;
 
+					userDTO.isCprValid(changedUserCpr);
+					while (!userDTO.isCprValid(changedUserCpr)) {
+						System.out.println("The listed initials are not a valid input. Please list a valid input.");
+					
+					
 					userDTO.setCpr(changedUserCpr);
 
 					System.out.println("User CPR number updated for " + userDTO.getCpr());
-					break;
+					}
+
 				case 2:
 					System.out.println("The CPR number has not been changed for " + userDTO.getUserName() + ".");
-					break;
+					editUser(userDTO);
+
 				}
 
 			} catch (DALException e) {
