@@ -1,7 +1,5 @@
 package boundary;
 
-import entity.UserEditor;
-
 public class UserManagementBoundary extends TUI {
 
 	private UserCreationBoundary create;
