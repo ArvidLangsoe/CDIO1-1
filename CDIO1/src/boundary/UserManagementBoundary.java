@@ -1,13 +1,13 @@
 package boundary;
 
-import boundary.interfaces.*;
+import entity.UserEditor;
 
-public class UserManagementBoundary extends TUI implements IUserManagementBoundary {
+public class UserManagementBoundary extends TUI {
 
-	private IUserCreationBoundary create;
-	private IUserDeletetionBoundary delete;
-	private IUserInformationBoundary information;
-	private IUserEditorBoundary edit;
+	private UserCreationBoundary create;
+	private UserDeletetionBoundary delete;
+	private UserViewer view;
+	private UserEditor edit;
 
 	String options = "1:Opret ny bruger \n"
 			+ "2:List Brugere \n"
@@ -15,10 +15,10 @@ public class UserManagementBoundary extends TUI implements IUserManagementBounda
 			+ "4:Slet bruger \n"
 			+ "5:Afslut program \n";
 
-	public UserManagementBoundary(IUserCreationBoundary create, IUserDeletetionBoundary delete, IUserInformationBoundary information,IUserEditorBoundary edit) {
+	public UserManagementBoundary(UserCreationBoundary create, UserDeletetionBoundary delete, UserViewer view, UserEditor edit) {
 		this.create = create;
 		this.delete = delete;
-		this.information = information;
+		this.view = view;
 		this.edit = edit;
 	}
 
@@ -37,29 +37,27 @@ public class UserManagementBoundary extends TUI implements IUserManagementBounda
 		case 1:
 			create.createNewUser();
 			return true;
-			break;
 		case 4:
 			delete.deleteUser();
 			return true;
-			break;
 		case 2:
-			information.showUsers();
+			view.showUserViewerMenu();
 			return true;
-			break;
 		case 3:
 			edit.editUser();
 			return true;
-			break;
 		case 5:
 			return false;
-			break;
+		default: 
+			show("Bad input");
+			return true;
 		}
 
 	}
 
-	public void start() {
-		while (!choiceHandler(getUserChoice()))
-			show("Bad command");
+	public void start() 
+	{
+		while (!choiceHandler(getUserChoice()));
 	}
 
 }
