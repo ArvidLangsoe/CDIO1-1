@@ -4,6 +4,7 @@ import java.util.List;
 
 import boundary.interfaces.IUserInformationBoundary;
 import boundary.interfaces.UI;
+import dal.IUserDAO.DALException;
 import dal.UserDAO;
 import dto.UserDTO;
 
@@ -18,7 +19,16 @@ public class UserViewer extends TUI {
 	
 	public void showUserViewerMenu()
 	{
-		List<UserDTO> userArray = userDAO.getUserList();
+		List<UserDTO> userArray = null;
+		try 
+		{
+			userArray = userDAO.getUserList();
+		}
+		catch(DALException e)
+		{
+			show("ERROR: Could not get the user list!");
+		}
+		
 		show("Hvilke brugere vil du se?");
 		show("1. Alle brugere.");
 		show("2. Brugere med et bestemt id.");
