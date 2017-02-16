@@ -4,8 +4,8 @@ import dto.UserDTO;
 import dal.IUserDAO.DALException;
 import dal.UserDAO;
 import boundary.TUI;
+import boundary.UI;
 import boundary.interfaces.IUserEditorBoundary;
-import boundary.interfaces.UI;
 import dto.InputException;
 
 public class UserEditor extends TUI {

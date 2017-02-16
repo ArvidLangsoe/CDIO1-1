@@ -3,7 +3,6 @@ package boundary;
 import java.util.List;
 
 import boundary.interfaces.IUserInformationBoundary;
-import boundary.interfaces.UI;
 import dal.IUserDAO.DALException;
 import dal.UserDAO;
 import dto.UserDTO;

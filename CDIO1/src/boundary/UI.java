@@ -1,4 +1,4 @@
-package boundary.interfaces;
+package boundary;
 
 public interface UI {
 	//
