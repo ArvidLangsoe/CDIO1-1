@@ -2,16 +2,14 @@ package boundary;
 
 import java.util.List;
 
-import boundary.interfaces.IUserInformationBoundary;
-import boundary.interfaces.UI;
 import dal.IUserDAO.DALException;
-import dal.UserDAO;
+import dal.IUserDAO;
 import dto.UserDTO;
 
 public class UserViewer extends TUI {
-	private UserDAO userDAO;
+	private IUserDAO userDAO;
 	
-	public UserViewer(UserDAO userDAO)
+	public UserViewer(IUserDAO userDAO)
 	{
 		this.userDAO = userDAO;
 	}
