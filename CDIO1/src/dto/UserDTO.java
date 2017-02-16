@@ -265,7 +265,7 @@ public class UserDTO implements Serializable {
 			if (roles.get(i).equals(role)) {
 				return;
 			}
-		}
+		} 
 		this.roles.add(role);
 	}
 
