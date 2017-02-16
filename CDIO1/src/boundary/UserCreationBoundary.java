@@ -1,8 +1,8 @@
 package boundary;
 
-import java.util.Scanner;
 
 import boundary.interfaces.IUserCreationBoundary;
+import boundary.interfaces.UI;
 import dto.InputException;
 import dto.UserDTO;
 
@@ -11,7 +11,7 @@ public class UserCreationBoundary implements IUserCreationBoundary {
 	private UserDTO newUser;
 	private UI tui;
 
-	UserCreationBoundary(UI tui){
+	public UserCreationBoundary(UI tui){
 		this.tui=tui;
 	}
 		
@@ -21,7 +21,7 @@ public class UserCreationBoundary implements IUserCreationBoundary {
 		try {
 			newUser.setPassword(newUser.generateValidPassword());
 		} catch (InputException e) {
-			TUI.show("Something went horribly wrong when generating a password.");
+			tui.show("Something went horribly wrong when generating a password.");
 		}
 		getUserID();
 		getUserName();
@@ -29,7 +29,7 @@ public class UserCreationBoundary implements IUserCreationBoundary {
 		getCpr();
 		getRoles();
 
-		sc.close();
+
 		return newUser;
 	}
 
