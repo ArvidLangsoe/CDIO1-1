@@ -1,8 +1,8 @@
 package controller;
 
+import boundary.UI;
 import boundary.UserCreationBoundary;
 import boundary.interfaces.IUserCreationBoundary;
-import boundary.interfaces.UI;
 import controller.interfaces.IUserCreationController;
 import dal.IUserDAO;
 import dal.IUserDAO.DALException;
