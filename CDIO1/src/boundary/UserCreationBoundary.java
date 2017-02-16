@@ -5,9 +5,9 @@ package boundary;
 import dal.IUserDAO;
 import dal.IUserDAO.DALException;
 import dal.UserDAO;
-import dto.InputException;
 import dto.UserDTO;
 import dto.Validator;
+import dto.Validator.InputException;
 
 public class UserCreationBoundary extends  TUI {
 
@@ -21,22 +21,16 @@ public class UserCreationBoundary extends  TUI {
 
 	public void createNewUser() {
 		newUser = new UserDTO();
-		try {
-			newUser.setPassword(newUser.generatePassword());
-		} catch (InputException e) {
-			show("Something went horribly wrong when generating a password.");
-		}
+		
+		
 		
 		getUserID();
 		getUserName();
-		try {
-			newUser.setIni(newUser.generateInitials(newUser.getUserName()));
-		} catch (InputException e) {
-			show("Error: Initials was not generated correctly.");
-		}
 		getCpr();
 		getRoles();
-
+		
+		newUser.setPassword(newUser.generatePassword());
+		newUser.setIni(newUser.generateInitials(newUser.getUserName()));
 
 		try {
 			data.createUser(newUser);
@@ -125,7 +119,8 @@ public class UserCreationBoundary extends  TUI {
 				int userInput = getInt();
 				if (userInput == chosenRoles.length) {
 					break;
-				} else if (userInput > chosenRoles.length || userInput < 0) {
+				}
+				else if (userInput > chosenRoles.length || userInput < 0) {
 					show("That is not a valid choice.");
 				} else {
 					newUser.addRole(validRoles[userInput]);
@@ -133,8 +128,6 @@ public class UserCreationBoundary extends  TUI {
 				}
 			} catch (NumberFormatException e) {
 				show("That is not a number.");
-			} catch (InputException e) {
-				show("An internal error occured. Role was not valid.");
 			}
 		}
 
