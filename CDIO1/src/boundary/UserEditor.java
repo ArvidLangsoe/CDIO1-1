@@ -8,9 +8,9 @@ import dto.Validator.InputException;
 
 public class UserEditor extends TUI {
 
-	private UserDAO userDAO;
+	private IUserDAO userDAO;
 
-	public UserEditor(int userId, UserDAO userDAO) {
+	public UserEditor(int userId, IUserDAO userDAO) {
 		this.userDAO = userDAO;
 	}
 
