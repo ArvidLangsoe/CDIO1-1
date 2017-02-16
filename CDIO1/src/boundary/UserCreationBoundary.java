@@ -2,6 +2,7 @@ package boundary;
 
 
 
+import dal.IUserDAO;
 import dal.IUserDAO.DALException;
 import dal.UserDAO;
 import dto.InputException;
@@ -11,7 +12,7 @@ import dto.Validator;
 public class UserCreationBoundary extends  TUI {
 
 	private UserDTO newUser;
-	private UserDAO data;
+	private IUserDAO data;
 
 	public UserCreationBoundary(UserDAO data){
 		this.data=data;
