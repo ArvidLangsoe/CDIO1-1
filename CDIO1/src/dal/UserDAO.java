@@ -154,7 +154,7 @@ public class UserDAO implements IUserDAO {
 		} 
 		catch (IOException e) 
 		{
-				throw new DALException("Error writing to disk", e);
+			throw new DALException("Error writing to disk", e);
 		} 
 		finally 
 		{
