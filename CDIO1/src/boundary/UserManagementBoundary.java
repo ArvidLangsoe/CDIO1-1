@@ -33,31 +33,34 @@ public class UserManagementBoundary extends TUI implements IUserManagementBounda
 		
 	}
 
-	public void choiceHandler(int decision) {
+	public boolean choiceHandler(int decision) {
 		switch (decision) {
 		case 1:
 			create.createNewUser();
+			return true;
 			break;
 		case 4:
 			delete.deleteUser();
+			return true;
 			break;
 		case 2:
 			information.showUsers();
+			return true;
 			break;
 		case 3:
 			edit.editUser();
+			return true;
 			break;
 		case 5:
-			run = false;
+			return false;
 			break;
 		}
 
 	}
 
 	public void start() {
-		while (run) {
-			choiceHandler(getUserChoice());
-		}
+		while (!choiceHandler(getUserChoice()))
+			show("Bad command");
 	}
 	
 }
