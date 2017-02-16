@@ -23,9 +23,10 @@ public class UserCreationBoundary implements IUserCreationBoundary {
 		} catch (InputException e) {
 			tui.show("Something went horribly wrong when generating a password.");
 		}
+		
 		getUserID();
 		getUserName();
-		getInitials();
+		newUser.setIni(newUser.generateInitials(newUser.getUserName()));
 		getCpr();
 		getRoles();
 
