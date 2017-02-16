@@ -16,7 +16,7 @@ public class UserCreationBoundary implements IUserCreationBoundary {
 		sc = new Scanner(System.in);
 		newUser = new UserDTO();
 		try {
-			newUser.setPassword(newUser.generateValidPassword());
+			newUser.setPassword(newUser.generatePassword());
 		} catch (InputException e) {
 			System.out.println("Something went horribly wrong when generating a password.");
 		}

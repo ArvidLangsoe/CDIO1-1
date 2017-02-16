@@ -101,7 +101,7 @@ public class UserEditor implements IUserEditorBoundary {
 							"Please enter new user CPR number (6 numbers followed by a '-' and then 4 numbers.)");
 
 					String changedUserCpr = tui.getString;
-					while (!userDTO.isCprValid(changedUserCpr)) {
+					while (!userDTO.validateCPR(changedUserCpr)) {
 						System.out.println("The listed CPR number is not a valid input. Please list a valid input.");
 
 					}
@@ -132,7 +132,7 @@ public class UserEditor implements IUserEditorBoundary {
 
 				String changedUserPassword = tui.getString;
 
-				while (!userDTO.isPasswordValid(changedUserPassword)) {
+				while (!userDTO.validatePassword(changedUserPassword)) {
 					System.out.println("The listed password is not a valid input. Please list a valid input.");
 				}
 
@@ -199,7 +199,7 @@ public class UserEditor implements IUserEditorBoundary {
 							+ ": Admin, Pharmacist, Foreman or Operator.");
 					String userRoleChoice = tui.getString;
 
-					while (!userDTO.isRoleValid(userRoleChoice)) {
+					while (!userDTO.validateRole(userRoleChoice)) {
 						System.out.println("The listed password is not a valid input. Please list a valid input.");
 					}
 
@@ -285,7 +285,7 @@ public class UserEditor implements IUserEditorBoundary {
 
 				int userInput = tui.getInt();
 
-				fetchedUser.isUserIDValid(userInput);
+				fetchedUser.validateUserID(userInput);
 
 				return userInput;
 			}
