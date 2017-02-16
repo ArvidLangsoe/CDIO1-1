@@ -4,55 +4,67 @@ import java.util.List;
 
 import boundary.interfaces.IUserInformationBoundary;
 import boundary.interfaces.UI;
+import dal.IUserDAO.DALException;
+import dal.UserDAO;
 import dto.UserDTO;
 
-public class UserInformationBoundary implements IUserInformationBoundary {
-	private UI tui;
+public class UserViewer extends TUI {
+	private UserDAO userDAO;
 	
-	public UserInformationBoundary(UI tui)
+	public UserViewer(UserDAO userDAO)
 	{
-		this.tui = tui;
+		this.userDAO = userDAO;
 	}
 	
-	@Override
-	public void showUsers(List<UserDTO> userArray)
+	
+	public void showUserViewerMenu()
 	{
-		tui.show("Hvilke brugere vil du se?");
-		tui.show("1. Alle brugere.");
-		tui.show("2. Brugere med et bestemt id.");
-		tui.show("3. Brugere med initialer.");
-		tui.show("4. Brugere med et vidst CPR-nummer.");
-		tui.show("5. Brugere med en bestemt rolle.");
+		List<UserDTO> userArray = null;
+		try 
+		{
+			userArray = userDAO.getUserList();
+		}
+		catch(DALException e)
+		{
+			show("ERROR: Could not get the user list!");
+		}
 		
-		int decision = tui.getInt();
+		show("Hvilke brugere vil du se?");
+		show("1. Alle brugere.");
+		show("2. Brugere med et bestemt id.");
+		show("3. Brugere med initialer.");
+		show("4. Brugere med et vidst CPR-nummer.");
+		show("5. Brugere med en bestemt rolle.");
+		
+		int decision = getInt();
 		
 		switch(decision)
 		{
 		case 1: 
-			tui.show("Alle brugere vises:");
+			show("Alle brugere vises:");
 			showAllUsers(userArray);
 			break;
 		case 2:
-			tui.show("Hvilket id?");
-			int id = tui.getInt();
+			show("Hvilket id?");
+			int id = getInt();
 			showUserWithId(id, userArray);
 			break;
 		case 3:
-			tui.show("Hvilke initialer?");
-			String ini = tui.getString();
+			show("Hvilke initialer?");
+			String ini = getString();
 			showUserWithIni(ini, userArray);
 			break;
 		case 4:
-			tui.show("Hvilket CPR-nummer?");
-			String cpr = tui.getString();
+			show("Hvilket CPR-nummer?");
+			String cpr = getString();
 			showUserWithCpr(cpr, userArray);
 			break;
 		case 5:
-			tui.show("Hvilken rolle?");
-			String role = tui.getString();
+			show("Hvilken rolle?");
+			String role = getString();
 			showUsersWithRole(role, userArray);
 			break;
-		default: tui.show("Ikke muligt!");
+		default: show("Ikke muligt!");
 			break;
 		}
 		
@@ -128,10 +140,10 @@ public class UserInformationBoundary implements IUserInformationBoundary {
 	
 	private void printUser(UserDTO user, String roles)
 	{
-		tui.show("ID: " + user.getUserId() + 
-				" Navn: " + user.getUserName() + 
-				" Initialer: " + user.getIni() + 
-				" CPR: " + user.getCpr() +
-				" Roles: " + roles);
+		show("ID: " + user.getUserId() + 
+			" Navn: " + user.getUserName() + 
+			" Initialer: " + user.getIni() + 
+			" CPR: " + user.getCpr() +
+			" Roles: " + roles);
 	}
 }
