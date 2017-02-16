@@ -49,7 +49,7 @@ public class UserDAO implements IUserDAO {
 	 * 
 	 * @return a list of users.
 	 */
-	public List<UserDTO> getUserList() {
+	public List<UserDTO> getUserList() throws DALException {
 		return users;
 	}
 
