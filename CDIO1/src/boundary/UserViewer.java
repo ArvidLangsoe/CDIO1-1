@@ -2,6 +2,10 @@ package boundary;
 
 import java.util.List;
 
+<<<<<<< HEAD
+=======
+import boundary.interfaces.IUserInformationBoundary;
+>>>>>>> branch 'develop' of https://github.com/ArvidLangsoe/CDIO1-1.git
 import dal.IUserDAO.DALException;
 import dal.IUserDAO;
 import dto.UserDTO;

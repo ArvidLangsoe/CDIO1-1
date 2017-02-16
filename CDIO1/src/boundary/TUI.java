@@ -2,8 +2,6 @@ package boundary;
 
 import java.util.Scanner;
 
-import boundary.interfaces.UI;
-
 public class TUI implements UI
 {
 	private Scanner scan;
