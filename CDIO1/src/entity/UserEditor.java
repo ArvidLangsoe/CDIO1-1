@@ -8,7 +8,7 @@ import boundary.interfaces.IUserEditorBoundary;
 import boundary.interfaces.UI;
 import dto.InputException;
 
-public class UserEditor extends TUI{
+public class UserEditor extends TUI {
 
 	private UI tui;
 	private UserDAO userDAO;
@@ -30,8 +30,8 @@ public class UserEditor extends TUI{
 
 		while (true) {
 			show("Please choose an option: \n" + "1: Change the username. \n" + "2: Change the user's initials. \n"
-							+ "3: Change the users CPR number. \n" + "4: Change the user's password. \n"
-							+ "5: Manipulate user roles. \n" + "6: Exit the User Editor.");
+					+ "3: Change the users CPR number. \n" + "4: Change the user's password. \n"
+					+ "5: Manipulate user roles. \n" + "6: Exit the User Editor.");
 
 			int userChoice = tui.getInt();
 
@@ -144,8 +144,7 @@ public class UserEditor extends TUI{
 
 				switch (userChoice) {
 				case 1:
-					show(
-							"Please enter new user CPR number (6 numbers followed by a '-' and then 4 numbers.):");
+					show("Please enter new user CPR number (6 numbers followed by a '-' and then 4 numbers.):");
 
 					String changedUserCpr = tui.getString();
 					while (!userDTO.isCprValid(changedUserCpr)) {
@@ -206,8 +205,8 @@ public class UserEditor extends TUI{
 	public void manipulateUserRoles(UserDTO userDTO) {
 		while (true) {
 
-			show("Please select how you wish to manipulate user roles for " + userDTO.getUserName()
-					+ ". \n" + "1: Add a new role. \n" + "2: Remove a role. \n" + "3: Remove *ALL* roles."
+			show("Please select how you wish to manipulate user roles for " + userDTO.getUserName() + ". \n"
+					+ "1: Add a new role. \n" + "2: Remove a role. \n" + "3: Remove *ALL* roles."
 					+ "4: Exit role manipulator");
 			int userChoice = tui.getInt();
 
@@ -239,8 +238,8 @@ public class UserEditor extends TUI{
 
 		while (true) {
 			try {
-				show("Are you sure you want to add a role to " + userDTO.getUserName() + "? \n"
-						+ "Type 1 for Yes. \n" + "Type 2 for No.");
+				show("Are you sure you want to add a role to " + userDTO.getUserName() + "? \n" + "Type 1 for Yes. \n"
+						+ "Type 2 for No.");
 
 				int userChoice = tui.getInt();
 
@@ -281,8 +280,7 @@ public class UserEditor extends TUI{
 					show("Please specify the role you want removed from " + userDTO.getUserName() + ".");
 					String roleChoice = tui.getString();
 					userDTO.removeRole(roleChoice);
-					show(
-							"You have succesfully removed " + roleChoice + " from " + userDTO.getUserName() + ".");
+					show("You have succesfully removed " + roleChoice + " from " + userDTO.getUserName() + ".");
 					break;
 
 				case 2:
@@ -313,8 +311,7 @@ public class UserEditor extends TUI{
 				break;
 
 			case 2:
-				show(
-						"No roles have been removed from " + userDTO.getUserName() + ". Returning to prior menu...");
+				show("No roles have been removed from " + userDTO.getUserName() + ". Returning to prior menu...");
 				break;
 			}
 
