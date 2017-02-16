@@ -12,7 +12,6 @@ public class TUI implements UI
 	}
 	public String getString() {
 		String input = scan.nextLine();
-		scan.close();
 		return input;
 	}
 
