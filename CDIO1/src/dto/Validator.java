@@ -13,7 +13,6 @@ public class Validator {
 	}
 	
 	public static boolean validateUsername(String username) throws InputException {
-
 		if (username.length() < 2 || username.length() > 20) {
 			throw new InputException(
 					"This username is invalid. Usernames has to be between 2 and 20 characthers long.");
@@ -22,7 +21,6 @@ public class Validator {
 	}
 	
 	public static boolean validateInitials(String ini) throws InputException {
-
 		if (ini.length() < 2 || ini.length() > 4) {
 			throw new InputException("These initials are invalid. Initials has to be between 2 and 4 characthers long.");
 		}
