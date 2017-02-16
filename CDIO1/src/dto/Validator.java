@@ -135,4 +135,16 @@ public class Validator {
 		return true;
 	}
 
+	//Inner class - Exception class.
+	public static class InputException extends Exception 
+	{
+		private static final long serialVersionUID = 7884927058176762594L;
+		
+		public InputException(String msg)
+		{
+			super(msg);
+		}
+	}
 }
+
+
