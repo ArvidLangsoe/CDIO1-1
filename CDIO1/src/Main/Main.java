@@ -12,7 +12,7 @@ public class Main {
 			UserCreator create = new UserCreator(data);
 			UserEditor edit = new UserEditor(data);
 			MenuAdministrator menu = new MenuAdministrator(create, delete, view, edit);
-			
+			menu.start();
 	}
 
 }
