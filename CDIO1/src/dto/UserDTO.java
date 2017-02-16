@@ -80,11 +80,9 @@ public class UserDTO implements Serializable {
 	 * @param role
 	 * @return true if role existed, false if not
 	 */
-	public void removeRole(String role) throws InputException {		
-		if(!this.roles.remove(role))
-		{
-			throw new InputException("This user doesn't have role: " + role);
-		}
+	public void removeRole(String role) {		
+		this.roles.remove(role);
+
 	}
 	
 	/**

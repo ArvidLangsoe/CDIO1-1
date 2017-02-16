@@ -2,6 +2,7 @@ package dto;
 
 public class Validator {
 	
+	
 	public static final String[] validRoles = new String[] { "Admin", "Pharmacist", "Foreman", "Operator" };
 	
 	public static boolean validateUserID(int userID) throws InputException {
