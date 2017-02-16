@@ -4,9 +4,9 @@ import dto.UserDTO;
 import dal.IUserDAO.DALException;
 import dal.UserDAO;
 import boundary.TUI;
-import boundary.interfaces.IUserEditorBoundary;
 import boundary.interfaces.UI;
 import dto.InputException;
+import dto.Validator;
 
 public class UserEditor extends TUI {
 
@@ -71,133 +71,131 @@ public class UserEditor extends TUI {
 
 	public void changeUserName(UserDTO userDTO) {
 		while (true) {
-			try {
-				show("Are you sure you want to change the username for " + userDTO.getUserName() + "? \n"
-						+ "Type 1 for Yes. \n" + "Type 2 for No.");
-				int userChoice = tui.getInt();
+			show("Are you sure you want to change the username for " + userDTO.getUserName() + "? \n"
+					+ "Type 1 for Yes. \n" + "Type 2 for No.");
+			int userChoice = tui.getInt();
 
-				switch (userChoice) {
-				case 1:
+			switch (userChoice) {
+			case 1:
+				while (true) {
 					show("Please type in the new username: ");
+					try {
 
-					String changedUserName = tui.getString();
+						String changedUserName = tui.getString();
 
-					userDTO.setUserName(changedUserName);
+						Validator.validateUsername(changedUserName);
 
+						userDTO.setUserName(changedUserName);
+					} catch (InputException e) {
+						show(e.getMessage());
+					}
 					show("Username updated for " + userDTO.getUserName());
-
 					break;
 
-				case 2:
-					show("The username has not been changed for " + userDTO.getUserName()
-							+ ". Returning to prior menu...");
-					break;
 				}
-
-			} catch (InputException e) {
-				show(e.getMessage());
+			case 2:
+				show("The username has not been changed for " + userDTO.getUserName() + ". Returning to prior menu...");
+				break;
 			}
+
 		}
 	}
 
 	public void changeUserIni(UserDTO userDTO) {
 		while (true) {
-			try {
-				show("Are you sure you want to change the initials for " + userDTO.getUserName() + "? \n"
-						+ "Type 1 for Yes. \n" + "Type 2 for No.");
-				int userChoice = tui.getInt();
+			show("Are you sure you want to change the initials for " + userDTO.getUserName() + "? \n"
+					+ "Type 1 for Yes. \n" + "Type 2 for No.");
+			int userChoice = tui.getInt();
 
-				switch (userChoice) {
-				case 1:
+			switch (userChoice) {
+			case 1:
+				while (true) {
+
 					show("Please list new user Initials (2-4 characters long): ");
 
-					String changedUserIni = tui.getString();
+					try {
+						String changedUserIni = tui.getString();
 
-					userDTO.setIni(changedUserIni);
+						Validator.validateInitials(changedUserIni);
 
+						userDTO.setIni(changedUserIni);
+					} catch (InputException e) {
+						show(e.getMessage());
+					}
 					show("Username updated for " + userDTO.getUserName());
 
 					break;
-
-				case 2:
-					show("The initials have not been changed for " + userDTO.getUserName()
-							+ ". Returning to prior menu...");
-
-					break;
 				}
+			case 2:
+				show("The initials have not been changed for " + userDTO.getUserName()
+						+ ". Returning to prior menu...");
 
-			} catch (InputException e) {
-				show(e.getMessage());
+				break;
 			}
 		}
-
 	}
 
 	public void changeUserCPR(UserDTO userDTO) {
 
 		while (true) {
-			try {
-				show("Are you sure you want to change the CPR number for" + userDTO.getUserName() + "? \n"
-						+ "Type 1 for Yes. \n" + "Type 2 for No.");
+			show("Are you sure you want to change the CPR number for" + userDTO.getUserName() + "? \n"
+					+ "Type 1 for Yes. \n" + "Type 2 for No.");
 
-				int userChoice = tui.getInt();
+			int userChoice = tui.getInt();
 
-				switch (userChoice) {
-				case 1:
+			switch (userChoice) {
+			case 1:
+				while (true) {
 					show("Please enter new user CPR number (6 numbers followed by a '-' and then 4 numbers.):");
+					try {
 
-					String changedUserCpr = tui.getString();
-					while (!userDTO.isCprValid(changedUserCpr)) {
-						show("The listed CPR number is not a valid input. Please list a valid input.");
-
+						String changedUserCpr = tui.getString();
+						Validator.validateCPR(changedUserCpr);
+						userDTO.setCpr(changedUserCpr);
+					} catch (InputException e) {
+						show(e.getMessage());
 					}
-					userDTO.setCpr(changedUserCpr);
-
 					show("User CPR number updated for " + userDTO.getCpr());
 
 					break;
-
-				case 2:
-					show("The CPR number has not been changed for " + userDTO.getUserName()
-							+ ". Returning to prior menu...");
-					break;
-
 				}
+			case 2:
+				show("The CPR number has not been changed for " + userDTO.getUserName()
+						+ ". Returning to prior menu...");
+				break;
 
-			} catch (InputException e) {
-				show(e.getMessage());
 			}
+
 		}
+
 	}
 
 	public void changeUserPassword(UserDTO userDTO) {
 
 		while (true) {
-			try {
-				show("Are you sure you want to change the password for " + userDTO.getUserName() + "? \n"
-						+ "Type 1 for Yes. \n" + "Type 2 for No.");
+			show("Are you sure you want to change the password for " + userDTO.getUserName() + "? \n"
+					+ "Type 1 for Yes. \n" + "Type 2 for No.");
 
-				int userChoice = tui.getInt();
+			int userChoice = tui.getInt();
 
-				switch (userChoice) {
-				case 1:
+			switch (userChoice) {
+			case 1:
+				while (true) {
 					show("Please enter a new password: ");
-
-					String changedUserPassword = tui.getString();
-
-					userDTO.setPassword(changedUserPassword);
-
+					try {
+						String changedUserPassword = tui.getString();
+						Validator.validatePassword(changedUserPassword);
+						userDTO.setPassword(changedUserPassword);
+					} catch (InputException e) {
+						show(e.getMessage());
+					}
 					show("User CPR number updated for " + userDTO.getUserName());
 
 					break;
-
-				case 2:
-					show("No new password selected. Returning to prior menu...");
-					break;
 				}
-
-			} catch (InputException e) {
-				show(e.getMessage());
+			case 2:
+				show("No new password selected. Returning to prior menu...");
+				break;
 			}
 		}
 	}
@@ -227,9 +225,12 @@ public class UserEditor extends TUI {
 				break;
 
 			case 4:
-				show("Exiting role manipulator");
+				show("Exiting role manipulator...");
 				break;
 
+			default:
+				show("Input not recognized...");
+				break;
 			}
 		}
 	}
@@ -237,61 +238,64 @@ public class UserEditor extends TUI {
 	public void addUserRole(UserDTO userDTO) {
 
 		while (true) {
-			try {
-				show("Are you sure you want to add a role to " + userDTO.getUserName() + "? \n" + "Type 1 for Yes. \n"
-						+ "Type 2 for No.");
 
-				int userChoice = tui.getInt();
+			show("Are you sure you want to add a role to " + userDTO.getUserName() + "? \n" + "Type 1 for Yes. \n"
+					+ "Type 2 for No.");
 
-				switch (userChoice) {
-				case 1:
+			int userChoice = tui.getInt();
+
+			switch (userChoice) {
+			case 1:
+				while (true) {
 					show("Please list the desired role to be added to " + userDTO.getUserName()
 							+ ": Admin, Pharmacist, Foreman or Operator.");
-					String userRoleChoice = tui.getString();
 
-					while (!userDTO.isRoleValid(userRoleChoice)) {
-						show("The listed password is not a valid input. Please list a valid input.");
+					try {
+						String userRoleChoice = tui.getString();
+						Validator.validateRole(userRoleChoice);
+						userDTO.addRole(userRoleChoice);
+					} catch (InputException e) {
+						show(e.getMessage());
 					}
-
-					userDTO.addRole(userRoleChoice);
 					show("Added " + userChoice + " to the list of " + userDTO.getUserName()
 							+ "'s roles. Returning to prior menu...");
 					break;
-
-				case 2:
-					show("No roles added to " + userDTO.getUserName());
 				}
-			} catch (InputException e) {
-				show(e.getMessage());
+			case 2:
+				show("No roles added to " + userDTO.getUserName());
 			}
 		}
 	}
 
 	public void removeOneUserRole(UserDTO userDTO) {
 		while (true) {
-			try {
-				show("Are you sure you want to remove a role from " + userDTO.getUserName() + "? \n"
-						+ "Type 1 for Yes. \n" + "Type 2 for No.");
+			show("Are you sure you want to remove a role from " + userDTO.getUserName() + "? \n" + "Type 1 for Yes. \n"
+					+ "Type 2 for No.");
 
-				int userChoice = tui.getInt();
+			int userChoice = tui.getInt();
 
-				switch (userChoice) {
-				case 1:
+			switch (userChoice) {
+			case 1:
+				while (true) {
 					show("Please specify the role you want removed from " + userDTO.getUserName() + ".");
-					String roleChoice = tui.getString();
-					userDTO.removeRole(roleChoice);
-					show("You have succesfully removed " + roleChoice + " from " + userDTO.getUserName() + ".");
-					break;
+					try {
 
-				case 2:
-					show("You have chosen not to remove any roles from " + userDTO.getUserName()
-							+ ". Returning to prior menu...");
+						String roleChoice = tui.getString();
+						Validator.validateRole(roleChoice);
+						userDTO.removeRole(roleChoice);
+					} catch (InputException e) {
+						show(e.getMessage());
+					}
+					show("You have succesfully removed a role from " + userDTO.getUserName() + ".");
+
 					break;
 				}
-
-			} catch (InputException e) {
-				show(e.getMessage());
+			case 2:
+				show("You have chosen not to remove any roles from " + userDTO.getUserName()
+						+ ". Returning to prior menu...");
+				break;
 			}
+
 		}
 	}
 
@@ -320,23 +324,21 @@ public class UserEditor extends TUI {
 
 	public int getId() {
 		while (true) {
-			try {
-				show("Please specify wished userId");
+			show("Please specify wished userId");
+			while (true) {
+				try {
+					int userInput = tui.getInt();
 
-				UserDTO fetchedUser = new UserDTO();
+					Validator.validateUserID(userInput);
 
-				int userInput = tui.getInt();
+					return userInput;
+				}
 
-				fetchedUser.isUserIDValid(userInput);
-
-				return userInput;
-			}
-
-			catch (InputException e) {
-				show("Input not recognised.");
+				catch (InputException e) {
+					show("Input not recognised.");
+				}
 			}
 		}
-
 	}
 
 }
