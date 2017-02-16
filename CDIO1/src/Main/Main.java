@@ -12,7 +12,7 @@ public class Main {
 			UserCreationBoundary create = new UserCreationBoundary(data);
 			UserEditor edit = new UserEditor(data);
 			UserManagementBoundary menu = new UserManagementBoundary(create, delete, view, edit);
-			
+			menu.start();
 	}
 
 }
