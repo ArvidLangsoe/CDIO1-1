@@ -20,7 +20,7 @@ public class UserCreationBoundary extends  TUI {
 	public void createNewUser() {
 		newUser = new UserDTO();
 		try {
-			newUser.setPassword(newUser.generateValidPassword());
+			newUser.setPassword(newUser.generatePassword());
 		} catch (InputException e) {
 			show("Something went horribly wrong when generating a password.");
 		}
