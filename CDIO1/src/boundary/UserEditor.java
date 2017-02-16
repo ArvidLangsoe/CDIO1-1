@@ -1,16 +1,15 @@
 package boundary;
 
-import dto.UserDTO;
-import dal.IUserDAO.DALException;
-import dal.UserDAO;
-import dto.Validator;
+import dto.*;
 import dto.Validator.InputException;
+import dal.*;
+import dal.IUserDAO.DALException;
 
 public class UserEditor extends TUI {
 
 	private IUserDAO userDAO;
 
-	public UserEditor(int userId, IUserDAO userDAO) {
+	public UserEditor(IUserDAO userDAO) {
 		this.userDAO = userDAO;
 	}
 
