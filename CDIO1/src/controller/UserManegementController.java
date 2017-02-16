@@ -38,7 +38,7 @@ public class UserManegementController implements IUserManagementController {
 		switch(decision)
 		{
 		case 1: create.createUser();
-		//case 4: delete.deleteUser();
+		case 4: delete.deleteUser();
 		case 2: information.getUserInformation();
 		case 3: edit.editUser();
 		case 5: run = false;
