@@ -6,6 +6,7 @@ import dal.IUserDAO.DALException;
 import dal.UserDAO;
 import dto.InputException;
 import dto.UserDTO;
+import dto.Validator;
 
 public class UserCreationBoundary extends  TUI {
 
@@ -100,7 +101,7 @@ public class UserCreationBoundary extends  TUI {
 
 	private void getRoles() {
 		String question = "What roles do you want to assign to the user? Enter a number corresponding to a role:";
-		String[] validRoles = newUser.validRoles;
+		String[] validRoles = Validator.validRoles;
 		boolean[] chosenRoles = new boolean[validRoles.length];
 		for (int i = 0; i < chosenRoles.length; i++) {
 			chosenRoles[i] = false;
