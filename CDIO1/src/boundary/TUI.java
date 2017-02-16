@@ -2,8 +2,6 @@ package boundary;
 
 import java.util.Scanner;
 
-import boundary.interfaces.UI;
-
 public class TUI implements UI
 {
 	private Scanner scan;
@@ -12,7 +10,6 @@ public class TUI implements UI
 	}
 	public String getString() {
 		String input = scan.nextLine();
-		scan.close();
 		return input;
 	}
 

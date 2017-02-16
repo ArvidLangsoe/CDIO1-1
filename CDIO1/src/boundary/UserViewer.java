@@ -3,7 +3,6 @@ package boundary;
 import java.util.List;
 
 import boundary.interfaces.IUserInformationBoundary;
-import boundary.interfaces.UI;
 import dal.IUserDAO.DALException;
 import dal.UserDAO;
 import dto.UserDTO;
@@ -29,12 +28,12 @@ public class UserViewer extends TUI {
 			show("ERROR: Could not get the user list!");
 		}
 		
-		show("Hvilke brugere vil du se?");
-		show("1. Alle brugere.");
-		show("2. Brugere med et bestemt id.");
-		show("3. Brugere med initialer.");
-		show("4. Brugere med et vidst CPR-nummer.");
-		show("5. Brugere med en bestemt rolle.");
+		show("Hvilke brugere vil du se?\n"
+				+ "1. Alle brugere.\n"
+				+ "2. Brugere med et bestemt id.\n"
+				+ "3. Brugere med initialer.\n"
+				+ "4. Brugere med et vidst CPR-nummer.\n"
+				+ "5. Brugere med en bestemt rolle.");
 		
 		int decision = getInt();
 		

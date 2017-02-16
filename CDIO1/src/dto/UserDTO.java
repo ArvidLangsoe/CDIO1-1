@@ -3,7 +3,8 @@ package dto;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import boundary.TUI;
+
+import dto.Validator.InputException;
 
 public class UserDTO implements Serializable {
 	
@@ -24,7 +25,7 @@ public class UserDTO implements Serializable {
 		return userId;
 	}
 	
-	public void setUserId(int userId) throws InputException {
+	public void setUserId(int userId) {
 		this.userId = userId;
 	}
 	
@@ -32,7 +33,7 @@ public class UserDTO implements Serializable {
 		return userName;
 	}
 	
-	public void setUserName(String userName) throws InputException {
+	public void setUserName(String userName) {
 		this.userName = userName;
 	}
 	
@@ -40,7 +41,7 @@ public class UserDTO implements Serializable {
 		return ini;
 	}
 	
-	public void setIni(String ini) throws InputException {
+	public void setIni(String ini) {
 		this.ini = ini;
 	}
 	
@@ -48,7 +49,7 @@ public class UserDTO implements Serializable {
 		return cpr;
 	}
 	
-	public void setCpr(String cpr) throws InputException{
+	public void setCpr(String cpr) {
 		this.cpr = cpr;
 	}
 	
@@ -57,7 +58,7 @@ public class UserDTO implements Serializable {
 	}
 	
 	
-	public void setPassword(String password) throws InputException {
+	public void setPassword(String password) {
 		this.password = password;
 	}
 	
@@ -65,7 +66,7 @@ public class UserDTO implements Serializable {
 		return roles;
 	}
 	
-	public void addRole(String role) throws InputException {
+	public void addRole(String role) {
 		for (int i = 0; i < roles.size(); i++) {
 			if (roles.get(i).equals(role)) {
 				return;
@@ -79,9 +80,9 @@ public class UserDTO implements Serializable {
 	 * @param role
 	 * @return true if role existed, false if not
 	 */
-	public void removeRole(String role) throws InputException {		
-		if(!this.roles.remove(role))
-			throw new InputException("This user doesn't have role: "+role);
+	public void removeRole(String role) {		
+		this.roles.remove(role);
+
 	}
 	
 	/**

@@ -4,13 +4,12 @@ import dto.UserDTO;
 import dal.IUserDAO.DALException;
 import dal.UserDAO;
 import boundary.TUI;
-import boundary.interfaces.UI;
-import dto.InputException;
+
 import dto.Validator;
+import dto.Validator.InputException;
 
 public class UserEditor extends TUI {
 
-	private UI tui;
 	private UserDAO userDAO;
 
 	public UserEditor(int userId, UserDAO userDAO) {
@@ -27,13 +26,13 @@ public class UserEditor extends TUI {
 			e.getMessage();
 			return;
 		}
-
+ 
 		while (true) {
 			show("Please choose an option: \n" + "1: Change the username. \n" + "2: Change the user's initials. \n"
 					+ "3: Change the users CPR number. \n" + "4: Change the user's password. \n"
 					+ "5: Manipulate user roles. \n" + "6: Exit the User Editor.");
 
-			int userChoice = tui.getInt();
+			int userChoice = getInt();
 
 			switch (userChoice) {
 			case 1:
@@ -73,7 +72,7 @@ public class UserEditor extends TUI {
 		while (true) {
 			show("Are you sure you want to change the username for " + userDTO.getUserName() + "? \n"
 					+ "Type 1 for Yes. \n" + "Type 2 for No.");
-			int userChoice = tui.getInt();
+			int userChoice = getInt();
 
 			switch (userChoice) {
 			case 1:
@@ -81,7 +80,7 @@ public class UserEditor extends TUI {
 					show("Please type in the new username: ");
 					try {
 
-						String changedUserName = tui.getString();
+						String changedUserName = getString();
 
 						Validator.validateUsername(changedUserName);
 
@@ -105,7 +104,7 @@ public class UserEditor extends TUI {
 		while (true) {
 			show("Are you sure you want to change the initials for " + userDTO.getUserName() + "? \n"
 					+ "Type 1 for Yes. \n" + "Type 2 for No.");
-			int userChoice = tui.getInt();
+			int userChoice = getInt();
 
 			switch (userChoice) {
 			case 1:
@@ -114,7 +113,7 @@ public class UserEditor extends TUI {
 					show("Please list new user Initials (2-4 characters long): ");
 
 					try {
-						String changedUserIni = tui.getString();
+						String changedUserIni = getString();
 
 						Validator.validateInitials(changedUserIni);
 
@@ -141,7 +140,7 @@ public class UserEditor extends TUI {
 			show("Are you sure you want to change the CPR number for" + userDTO.getUserName() + "? \n"
 					+ "Type 1 for Yes. \n" + "Type 2 for No.");
 
-			int userChoice = tui.getInt();
+			int userChoice = getInt();
 
 			switch (userChoice) {
 			case 1:
@@ -149,7 +148,7 @@ public class UserEditor extends TUI {
 					show("Please enter new user CPR number (6 numbers followed by a '-' and then 4 numbers.):");
 					try {
 
-						String changedUserCpr = tui.getString();
+						String changedUserCpr = getString();
 						Validator.validateCPR(changedUserCpr);
 						userDTO.setCpr(changedUserCpr);
 					} catch (InputException e) {
@@ -176,14 +175,14 @@ public class UserEditor extends TUI {
 			show("Are you sure you want to change the password for " + userDTO.getUserName() + "? \n"
 					+ "Type 1 for Yes. \n" + "Type 2 for No.");
 
-			int userChoice = tui.getInt();
+			int userChoice = getInt();
 
 			switch (userChoice) {
 			case 1:
 				while (true) {
 					show("Please enter a new password: ");
 					try {
-						String changedUserPassword = tui.getString();
+						String changedUserPassword = getString();
 						Validator.validatePassword(changedUserPassword);
 						userDTO.setPassword(changedUserPassword);
 					} catch (InputException e) {
@@ -206,7 +205,7 @@ public class UserEditor extends TUI {
 			show("Please select how you wish to manipulate user roles for " + userDTO.getUserName() + ". \n"
 					+ "1: Add a new role. \n" + "2: Remove a role. \n" + "3: Remove *ALL* roles."
 					+ "4: Exit role manipulator");
-			int userChoice = tui.getInt();
+			int userChoice = getInt();
 
 			switch (userChoice) {
 			case 1:
@@ -242,7 +241,7 @@ public class UserEditor extends TUI {
 			show("Are you sure you want to add a role to " + userDTO.getUserName() + "? \n" + "Type 1 for Yes. \n"
 					+ "Type 2 for No.");
 
-			int userChoice = tui.getInt();
+			int userChoice = getInt();
 
 			switch (userChoice) {
 			case 1:
@@ -251,7 +250,7 @@ public class UserEditor extends TUI {
 							+ ": Admin, Pharmacist, Foreman or Operator.");
 
 					try {
-						String userRoleChoice = tui.getString();
+						String userRoleChoice = getString();
 						Validator.validateRole(userRoleChoice);
 						userDTO.addRole(userRoleChoice);
 					} catch (InputException e) {
@@ -272,7 +271,7 @@ public class UserEditor extends TUI {
 			show("Are you sure you want to remove a role from " + userDTO.getUserName() + "? \n" + "Type 1 for Yes. \n"
 					+ "Type 2 for No.");
 
-			int userChoice = tui.getInt();
+			int userChoice = getInt();
 
 			switch (userChoice) {
 			case 1:
@@ -280,7 +279,7 @@ public class UserEditor extends TUI {
 					show("Please specify the role you want removed from " + userDTO.getUserName() + ".");
 					try {
 
-						String roleChoice = tui.getString();
+						String roleChoice = getString();
 						Validator.validateRole(roleChoice);
 						userDTO.removeRole(roleChoice);
 					} catch (InputException e) {
@@ -306,7 +305,7 @@ public class UserEditor extends TUI {
 			show("Are you sure you want to remove *ALL* roles for " + userDTO.getUserName()
 					+ "? This choice is not revertable. \n" + "Type 1 for Yes. \n" + "Type 2 for No.");
 
-			int userChoice = tui.getInt();
+			int userChoice = getInt();
 
 			switch (userChoice) {
 			case 1:
@@ -327,7 +326,7 @@ public class UserEditor extends TUI {
 			show("Please specify wished userId");
 			while (true) {
 				try {
-					int userInput = tui.getInt();
+					int userInput = getInt();
 
 					Validator.validateUserID(userInput);
 

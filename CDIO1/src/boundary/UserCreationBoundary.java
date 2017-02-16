@@ -1,42 +1,48 @@
 package boundary;
 
 
-import boundary.interfaces.IUserCreationBoundary;
-import boundary.interfaces.UI;
-import dto.InputException;
-import dto.UserDTO;
 
-public class UserCreationBoundary implements IUserCreationBoundary {
+import dal.IUserDAO;
+import dal.IUserDAO.DALException;
+import dal.UserDAO;
+import dto.UserDTO;
+import dto.Validator;
+import dto.Validator.InputException;
+
+public class UserCreationBoundary extends  TUI {
 
 	private UserDTO newUser;
-	private UI tui;
+	private IUserDAO data;
 
-	public UserCreationBoundary(UI tui){
-		this.tui=tui;
+	public UserCreationBoundary(UserDAO data){
+		this.data=data;
 	}
 		
-	@Override
-	public UserDTO createNewUser() {
+
+	public void createNewUser() {
 		newUser = new UserDTO();
-		try {
-			newUser.setPassword(newUser.generatePassword());
-		} catch (InputException e) {
-			tui.show("Something went horribly wrong when generating a password.");
-		}
+		
+		
 		
 		getUserID();
 		getUserName();
-		newUser.setIni(newUser.generateInitials(newUser.getUserName()));
 		getCpr();
 		getRoles();
+		
+		newUser.setPassword(newUser.generatePassword());
+		newUser.setIni(newUser.generateInitials(newUser.getUserName()));
 
-
-		return newUser;
+		try {
+			data.createUser(newUser);
+		} catch (DALException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 
 	public UserDTO editUserId() {
-		tui.show("The userId already exist in the database. Please chose another:");
+		show("The userId already exist in the database. Please chose another:");
 		getUserID();
 		return newUser;
 	}
@@ -44,15 +50,17 @@ public class UserCreationBoundary implements IUserCreationBoundary {
 	private void getUserID() {
 		String question="Please enter the ID of the new user. It has to be between 11 and 99";
 		while (true) {
-			tui.show(question);
-			String userInput = tui.getString();
+			show(question);
+			String userInput = getString();
 			try {
-				newUser.setUserId(Integer.parseInt(userInput));
+				int userID=Integer.parseInt(userInput);
+				Validator.validateUserID(userID);
+				newUser.setUserId(userID);
 				break;
 			} catch (NumberFormatException e) {
-				tui.show("That is not a number.");
+				show("That is not a number.");
 			} catch (InputException e) {
-				tui.show(e.getMessage());
+				show(e.getMessage());
 			}
 		}
 	}
@@ -60,42 +68,31 @@ public class UserCreationBoundary implements IUserCreationBoundary {
 	private void getUserName() {
 		String question = "Please enter a username. The username has to have a length between 2 and 20.";
 		while (true) {
-			tui.show(question);
-			String userInput = tui.getString();
+			show(question);
+			String userInput = getString();
 			try {
+				Validator.validateUsername(userInput);
 				newUser.setUserName(userInput);
 				break;
 			} catch (InputException e) {
-				tui.show(e.getMessage());
+				show(e.getMessage());
 			}
 		}
 
 	}
 
-	private void getInitials() {
-		String question = "Please enter initials. The intials have to contain 2-4 letters.";
-		while (true) {
-			tui.show(question);
-			String userInput =tui.getString();
-			try {
-				newUser.setIni(userInput);
-				break;
-			} catch (InputException e) {
-				tui.show(e.getMessage());
-			}
-		}
-	}
 
 	private void getCpr() {
 		String question = "Please enter the users cpr number.";
 		while (true) {
-			tui.show(question);
-			String userInput = tui.getString();
+			show(question);
+			String userInput = getString();
 			try {
+				Validator.validateCPR(userInput);
 				newUser.setCpr(userInput);
 				break;
 			} catch (InputException e) {
-				tui.show(e.getMessage());
+				show(e.getMessage());
 			}
 		}
 
@@ -103,7 +100,7 @@ public class UserCreationBoundary implements IUserCreationBoundary {
 
 	private void getRoles() {
 		String question = "What roles do you want to assign to the user? Enter a number corresponding to a role:";
-		String[] validRoles = newUser.validRoles;
+		String[] validRoles = Validator.validRoles;
 		boolean[] chosenRoles = new boolean[validRoles.length];
 		for (int i = 0; i < chosenRoles.length; i++) {
 			chosenRoles[i] = false;
@@ -118,20 +115,19 @@ public class UserCreationBoundary implements IUserCreationBoundary {
 			}
 			out += "\n" + chosenRoles.length + ": Stop selecting roles.";
 			try {
-				tui.show(out);
-				int userInput = tui.getInt();
+				show(out);
+				int userInput = getInt();
 				if (userInput == chosenRoles.length) {
 					break;
-				} else if (userInput > chosenRoles.length || userInput < 0) {
-					tui.show("That is not a valid choice.");
+				}
+				else if (userInput > chosenRoles.length || userInput < 0) {
+					show("That is not a valid choice.");
 				} else {
 					newUser.addRole(validRoles[userInput]);
 					chosenRoles[userInput] = true;
 				}
 			} catch (NumberFormatException e) {
-				tui.show("That is not a number.");
-			} catch (InputException e) {
-				tui.show("An internal error occured. Role was not valid.");
+				show("That is not a number.");
 			}
 		}
 
