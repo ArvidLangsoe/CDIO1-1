@@ -21,10 +21,23 @@ public class UserDAO implements IUserDAO {
 	 * Constructor. Constructs a user Data Access object which contains a single
 	 * user, the super admin.
 	 */
-	public UserDAO() throws DALException{
+	public UserDAO(String fileName){
+		if (fileName == null)
+		{
+			users = new ArrayList<UserDTO>();
+		}
+		else
+		{
+			try 
+			{
+				users = loadUsers();
+			}
+			catch(DALException e)
+			{
+				System.out.println(e.getMessage());
+			}
+		}
 		
-		users = loadUsers();
-		//users = new ArrayList<UserDTO>();
 	}
 
 	/**

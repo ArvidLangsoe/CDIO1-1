@@ -14,8 +14,8 @@ public class UserCreationBoundary extends  TUI {
 	private UserDTO newUser;
 	private IUserDAO data;
 
-	public UserCreationBoundary(UserDAO data){
-		this.data=data;
+	public UserCreationBoundary(IUserDAO data2){
+		this.data=data2;
 	}
 		
 
