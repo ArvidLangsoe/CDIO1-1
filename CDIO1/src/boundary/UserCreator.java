@@ -4,7 +4,6 @@ package boundary;
 
 import dal.IUserDAO;
 import dal.IUserDAO.DALException;
-import dal.UserDAO;
 import dto.UserDTO;
 import dto.Validator;
 import dto.Validator.InputException;
