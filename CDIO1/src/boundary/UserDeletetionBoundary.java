@@ -1,33 +1,46 @@
 package boundary;
 
 import boundary.interfaces.IUserDeletetionBoundary;
-import boundary.interfaces.UI;
+import dal.IUserDAO;
+import dal.IUserDAO.DALException;
 
-public class UserDeletetionBoundary implements IUserDeletetionBoundary {
-	UI tui;
+public class UserDeletetionBoundary extends TUI implements IUserDeletetionBoundary{
+	IUserDAO data;
 	
-	public UserDeletetionBoundary(){
-		tui = new TUI();
+	public UserDeletetionBoundary(IUserDAO data){
+		this.data=data;
+	}
+	
+	@Override
+	public void deleteUser()
+	{
+		try
+		{
+			data.deleteUser(getId());
+		}
+		catch(DALException e)
+		{
+			show(e.getMessage());
+			
+			//Try again
+			deleteUser();
+		}
 	}
 	
 	@Override
 	public int getId(){
 		
-		tui.show("Please enter a UserID: ");
+		show("Please enter a UserID: ");
 		
-		int id = tui.getInt();
+		int id = getInt();
 		
 		while(11 <= id && id <= 99){
-			id = tui.getInt();
+			id = getInt();
 			
-			tui.show("Incorrect ID. Must be between 11 and 99.\n Please enter a valid UserID: ");
+			show("Incorrect ID. Must be between 11 and 99.\n Please enter a valid UserID: ");
 		}
 		
 		return id;
-	}
-	
-	public void showException(Exception e){
-		tui.show(e.getMessage());
 	}
 	
 	

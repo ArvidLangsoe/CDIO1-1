@@ -5,5 +5,7 @@ public interface IUserDeletetionBoundary {
 	//Gets the userid that has to be deleted.
 	public int getId();
 
+	void deleteUser();
+
 	
 }
