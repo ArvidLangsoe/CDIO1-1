@@ -20,7 +20,7 @@ public class UserDeletetionBoundary implements IUserDeletetionBoundary {
 		while(11 <= id && id <= 99){
 			id = tui.getInt();
 			
-			tui.show("Incorrect ID. Must be between 11 and 99.\n Please enter a UserID");
+			tui.show("Incorrect ID. Must be between 11 and 99.\n Please enter a valid UserID: ");
 		}
 		
 		return id;
