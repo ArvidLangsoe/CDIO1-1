@@ -1,24 +1,26 @@
 package controller;
 
-import boundary.interfaces.IUserCreationBoundary;
-import boundary.interfaces.IUserDeletetionBoundary;
-import boundary.interfaces.IUserEditorBoundary;
-import boundary.interfaces.IUserInformationBoundary;
-import boundary.interfaces.IUserManagementBoundary;
+import controller.interfaces.IUserCreationController;
+import controller.interfaces.IUserDeletionController;
+import controller.interfaces.IUserEditorController;
+import controller.interfaces.IUserInformationController;
 import controller.interfaces.IUserManagementController;
+import boundary.interfaces.IUserManagementBoundary;
+
+
 
 public class UserManegementController implements IUserManagementController {
 
-	private IUserCreationBoundary create;
-	private IUserDeletetionBoundary delete;
-	private IUserInformationBoundary information;
-	private IUserEditorBoundary edit;
+	private IUserCreationController create;
+	private IUserDeletionController delete;
+	private IUserInformationController information;
+	private IUserEditorController edit;
 	private IUserManagementBoundary TUIBound;
 	public UserManegementController(
-			IUserCreationBoundary create,
-			IUserDeletetionBoundary delete,
-			IUserInformationBoundary information,
-			IUserEditorBoundary edit,
+			IUserCreationController create,
+			IUserDeletionController delete,
+			IUserInformationController information,
+			IUserEditorController edit,
 			IUserManagementBoundary TUIBound) {
 		this.create=create;
 		this.delete=delete;
@@ -35,12 +37,13 @@ public class UserManegementController implements IUserManagementController {
 	{
 		switch(decision)
 		{
-		case 1: create.createNewUser();
-		case 4: delete.getId();
-		//case 2: information.showUsers();
-		//case 3: edit.editUser();
+		case 1: create.createUser();
+		//case 4: delete.deleteUser();
+		case 2: information.getUserInformation();
+		case 3: edit.editUser();
 		case 5: run = false;
 		}
+		
 	}
 	public void start()
 	{
