@@ -1,9 +1,9 @@
 package boundary;
 
-public class UserManagementBoundary extends TUI {
+public class MenuAdministrator extends TUI {
 
-	private UserCreationBoundary create;
-	private UserDeletetionBoundary delete;
+	private UserCreator create;
+	private UserRemover delete;
 	private UserViewer view;
 	private UserEditor edit;
 
@@ -13,7 +13,7 @@ public class UserManagementBoundary extends TUI {
 			+ "4:Slet bruger \n"
 			+ "5:Afslut program \n";
 
-	public UserManagementBoundary(UserCreationBoundary create, UserDeletetionBoundary delete, UserViewer view, UserEditor edit) {
+	public MenuAdministrator(UserCreator create, UserRemover delete, UserViewer view, UserEditor edit) {
 		this.create = create;
 		this.delete = delete;
 		this.view = view;

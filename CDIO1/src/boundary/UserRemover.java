@@ -4,10 +4,10 @@ package boundary;
 import dal.IUserDAO;
 import dal.IUserDAO.DALException;
 
-public class UserDeletetionBoundary extends TUI {
+public class UserRemover extends TUI {
 	private IUserDAO data;
 	
-	public UserDeletetionBoundary(IUserDAO data){
+	public UserRemover(IUserDAO data){
 		this.data=data;
 	}
 	

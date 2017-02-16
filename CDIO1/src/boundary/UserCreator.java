@@ -9,12 +9,12 @@ import dto.UserDTO;
 import dto.Validator;
 import dto.Validator.InputException;
 
-public class UserCreationBoundary extends  TUI {
+public class UserCreator extends  TUI {
 
 	private UserDTO newUser;
 	private IUserDAO data;
 
-	public UserCreationBoundary(IUserDAO data2){
+	public UserCreator(IUserDAO data2){
 		this.data=data2;
 	}
 		
