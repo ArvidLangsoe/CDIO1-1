@@ -24,6 +24,9 @@ public class UserRemoverController implements IUserDeletionController {
 		catch(DALException e)
 		{
 			boundary.showException(e);
+			
+			//Try again
+			deleteUser();
 		}
 	}
 }
