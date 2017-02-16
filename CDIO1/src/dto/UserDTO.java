@@ -106,7 +106,7 @@ public class UserDTO implements Serializable {
 		return hasRole;
 	}
 	
-	@Override
+	@Override 
 	public String toString() 
 	{
 		String newString = "UserDTO [userId =" + userId + ", userName =" + userName + ", ini =" + ini + ", roles = ";

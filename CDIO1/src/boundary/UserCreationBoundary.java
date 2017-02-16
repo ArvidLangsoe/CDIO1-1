@@ -1,38 +1,42 @@
 package boundary;
 
-import java.util.Scanner;
 
 import boundary.interfaces.IUserCreationBoundary;
+import boundary.interfaces.UI;
 import dto.InputException;
 import dto.UserDTO;
 
 public class UserCreationBoundary implements IUserCreationBoundary {
 
 	private UserDTO newUser;
-	private Scanner sc;
+	private UI tui;
 
+	public UserCreationBoundary(UI tui){
+		this.tui=tui;
+	}
+		
 	@Override
 	public UserDTO createNewUser() {
-		sc = new Scanner(System.in);
 		newUser = new UserDTO();
 		try {
 			newUser.setPassword(newUser.generatePassword());
 		} catch (InputException e) {
-			System.out.println("Something went horribly wrong when generating a password.");
+			tui.show("Something went horribly wrong when generating a password.");
 		}
+		
 		getUserID();
 		getUserName();
-		getInitials();
+		newUser.setIni(newUser.generateInitials(newUser.getUserName()));
 		getCpr();
 		getRoles();
 
-		sc.close();
+
 		return newUser;
 	}
 
 
 	public UserDTO editUserId() {
-		System.out.println("The userId already exist in the database. Please chose another:");
+		tui.show("The userId already exist in the database. Please chose another:");
 		getUserID();
 		return newUser;
 	}
@@ -40,15 +44,15 @@ public class UserCreationBoundary implements IUserCreationBoundary {
 	private void getUserID() {
 		String question="Please enter the ID of the new user. It has to be between 11 and 99";
 		while (true) {
-			System.out.println(question);
-			String userInput = sc.nextLine();
+			tui.show(question);
+			String userInput = tui.getString();
 			try {
 				newUser.setUserId(Integer.parseInt(userInput));
 				break;
 			} catch (NumberFormatException e) {
-				System.out.println("That is not a number.");
+				tui.show("That is not a number.");
 			} catch (InputException e) {
-				System.out.println(e.getMessage());
+				tui.show(e.getMessage());
 			}
 		}
 	}
@@ -56,13 +60,13 @@ public class UserCreationBoundary implements IUserCreationBoundary {
 	private void getUserName() {
 		String question = "Please enter a username. The username has to have a length between 2 and 20.";
 		while (true) {
-			System.out.println(question);
-			String userInput = sc.nextLine();
+			tui.show(question);
+			String userInput = tui.getString();
 			try {
 				newUser.setUserName(userInput);
 				break;
 			} catch (InputException e) {
-				System.out.println(e.getMessage());
+				tui.show(e.getMessage());
 			}
 		}
 
@@ -71,13 +75,13 @@ public class UserCreationBoundary implements IUserCreationBoundary {
 	private void getInitials() {
 		String question = "Please enter initials. The intials have to contain 2-4 letters.";
 		while (true) {
-			System.out.println(question);
-			String userInput = sc.nextLine();
+			tui.show(question);
+			String userInput =tui.getString();
 			try {
 				newUser.setIni(userInput);
 				break;
 			} catch (InputException e) {
-				System.out.println(e.getMessage());
+				tui.show(e.getMessage());
 			}
 		}
 	}
@@ -85,13 +89,13 @@ public class UserCreationBoundary implements IUserCreationBoundary {
 	private void getCpr() {
 		String question = "Please enter the users cpr number.";
 		while (true) {
-			System.out.println(question);
-			String userInput = sc.nextLine();
+			tui.show(question);
+			String userInput = tui.getString();
 			try {
 				newUser.setCpr(userInput);
 				break;
 			} catch (InputException e) {
-				System.out.println(e.getMessage());
+				tui.show(e.getMessage());
 			}
 		}
 
@@ -114,20 +118,20 @@ public class UserCreationBoundary implements IUserCreationBoundary {
 			}
 			out += "\n" + chosenRoles.length + ": Stop selecting roles.";
 			try {
-				System.out.println(out);
-				int userInput = Integer.parseInt(sc.nextLine());
+				tui.show(out);
+				int userInput = tui.getInt();
 				if (userInput == chosenRoles.length) {
 					break;
 				} else if (userInput > chosenRoles.length || userInput < 0) {
-					System.out.println("That is not a valid choice.");
+					tui.show("That is not a valid choice.");
 				} else {
 					newUser.addRole(validRoles[userInput]);
 					chosenRoles[userInput] = true;
 				}
 			} catch (NumberFormatException e) {
-				System.out.println("That is not a number.");
+				tui.show("That is not a number.");
 			} catch (InputException e) {
-				System.out.println("An internal error occured. Role was not valid.");
+				tui.show("An internal error occured. Role was not valid.");
 			}
 		}
 
