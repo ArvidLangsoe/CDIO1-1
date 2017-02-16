@@ -1,10 +1,8 @@
-package entity;
+package boundary;
 
 import dto.UserDTO;
 import dal.IUserDAO.DALException;
 import dal.UserDAO;
-import boundary.TUI;
-
 import dto.Validator;
 import dto.Validator.InputException;
 
