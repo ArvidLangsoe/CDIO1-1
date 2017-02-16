@@ -58,7 +58,9 @@ public class UserCreationBoundary extends  TUI {
 			show(question);
 			String userInput = getString();
 			try {
-				newUser.setUserId(Integer.parseInt(userInput));
+				int userID=Integer.parseInt(userInput);
+				Validator.validateUserID(userID);
+				newUser.setUserId(userID);
 				break;
 			} catch (NumberFormatException e) {
 				show("That is not a number.");
@@ -74,6 +76,7 @@ public class UserCreationBoundary extends  TUI {
 			show(question);
 			String userInput = getString();
 			try {
+				Validator.validateUsername(userInput);
 				newUser.setUserName(userInput);
 				break;
 			} catch (InputException e) {
@@ -90,6 +93,7 @@ public class UserCreationBoundary extends  TUI {
 			show(question);
 			String userInput = getString();
 			try {
+				Validator.validateCPR(userInput);
 				newUser.setCpr(userInput);
 				break;
 			} catch (InputException e) {
