@@ -21,15 +21,17 @@ public class UserEditor implements IUserEditorBoundary {
 					System.out.println("Please type in the new username: ");
 
 					String changedUserName = tui.getString();
-
+					
 					userDTO.setUserName(changedUserName);
 
 					System.out.println("Username updated for " + userDTO.getUserName());
 
-				case 2:
-					System.out.println("The username has not been changed for " + userDTO.getUserName());
-					editUser(userDTO);
+					break;
 
+				case 2:
+					System.out.println("The username has not been changed for " + userDTO.getUserName()
+							+ ". Returning to prior menu...");
+					break;
 				}
 
 			} catch (InputException e) {
@@ -55,10 +57,13 @@ public class UserEditor implements IUserEditorBoundary {
 
 					System.out.println("Username updated for " + userDTO.getUserName());
 
-				case 2:
-					System.out.println("The initials have not been changed for " + userDTO.getUserName());
-					editUser(userDTO);
+					break;
 
+				case 2:
+					System.out.println("The initials have not been changed for " + userDTO.getUserName()
+							+ ". Returning to prior menu...");
+
+				break;
 				}
 
 			} catch (InputException e) {
@@ -80,7 +85,7 @@ public class UserEditor implements IUserEditorBoundary {
 				switch (userChoice) {
 				case 1:
 					System.out.println(
-							"Please enter new user CPR number (6 numbers followed by a '-' and then 4 numbers.)");
+							"Please enter new user CPR number (6 numbers followed by a '-' and then 4 numbers.):");
 
 					String changedUserCpr = tui.getString();
 					while (!userDTO.isCprValid(changedUserCpr)) {
@@ -91,9 +96,12 @@ public class UserEditor implements IUserEditorBoundary {
 
 					System.out.println("User CPR number updated for " + userDTO.getCpr());
 
+					break;
+
 				case 2:
-					System.out.println("The CPR number has not been changed for " + userDTO.getUserName() + ".");
-					editUser(userDTO);
+					System.out.println("The CPR number has not been changed for " + userDTO.getUserName()
+							+ ". Returning to prior menu...");
+					break;
 
 				}
 
@@ -114,7 +122,7 @@ public class UserEditor implements IUserEditorBoundary {
 
 				switch (userChoice) {
 				case 1:
-					System.out.println("Please enter a new password (");
+					System.out.println("Please enter a new password: ");
 
 					String changedUserPassword = tui.getString();
 
@@ -125,7 +133,7 @@ public class UserEditor implements IUserEditorBoundary {
 					break;
 
 				case 2:
-					System.out.println("No new password selected. Returning to prior menu.");
+					System.out.println("No new password selected. Returning to prior menu...");
 					break;
 				}
 
@@ -189,7 +197,7 @@ public class UserEditor implements IUserEditorBoundary {
 
 					userDTO.addRole(userRoleChoice);
 					System.out
-							.println("Added " + userChoice + " to the list of " + userDTO.getUserName() + "'s roles.");
+							.println("Added " + userChoice + " to the list of " + userDTO.getUserName() + "'s roles. Returning to prior menu...");
 					break;
 
 				case 2:
@@ -219,7 +227,7 @@ public class UserEditor implements IUserEditorBoundary {
 					break;
 
 				case 2:
-					System.out.println("You have chosen not to remove any roles from " + userDTO.getUserName() + ".");
+					System.out.println("You have chosen not to remove any roles from " + userDTO.getUserName() + ". Returning to prior menu...");
 					break;
 				}
 
@@ -245,7 +253,7 @@ public class UserEditor implements IUserEditorBoundary {
 				break;
 
 			case 2:
-				System.out.println("No roles have been removed from " + userDTO.getUserName());
+				System.out.println("No roles have been removed from " + userDTO.getUserName() + ". Returning to prior menu...");
 				break;
 			}
 
@@ -300,9 +308,9 @@ public class UserEditor implements IUserEditorBoundary {
 				manipulateUserRoles(userDTO);
 				break;
 
-			// !EXIT TO THE MAIN CONTROLLER HERE!
+			// EXIT TO THE MAIN CONTROLLER HERE
 			case 5:
-				System.out.println("Returning to prior menu...");
+				System.out.println("Input recognized, returning to prior menu...");
 				return userDTO;
 			}
 		}
