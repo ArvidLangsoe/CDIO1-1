@@ -14,7 +14,7 @@ public class UserManagementBoundary implements IUserManagementBoundary {
 	public int getUserChoice(String[] options){
 		for(int i=0;i<options.length;i++)
 		{
-			System.out.println(options[i]);
+			TUI.show(options[i]);
 		}
 		choice = TUI.getInt();
 		return choice;		
