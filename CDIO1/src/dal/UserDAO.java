@@ -70,16 +70,15 @@ public class UserDAO implements IUserDAO {
 	 * @param userId
 	 *            The id of the user to be deleted.
 	 */
-	public void deleteUser(int userId) throws DALException {
-		for (int i = 0; i < users.size(); i++) {
-			if (users.get(i).getUserId() == userId) {
-				if (!users.get(i).hasRole("System Admin")) {
-					users.remove(i);
-					saveUsers(users);
-					return;
-				} else {
-					throw new DALException("You cannot delete the System Admin user.");
-				}
+	public void deleteUser(int userId) throws DALException 
+	{
+		for (int i = 0; i < users.size(); i++) 
+		{
+			if (users.get(i).getUserId() == userId) 
+			{
+				users.remove(i);
+				saveUsers(users);
+				return;
 			}
 		}
 		throw new DALException("There exists no user with user id: " + userId);
