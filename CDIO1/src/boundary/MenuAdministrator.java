@@ -7,7 +7,7 @@ public class MenuAdministrator extends TUI {
 	private UserViewer view;
 	private UserEditor edit;
 
-	String options = "1:Opret ny bruger \n"
+	private String options = "1:Opret ny bruger \n"
 			+ "2:List Brugere \n"
 			+ "3:Ret bruger \n"
 			+ "4:Slet bruger \n"
@@ -26,9 +26,7 @@ public class MenuAdministrator extends TUI {
 	}
 
 
-	public void manageUsers() {
 
-	}
 
 	public boolean choiceHandler(int decision) {
 		switch (decision) {
