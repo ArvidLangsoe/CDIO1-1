@@ -58,24 +58,23 @@ public class UserDAOTest {
 
 	@Test
 	public void testGetUserList() {
-		ArrayList<UserDTO> userList=createData();
+		ArrayList<UserDTO> userList = createData();
 		addDataToUserDAO(createData(), data);
-		
-		List<UserDTO> dataUserList=null;
+
+		List<UserDTO> dataUserList = null;
 		try {
-			dataUserList =data.getUserList();
+			dataUserList = data.getUserList();
 		} catch (DALException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			fail("");
 		}
-		
-		
+
 		for (int i = 0; i < userList.size(); i++) {
-			assertTrue("The following users were not the same:\n"+userList.get(i) + "\n"+dataUserList.get(i), dataUserList.get(i).equals(userList.get(i)));
+			assertTrue("The following users were not the same:\n" + userList.get(i) + "\n" + dataUserList.get(i),
+					dataUserList.get(i).equals(userList.get(i)));
 		}
-		
-		
+
 	}
 
 	@Test
@@ -95,52 +94,50 @@ public class UserDAOTest {
 
 	@Test
 	public void testDeleteUser() {
-		 addDataToUserDAO(createData(), data);
-		 
+		addDataToUserDAO(createData(), data);
+
 		try {
 			data.deleteUser(11);
 		} catch (DALException e) {
 			fail("Failed to delete user 11, who should exist.");
 		}
-		
+
 		try {
 			data.deleteUser(13);
 			fail("Deleted user 13, who should not exist.");
 		} catch (DALException e) {
-			
+
 		}
-		
+
 	}
 
 	@Test
 	public void testUpdateUser() {
 		addDataToUserDAO(createData(), data);
-		
-		UserDTO user=null;
-		
+
+		UserDTO user = null;
+
 		try {
-			user=data.getUser(11);
+			user = data.getUser(11);
 		} catch (DALException e) {
 			fail("Failed to load userid 11 that should have existed.");
 		}
-		
+
 		user.setCpr("4346454443");
-		
+
 		try {
 			data.updateUser(user);
 		} catch (DALException e) {
 			fail("Dal exception when trying to update user.");
 		}
-		
-		
+
 		try {
-			assertTrue("The following users were not the same:\n"+data.getUser(11) + "\n"+ user,data.getUser(11).equals(user));
+			assertTrue("The following users were not the same:\n" + data.getUser(11) + "\n" + user,
+					data.getUser(11).equals(user));
 		} catch (DALException e) {
 			fail("User with id 11 coudl not be found.");
 		}
-		
-		
-		
+
 	}
 
 	@Test
@@ -160,9 +157,10 @@ public class UserDAOTest {
 		} catch (DALException e) {
 			fail("The file couldn't be loaded.");
 		}
-		
+
 		for (int i = 0; i < users.size(); i++) {
-			assertTrue("The following users were not the same:\n"+users.get(i) + "\n"+ usersLoadData.get(i), usersLoadData.get(i).equals(users.get(i)));
+			assertTrue("The following users were not the same:\n" + users.get(i) + "\n" + usersLoadData.get(i),
+					usersLoadData.get(i).equals(users.get(i)));
 		}
 
 	}
@@ -178,9 +176,8 @@ public class UserDAOTest {
 		}
 	}
 
-	
-	private void addDataToUserDAO(ArrayList<UserDTO> inputData, UserDAO data){
-		for(int i=0;i<inputData.size();i++){
+	private void addDataToUserDAO(ArrayList<UserDTO> inputData, UserDAO data) {
+		for (int i = 0; i < inputData.size(); i++) {
 			try {
 				data.createUser(inputData.get(i));
 			} catch (DALException e) {
@@ -188,9 +185,9 @@ public class UserDAOTest {
 				e.printStackTrace();
 			}
 		}
-		
+
 	}
-	
+
 	private ArrayList<UserDTO> createData() {
 		UserDTO user1 = new UserDTO();
 		user1.setUserId(11);
