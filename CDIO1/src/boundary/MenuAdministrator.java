@@ -46,7 +46,7 @@ public class MenuAdministrator extends TUI {
 		case 5:
 			return false;
 		default: 
-			show("Bad input");
+			show("Not a valid options. Please choose an option above.");
 			return true;
 		}
 
