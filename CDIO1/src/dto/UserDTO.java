@@ -67,11 +67,11 @@ public class UserDTO implements Serializable {
 	}
 	
 	public void addRole(String role) {
-		for (int i = 0; i < roles.size(); i++) {
-			if (roles.get(i).equals(role)) {
+		
+			if (hasRole(role)) {
 				return;
 			}
-		}
+
 		this.roles.add(role);
 	}
 	
