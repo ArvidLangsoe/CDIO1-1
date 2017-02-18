@@ -109,23 +109,23 @@ public class UserCreator extends  TUI {
 
 		while (true) {
 			String out = question;
-			for (int i = 0; i < chosenRoles.length; i++) {
-				if (chosenRoles[i] == false) {
-					out += ("\n" + i + ": " + validRoles[i] + ".");
+			for (int i = 1; i <= chosenRoles.length; i++) {
+				if (chosenRoles[i-1] == false) {
+					out += ("\n" + i + ": " + validRoles[i-1] + ".");
 				}
 			}
-			out += "\n" + chosenRoles.length + ": Stop selecting roles.";
+			out += "\n" + (chosenRoles.length+1) + ": Stop selecting roles.";
 			try {
 				show(out);
 				int userInput = getInt();
-				if (userInput == chosenRoles.length) {
+				if (userInput == chosenRoles.length+1) {
 					break;
 				}
-				else if (userInput > chosenRoles.length || userInput < 0) {
+				else if (userInput > chosenRoles.length+1 || userInput < 0) {
 					show("That is not a valid choice.");
 				} else {
-					newUser.addRole(validRoles[userInput]);
-					chosenRoles[userInput] = true;
+					newUser.addRole(validRoles[userInput-1]);
+					chosenRoles[userInput-1] = true;
 				}
 			} catch (NumberFormatException e) {
 				show("That is not a number.");
