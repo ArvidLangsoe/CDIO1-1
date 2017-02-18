@@ -37,6 +37,8 @@ public class UserCreator extends  TUI {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		show("User: " + newUser.getUserName()+ " has been added.");
+		
 	}
 
 
