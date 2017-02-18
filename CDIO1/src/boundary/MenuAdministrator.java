@@ -54,7 +54,7 @@ public class MenuAdministrator extends TUI {
 
 	public void start() 
 	{
-		while (!choiceHandler(getUserChoice()));
+		while (choiceHandler(getUserChoice()));
 	}
 
 }
