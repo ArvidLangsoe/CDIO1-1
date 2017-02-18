@@ -208,17 +208,17 @@ while(true){
 
 			switch (userChoice) {
 			case 1:
-				show("Preparing to add role to user...");
+				//show("Preparing to add role to user...");
 				addUserRole(userDTO);
 				break;
 
 			case 2:
-				show("Preparing to remove one role from user...");
+				//show("Preparing to remove one role from user...");
 				removeOneUserRole(userDTO);
 				break;
 
 			case 3:
-				show("Preparing to remove all roles from user...");
+				//show("Preparing to remove all roles from user...");
 				removeUserRoles(userDTO);
 				break;
 
