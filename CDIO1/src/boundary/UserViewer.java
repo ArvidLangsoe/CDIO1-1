@@ -100,7 +100,6 @@ public class UserViewer extends TUI {
 	public void showUsersWithRole(String role, List<UserDTO> userArray) {
 		for (UserDTO user : userArray) {
 			String roles = userRoles(user);
-			roles = "Admin, Pharmacist";
 			if (roles.contains(role)) {
 				printUser(user, roles);
 			}
