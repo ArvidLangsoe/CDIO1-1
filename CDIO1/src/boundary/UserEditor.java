@@ -56,6 +56,7 @@ public class UserEditor extends TUI {
 			case 6:
 				try {
 					userDAO.updateUser(userDTO);
+					show("Succesfully updated the user.");
 
 				} catch (DALException e) {
 					show(e.getMessage());
