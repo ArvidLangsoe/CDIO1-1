@@ -73,6 +73,13 @@ public class ValidatorTest {
 		} catch (InputException e) {
 			
 		}
+		try {
+			userName=null;
+			Validator.validateUsername(userName);
+			fail("User name: '"+ userName+ "' of length:"+userName.length()+ " was a valid username, but it should be.");
+		} catch (InputException e) {
+			
+		}
 		
 		
 	}
@@ -108,6 +115,13 @@ public class ValidatorTest {
 		} catch (InputException e) {
 			
 		}
+		try {
+			ini=null;
+			Validator.validateInitials(ini);
+			fail("Initals: '"+ ini+ "' of length:"+ini.length()+ " was a valid username set of initials, but it shouldn't be.");
+		} catch (InputException e) {
+			
+		}
 	}
 
 	/**
@@ -116,9 +130,10 @@ public class ValidatorTest {
 	@Test
 	public void testValidateCPR() {
 		String[] workingCPR= new String[]{"1111111118","2103561178","0101816222"};
-		String[] nonWorkingCPR= new String[]{"374583625","17495302964","djeufkghei","4013139915","3713139915","2013139915","2020139915","0101012978"};
+		String[] nonWorkingCPR= new String[]{null,"374583625","17495302964","djeufkghei","4013139915","3713139915","2013139915","2020139915","0101012978"};
 		System.out.println("");
 		System.out.println("Begin CPRValidation test.");
+		System.out.println();
 		int index=0;
 		try{
 			for(index=0;index<workingCPR.length;index++){
@@ -149,7 +164,7 @@ public class ValidatorTest {
 	@Test
 	public void testValidatePassword() {
 		String[] validPasswords= new String[]{"a8E7ge8e","_?Abu132G"};
-		String[] notValidPasswords= new String[]{"Th3","password","123456789a","SELECT*FROM","SELECT * FROM"};
+		String[] notValidPasswords= new String[]{null,"Th3","password","123456789a","SELECT*FROM","SELECT * FROM"};
 		System.out.println("");
 		System.out.println("Begin passwordValidation test.");
 		System.out.println();
