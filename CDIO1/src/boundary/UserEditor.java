@@ -54,7 +54,6 @@ public class UserEditor extends TUI {
 
 			// EXIT TO THE MAIN CONTROLLER HERE
 			case 6:
-				show("Input recognized, returning to prior menu...");
 				try {
 					userDAO.updateUser(userDTO);
 				} catch (DALException e) {
