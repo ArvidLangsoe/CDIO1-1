@@ -32,7 +32,7 @@ public class Validator {
 		int[] cprArray = new int[10];
 		
 		if (cpr.length() != 10) {
-			throw new InputException("The cpr number is not long enough.");
+			throw new InputException("The cpr number is has to have 10 characthers.");
 		}
 		
 		// Save the cpr number in an array.
