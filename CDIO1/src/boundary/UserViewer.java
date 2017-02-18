@@ -24,7 +24,7 @@ public class UserViewer extends TUI {
 
 			show("\n What users do you want to see?\n" + "1. All users.\n" + "2. Users with a specific id.\n"
 					+ "3. Users with specific initials. \n" + "4. Users with a specific CPR-number.\n"
-					+ "5. Users with a specific role..\n"+"6. Leave menu.");
+					+ "5. Users with a specific role.\n"+"6. Leave menu.");
 
 			int decision = getInt();
 
