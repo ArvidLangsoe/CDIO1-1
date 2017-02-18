@@ -15,7 +15,9 @@ public class UserRemover extends TUI {
 	{
 		try
 		{
-			data.deleteUser(getId());
+			int id=getId();
+			data.deleteUser(id);
+			show("Succesfully deleted user with id: "+id);
 		}
 		catch(DALException e)
 		{
