@@ -32,7 +32,7 @@ public class UserRemover extends TUI {
 		
 		int id = getInt();
 		
-		while(11 <= id && id <= 99){
+		while(id <11 || id > 99){
 			id = getInt();
 			
 			show("Incorrect ID. Must be between 11 and 99.\n Please enter a valid UserID: ");
