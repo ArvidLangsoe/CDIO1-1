@@ -19,6 +19,8 @@ public class UserEditor extends TUI {
 
 		try {
 			userDTO = userDAO.getUser(getId());
+			show("The following user was found:");
+			show(userDTO.toString());
 		} catch (DALException e) {
 			e.getMessage();
 			return;
