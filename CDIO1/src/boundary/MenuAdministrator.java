@@ -8,11 +8,11 @@ public class MenuAdministrator extends TUI {
 	private UserEditor edit;
 
 	private String options = "\n"+"User administration, you have the following options:\n\n"
-			+ "1:Create user. \n"
-			+ "2:Show users. \n"
-			+ "3:Edit users. \n"
-			+ "4:Delete user. \n"
-			+ "5:Afslut program.";
+			+ "1: Create user. \n"
+			+ "2: Show users. \n"
+			+ "3: Edit users. \n"
+			+ "4: Delete user. \n"
+			+ "5: Exit program.";
 
 	public MenuAdministrator(UserCreator create, UserRemover delete, UserViewer view, UserEditor edit) {
 		this.create = create;
