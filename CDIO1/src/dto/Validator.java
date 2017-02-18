@@ -86,7 +86,7 @@ public class Validator {
 		}
 		for (int i = 0; i < password.length(); i++) {
 			currentChar = password.charAt(i);
-			charValue = Character.getNumericValue(currentChar);
+			charValue = (int)currentChar;
 			
 			// Is the char a small letter?
 			if (charValue >= 97 && charValue <= 122) {
@@ -119,7 +119,7 @@ public class Validator {
 			}
 			// If the char is not allowed.
 			else {
-				throw new InputException(currentChar + " is not a valid characther.");
+				throw new InputException("'"+currentChar + "' is not a valid characther.");
 			}
 		}
 		// If the password dosen't contain chars from atleast 3 groups.
