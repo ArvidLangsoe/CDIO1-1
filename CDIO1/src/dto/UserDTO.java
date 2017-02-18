@@ -125,19 +125,19 @@ public class UserDTO implements Serializable {
 		if(this.getUserId()!=user.getUserId()){
 			return false;
 		}
-		if(this.getUserName().equals(user.getUserName())){
+		else if(!this.getUserName().equals(user.getUserName())){
 			return false;
 		}
-		if(this.getIni().equals(user.getIni())){
+		else if(!this.getIni().equals(user.getIni())){
 			return false;
 		}
-		if(this.getCpr().equals(user.getCpr())){
+		else if(!this.getCpr().equals(user.getCpr())){
 			return false;
 		}
-		if(this.getPassword().equals(user.getPassword())){
+		else if(!this.getPassword().equals(user.getPassword())){
 			return false;
 		}
-		if(!this.getRoles().equals(this.getRoles())){
+		else if(!this.getRoles().equals(this.getRoles())){
 			return false;
 		}
 		
