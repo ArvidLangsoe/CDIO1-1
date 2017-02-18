@@ -7,7 +7,7 @@ public class MenuAdministrator extends TUI {
 	private UserViewer view;
 	private UserEditor edit;
 
-	private String options = "\n Brugeradministration, du har følgende muligheder:\n\n"
+	private String options = "\n"+"Brugeradministration, du har følgende muligheder:\n\n"
 			+ "1:Opret ny bruger. \n"
 			+ "2:List brugere. \n"
 			+ "3:Ret bruger. \n"
