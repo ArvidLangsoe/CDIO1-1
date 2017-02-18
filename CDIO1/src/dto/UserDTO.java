@@ -110,13 +110,13 @@ public class UserDTO implements Serializable {
 	@Override 
 	public String toString() 
 	{
-		String newString = "UserDTO [userId =" + userId + ", userName =" + userName + ", ini =" + ini + ", roles = ";
+		String newString = "ID: " + userId + ", Username: " + userName + ", Initials: " + ini + ", Roles: ";
 		
 		for(String role : roles)
 		{
-			newString = newString + role;
+			newString = newString + role+", ";
 		}
-		return newString + "]";
+		return newString ;
 	}
 	
 
