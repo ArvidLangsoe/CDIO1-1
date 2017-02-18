@@ -2,6 +2,7 @@ package dto;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import dto.Validator.InputException;
@@ -72,6 +73,7 @@ public class UserDTO implements Serializable {
 		}
 
 		this.roles.add(role);
+		Collections.sort(this.roles);
 	}
 
 	/**
