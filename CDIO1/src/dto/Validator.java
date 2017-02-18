@@ -13,6 +13,11 @@ public class Validator {
 	}
 	
 	public static boolean validateUsername(String username) throws InputException {
+		if (username==null)
+		{
+			throw new InputException("username can't be null");
+		}
+		
 		if (username.length() < 2 || username.length() > 20) {
 			throw new InputException(
 					"This username is invalid. Usernames has to be between 2 and 20 characthers long.");
@@ -21,6 +26,10 @@ public class Validator {
 	}
 	
 	public static boolean validateInitials(String ini) throws InputException {
+		if (ini==null)
+		{
+			throw new InputException("initials can't be null");
+		}
 		if (ini.length() < 2 || ini.length() > 4) {
 			throw new InputException("These initials are invalid. Initials has to be between 2 and 4 characthers long.");
 		}
@@ -28,6 +37,12 @@ public class Validator {
 	}
 	
 	public static boolean validateCPR(String cpr) throws InputException {
+		if (cpr==null)
+		{
+			throw new InputException("cpr can't be null");
+		}
+		
+		
 		int[] validationNumber = new int[] { 4, 3, 2, 7, 6, 5, 4, 3, 2 };
 		int[] cprArray = new int[10];
 		
@@ -73,6 +88,11 @@ public class Validator {
 	}
 	
 	public static boolean validatePassword(String password) throws InputException {
+		if (password==null)
+		{
+			throw new InputException("Password can't be null");
+		}
+		
 		boolean smallLetterFlag = false;
 		boolean bigLetterFlag = false;
 		boolean numberFlag = false;
@@ -80,6 +100,7 @@ public class Validator {
 		int groupCount = 0;
 		char currentChar;
 		int charValue;
+		
 		
 		if (password.length() < 6) {
 			throw new InputException("This password is too short.");
@@ -131,6 +152,10 @@ public class Validator {
 	}
 	
 	public static boolean validateRole(String role) throws InputException {
+		if (role==null)
+		{
+			throw new InputException("Roles can't be null");
+		}
 		for (int i = 0; i < validRoles.length; i++) {
 			if (role.equals(validRoles[i])) {
 				return true;
