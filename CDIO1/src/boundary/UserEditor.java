@@ -90,7 +90,7 @@ public class UserEditor extends TUI {
 
 				}
 			case 2:
-				show("The username has not been changed for " + userDTO.getUserName() + ". Returning to prior menu...");
+				//show("The username has not been changed for " + userDTO.getUserName() + ". Returning to prior menu...");
 				return;
 			}
 
@@ -124,8 +124,8 @@ public class UserEditor extends TUI {
 					
 				}
 			case 2:
-				show("The initials have not been changed for " + userDTO.getUserName()
-						+ ". Returning to prior menu...");
+				//show("The initials have not been changed for " + userDTO.getUserName()
+				//		+ ". Returning to prior menu...");
 
 				break;
 			}
@@ -158,8 +158,8 @@ public class UserEditor extends TUI {
 					
 				}
 			case 2:
-				show("The CPR number has not been changed for " + userDTO.getUserName()
-						+ ". Returning to prior menu...");
+			//	show("The CPR number has not been changed for " + userDTO.getUserName()
+			//			+ ". Returning to prior menu...");
 				return;
 
 			}
@@ -192,7 +192,7 @@ public class UserEditor extends TUI {
 					
 				}
 			case 2:
-				show("No new password selected. Returning to prior menu...");
+			//	show("No new password selected. Returning to prior menu...");
 				return;
 			}
 		
@@ -223,11 +223,11 @@ public class UserEditor extends TUI {
 				break;
 
 			case 4:
-				show("Exiting role manipulator...");
+				//show("Exiting role manipulator...");
 				return;
 
 			default:
-				show("Input not recognized...");
+				show("That is not a valid input, please choose an option above.");
 				break;
 			}
 		
@@ -259,7 +259,7 @@ public class UserEditor extends TUI {
 					
 				}
 			case 2:
-				show("No roles added to " + userDTO.getUserName());
+				//show("No roles added to " + userDTO.getUserName());
 				return;
 			}
 		
@@ -290,8 +290,8 @@ public class UserEditor extends TUI {
 
 				}
 			case 2:
-				show("You have chosen not to remove any roles from " + userDTO.getUserName()
-						+ ". Returning to prior menu...");
+				//show("You have chosen not to remove any roles from " + userDTO.getUserName()
+				//		+ ". Returning to prior menu...");
 				return;
 			}
 
@@ -312,7 +312,7 @@ public class UserEditor extends TUI {
 				return;
 
 			case 2:
-				show("No roles have been removed from " + userDTO.getUserName() + ". Returning to prior menu...");
+				//show("No roles have been removed from " + userDTO.getUserName() + ". Returning to prior menu...");
 				return;
 			}
 
