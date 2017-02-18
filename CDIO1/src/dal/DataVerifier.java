@@ -1,30 +1,108 @@
 package dal;
-
 import dto.Validator;
 import dto.Validator.InputException;
+import dal.IUserDAO;
+import dal.IUserDAO.DALException;
+import dto.UserDTO;
 
-public class DataVerifier {
-	
-	
-	public DataVerifier(IUserDAO data );
-	
+public class DataVerifier 
+{
+
+	private IUserDAO data;
+
+	public DataVerifier(IUserDAO data) 
+	{
+		this.data =data;
+	}
+
+
 	public void createUser(UserDTO user) throws WrongDataException{
-		//TODO: Check if userid is already taken, throw exceptions if not.
 		
-		//TODO: Add a generated password and intials to the user.
 		
-		//TODO: Validate all the variables in UserDTO, throw exceptions if not.
-		
-		//TODO: Add to the data.
+		try {//TODO: Check if userid is already taken, throw exceptions if not.	✓
+			//if it returns an exception then the userID is not used
+			data.getUser(user.getUserId());
+		} catch (DALException userID) {
+			
+			//TODO: Add a generated password and intials to the user.	✓
+			//sets a newly generated password
+			user.setPassword(generatePassword());
+			//sets initials acording to their username
+			user.setIni(generateInitials(user.getUserName()));
+			
+			//TODO: Validate all the variables in UserDTO, throw exceptions if not.
+			try{
+				validator(user);
+			}catch(WrongDataException validate){
+				throw new WrongDataException(validate.getMessage());
+			}
+			
+			//TODO: Add to the data.
+			try{
+				data.updateUser(user);
+			}catch (DALException e){
+				throw new WrongDataException(e.getMessage());
+			}
+
+		}
+		//throws an exception if the userID is taken
+		throw new WrongDataException("This userID is already taken: "+user.getUserId());
+
 	}
 
+	public void updateUser(UserDTO user) throws WrongDataException{
 
-	public void updateUser(UserDTO user)  throws WrongDataException{
 		//TODO: Validate all the variables in UserDTO, throw exceptions if not.
-		
+		try{
+			validator(user);
+		}catch(WrongDataException validate){
+			throw new WrongDataException(validate.getMessage());
+		}
+
 		//TODO: Add to the data.
+		try{
+			data.updateUser(user);
+		}catch (DALException e){
+			throw new WrongDataException(e.getMessage());
+		}
+
 	}
-	
+
+	public void validator(UserDTO user) throws WrongDataException
+	{
+		try {
+			Validator.validateUsername(user.getUserName());
+		} catch (InputException e) {
+			throw new WrongDataException(e.getMessage());
+		}
+		try {
+			Validator.validateCPR(user.getCpr());
+		} catch (InputException e) {
+			throw new WrongDataException(e.getMessage());
+		}
+		//		try {
+		//			Validator.validateRole(user.getRoles());
+		//		} catch (InputException e) {
+		//			throw new WrongDataException(e.getMessage());
+		//		}
+		try {
+			Validator.validateUserID(user.getUserId());
+		} catch (InputException e) {
+			throw new WrongDataException(e.getMessage());
+		}
+		try {
+			Validator.validatePassword(user.getPassword());
+		} catch (InputException e) {
+			throw new WrongDataException(e.getMessage());
+		}
+		try {
+			Validator.validateInitials(user.getIni());
+		} catch (InputException e) {
+			throw new WrongDataException(e.getMessage());
+		}
+
+	}
+
 	public String generateInitials (String name)
 	{
 		String[] nameParts = name.split(" ");
@@ -42,7 +120,7 @@ public class DataVerifier {
 		}
 		return newIni;
 	}
-	
+
 	public String generatePassword() {
 		String password = "";
 		int passLength = 8;
@@ -53,7 +131,7 @@ public class DataVerifier {
 			{
 				char newCharacther;
 				int randGroup = (int) (Math.random() * 100);
-				
+
 				// Add a special characther
 				if (randGroup < 5) 
 				{
@@ -79,7 +157,7 @@ public class DataVerifier {
 					int rand = (int) (Math.random() * (57 - 48 + 1) + 48);
 					newCharacther = (char) rand;
 				}
-				
+
 				password += newCharacther + "";
 			}
 			try 
@@ -89,9 +167,22 @@ public class DataVerifier {
 			} 
 			catch (InputException e) 
 			{
-				
+
 			}
 		}
 		return password;
 	}
+
+	public class WrongDataException extends Exception {
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = -7195625358850756914L;
+
+		public WrongDataException(String msg)
+		{
+			super(msg);
+		}
+	}
 }
+
