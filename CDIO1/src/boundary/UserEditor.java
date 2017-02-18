@@ -65,7 +65,7 @@ public class UserEditor extends TUI {
 	}
 
 	public void changeUserName(UserDTO userDTO) {
-		while (true) {
+
 			show("Are you sure you want to change the username for " + userDTO.getUserName() + "? \n"
 					+ "Type 1 for Yes. \n" + "Type 2 for No.");
 			int userChoice = getInt();
@@ -81,23 +81,24 @@ public class UserEditor extends TUI {
 						Validator.validateUsername(changedUserName);
 
 						userDTO.setUserName(changedUserName);
+						show("Username updated for " + userDTO.getUserName());
+						return;
 					} catch (InputException e) {
 						show(e.getMessage());
 					}
-					show("Username updated for " + userDTO.getUserName());
-					break;
+					
 
 				}
 			case 2:
 				show("The username has not been changed for " + userDTO.getUserName() + ". Returning to prior menu...");
-				break;
+				return;
 			}
 
-		}
+		
 	}
 
 	public void changeUserIni(UserDTO userDTO) {
-		while (true) {
+
 			show("Are you sure you want to change the initials for " + userDTO.getUserName() + "? \n"
 					+ "Type 1 for Yes. \n" + "Type 2 for No.");
 			int userChoice = getInt();
@@ -114,12 +115,13 @@ public class UserEditor extends TUI {
 						Validator.validateInitials(changedUserIni);
 
 						userDTO.setIni(changedUserIni);
+						show("Username updated for " + userDTO.getUserName());
+						return;
+						
 					} catch (InputException e) {
 						show(e.getMessage());
 					}
-					show("Username updated for " + userDTO.getUserName());
-
-					break;
+					
 				}
 			case 2:
 				show("The initials have not been changed for " + userDTO.getUserName()
@@ -127,12 +129,12 @@ public class UserEditor extends TUI {
 
 				break;
 			}
-		}
+		
 	}
 
 	public void changeUserCPR(UserDTO userDTO) {
 
-		while (true) {
+
 			show("Are you sure you want to change the CPR number for" + userDTO.getUserName() + "? \n"
 					+ "Type 1 for Yes. \n" + "Type 2 for No.");
 
@@ -147,27 +149,27 @@ public class UserEditor extends TUI {
 						String changedUserCpr = getString();
 						Validator.validateCPR(changedUserCpr);
 						userDTO.setCpr(changedUserCpr);
+						show("User CPR number updated for " + userDTO.getCpr());
+
+						return;
 					} catch (InputException e) {
 						show(e.getMessage());
 					}
-					show("User CPR number updated for " + userDTO.getCpr());
-
-					break;
+					
 				}
 			case 2:
 				show("The CPR number has not been changed for " + userDTO.getUserName()
 						+ ". Returning to prior menu...");
-				break;
+				return;
 
 			}
 
-		}
+		
 
 	}
 
 	public void changeUserPassword(UserDTO userDTO) {
 
-		while (true) {
 			show("Are you sure you want to change the password for " + userDTO.getUserName() + "? \n"
 					+ "Type 1 for Yes. \n" + "Type 2 for No.");
 
@@ -181,22 +183,23 @@ public class UserEditor extends TUI {
 						String changedUserPassword = getString();
 						Validator.validatePassword(changedUserPassword);
 						userDTO.setPassword(changedUserPassword);
+						show("User CPR number updated for " + userDTO.getUserName());
+						return;
+						
 					} catch (InputException e) {
 						show(e.getMessage());
 					}
-					show("User CPR number updated for " + userDTO.getUserName());
-
-					break;
+					
 				}
 			case 2:
 				show("No new password selected. Returning to prior menu...");
-				break;
+				return;
 			}
-		}
+		
 	}
 
 	public void manipulateUserRoles(UserDTO userDTO) {
-		while (true) {
+
 
 			show("Please select how you wish to manipulate user roles for " + userDTO.getUserName() + ". \n"
 					+ "1: Add a new role. \n" + "2: Remove a role. \n" + "3: Remove *ALL* roles."
@@ -221,18 +224,16 @@ public class UserEditor extends TUI {
 
 			case 4:
 				show("Exiting role manipulator...");
-				break;
+				return;
 
 			default:
 				show("Input not recognized...");
 				break;
 			}
-		}
+		
 	}
 
 	public void addUserRole(UserDTO userDTO) {
-
-		while (true) {
 
 			show("Are you sure you want to add a role to " + userDTO.getUserName() + "? \n" + "Type 1 for Yes. \n"
 					+ "Type 2 for No.");
@@ -249,21 +250,23 @@ public class UserEditor extends TUI {
 						String userRoleChoice = getString();
 						Validator.validateRole(userRoleChoice);
 						userDTO.addRole(userRoleChoice);
+						show("Added " + userChoice + " to the list of " + userDTO.getUserName()
+						+ "'s roles. Returning to prior menu...");
+						return;
 					} catch (InputException e) {
 						show(e.getMessage());
 					}
-					show("Added " + userChoice + " to the list of " + userDTO.getUserName()
-							+ "'s roles. Returning to prior menu...");
-					break;
+					
 				}
 			case 2:
 				show("No roles added to " + userDTO.getUserName());
+				return;
 			}
-		}
+		
 	}
 
 	public void removeOneUserRole(UserDTO userDTO) {
-		while (true) {
+
 			show("Are you sure you want to remove a role from " + userDTO.getUserName() + "? \n" + "Type 1 for Yes. \n"
 					+ "Type 2 for No.");
 
@@ -278,25 +281,24 @@ public class UserEditor extends TUI {
 						String roleChoice = getString();
 						Validator.validateRole(roleChoice);
 						userDTO.removeRole(roleChoice);
+						show("You have succesfully removed a role from " + userDTO.getUserName() + ".");
+
+						return;
 					} catch (InputException e) {
 						show(e.getMessage());
 					}
-					show("You have succesfully removed a role from " + userDTO.getUserName() + ".");
 
-					break;
 				}
 			case 2:
 				show("You have chosen not to remove any roles from " + userDTO.getUserName()
 						+ ". Returning to prior menu...");
-				break;
+				return;
 			}
 
-		}
+		
 	}
 
 	public void removeUserRoles(UserDTO userDTO) {
-
-		while (true) {
 
 			show("Are you sure you want to remove *ALL* roles for " + userDTO.getUserName()
 					+ "? This choice is not revertable. \n" + "Type 1 for Yes. \n" + "Type 2 for No.");
@@ -307,14 +309,13 @@ public class UserEditor extends TUI {
 			case 1:
 				userDTO.removeAllRoles();
 				show("All of " + userDTO.getUserName() + "'s roles have been removed.");
-				break;
+				return;
 
 			case 2:
 				show("No roles have been removed from " + userDTO.getUserName() + ". Returning to prior menu...");
-				break;
+				return;
 			}
 
-		}
 	}
 
 	public int getId() {
@@ -330,7 +331,7 @@ public class UserEditor extends TUI {
 				}
 
 				catch (InputException e) {
-					show("Input not recognised.");
+					show(e.getMessage());
 				}
 			}
 		}
