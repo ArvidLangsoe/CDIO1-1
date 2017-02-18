@@ -199,7 +199,7 @@ public class UserEditor extends TUI {
 	}
 
 	public void manipulateUserRoles(UserDTO userDTO) {
-
+while(true){
 
 			show("Please select how you wish to manipulate user roles for " + userDTO.getUserName() + ". \n"
 					+ "1: Add a new role. \n" + "2: Remove a role. \n" + "3: Remove *ALL* roles."
@@ -230,7 +230,7 @@ public class UserEditor extends TUI {
 				show("That is not a valid input, please choose an option above.");
 				break;
 			}
-		
+}
 	}
 
 	public void addUserRole(UserDTO userDTO) {
