@@ -49,7 +49,7 @@ public class UserCreator extends  TUI {
 	}
 
 	private void getUserID() {
-		String question="Please enter the ID of the new user. It has to be between 11 and 99";
+		String question="\n Please enter the ID of the new user. It has to be between 11 and 99";
 		while (true) {
 			show(question);
 			String userInput = getString();
@@ -67,7 +67,7 @@ public class UserCreator extends  TUI {
 	}
 
 	private void getUserName() {
-		String question = "Please enter a username. The username has to have a length between 2 and 20.";
+		String question = "\n Please enter a username. The username has to have a length between 2 and 20.";
 		while (true) {
 			show(question);
 			String userInput = getString();
@@ -84,7 +84,7 @@ public class UserCreator extends  TUI {
 
 
 	private void getCpr() {
-		String question = "Please enter the users cpr number.";
+		String question = "\n Please enter the users cpr number.";
 		while (true) {
 			show(question);
 			String userInput = getString();
@@ -100,7 +100,7 @@ public class UserCreator extends  TUI {
 	}
 
 	private void getRoles() {
-		String question = "What roles do you want to assign to the user? Enter a number corresponding to a role:";
+		String question = "\n What roles do you want to assign to the user? Enter a number corresponding to a role:";
 		String[] validRoles = Validator.validRoles;
 		boolean[] chosenRoles = new boolean[validRoles.length];
 		for (int i = 0; i < chosenRoles.length; i++) {
