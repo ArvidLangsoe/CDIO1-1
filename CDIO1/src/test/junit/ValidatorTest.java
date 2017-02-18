@@ -198,6 +198,12 @@ public class ValidatorTest {
 		} catch (InputException e) {
 			
 		}
+		try {
+			Validator.validateInitials(null);
+			fail("Role: '"+ roles[0]+"s"+ " was a valid role, but it shouldn't be.");
+		} catch (InputException e) {
+			
+		}
 
 	}
 
