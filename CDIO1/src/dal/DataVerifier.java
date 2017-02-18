@@ -38,8 +38,9 @@ public class DataVerifier
 			}
 			
 			//TODO: Add to the data.
+
 			try{
-				data.updateUser(user);
+				data.createUser(user);
 			}catch (DALException e){
 				throw new WrongDataException(e.getMessage());
 			}
