@@ -7,11 +7,12 @@ public class MenuAdministrator extends TUI {
 	private UserViewer view;
 	private UserEditor edit;
 
-	private String options = "1:Opret ny bruger \n"
-			+ "2:List Brugere \n"
-			+ "3:Ret bruger \n"
-			+ "4:Slet bruger \n"
-			+ "5:Afslut program \n";
+	private String options = "Brugeradministration, du har følgende muligheder:\n"
+			+ "1:Opret ny bruger. \n"
+			+ "2:List brugere. \n"
+			+ "3:Ret bruger. \n"
+			+ "4:Slet bruger. \n"
+			+ "5:Afslut program. \n";
 
 	public MenuAdministrator(UserCreator create, UserRemover delete, UserViewer view, UserEditor edit) {
 		this.create = create;
