@@ -71,38 +71,59 @@ public class UserViewer extends TUI {
 	}
 
 	public void showUserWithId(int id, List<UserDTO> userArray) {
+		int count=0;
 		for (UserDTO user : userArray) {
 			if (id == user.getUserId()) {
+				count++;
 				String roles = userRoles(user);
 				printUser(user, roles);
 			}
+		}
+		
+		if(count==0){
+			show("No user exist with that id.");
 		}
 	}
 
 	public void showUserWithIni(String ini, List<UserDTO> userArray) {
+		int count=0;
 		for (UserDTO user : userArray) {
 			if (ini.equals(user.getIni())) {
+				count++;
 				String roles = userRoles(user);
 				printUser(user, roles);
 			}
+		}
+		if(count==0){
+			show("No user exist with those initials.");
 		}
 	}
 
 	public void showUserWithCpr(String cpr, List<UserDTO> userArray) {
+		int count=0;
 		for (UserDTO user : userArray) {
 			if (cpr.equals(user.getCpr())) {
+				count++;
 				String roles = userRoles(user);
 				printUser(user, roles);
 			}
 		}
+		if(count==0){
+			show("No user exist with that CPR.");
+		}
 	}
 
 	public void showUsersWithRole(String role, List<UserDTO> userArray) {
+		int count=0;
 		for (UserDTO user : userArray) {
 			String roles = userRoles(user);
 			if (roles.contains(role)) {
+				count++;
 				printUser(user, roles);
 			}
+		}
+		if(count==0){
+			show("No user exist with that role.");
 		}
 	}
 
