@@ -64,6 +64,10 @@ public class UserViewer extends TUI {
 	}
 
 	public void showAllUsers(List<UserDTO> userArray) {
+		if(userArray.isEmpty()){
+			show("No users exist.");
+			return;
+		}
 		for (UserDTO user : userArray) {
 			String roles = userRoles(user);
 			printUser(user, roles);
