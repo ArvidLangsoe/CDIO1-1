@@ -32,7 +32,7 @@ public class Validator {
 		int[] cprArray = new int[10];
 		
 		if (cpr.length() != 10) {
-			throw new InputException("The cpr number is has to have 10 characthers.");
+			throw new InputException("The cpr number has to have 10 characthers.");
 		}
 		
 		// Save the cpr number in an array.
@@ -44,11 +44,11 @@ public class Validator {
 				throw new InputException("Cpr number can only contain numbers.");
 			}
 		}
-		if (cprArray[0] > 3) {
+		if (cprArray[0] > 3||(cprArray[0] == 3&&cprArray[1] > 1)) {
 			throw new InputException(cprArray[0] + "" + cprArray[1] + " is not a valid date.");
 		}
-		if ((cprArray[2] > 2 || (cprArray[2] > 0 && cprArray[3] > 2))) {
-			throw new InputException(cprArray[2] + "" + cprArray[3] + "is not a valid month.");
+		if ((cprArray[2] > 1 || (cprArray[2] > 0 && cprArray[3] > 2))) {
+			throw new InputException(cprArray[2] + "" + cprArray[3] + " is not a valid month.");
 		}
 		
 		// Calculate the validation number:
