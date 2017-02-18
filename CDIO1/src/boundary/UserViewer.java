@@ -115,7 +115,6 @@ public class UserViewer extends TUI {
 	}
 
 	private void printUser(UserDTO user, String roles) {
-		show("ID: " + user.getUserId() + " Navn: " + user.getUserName() + " Initialer: " + user.getIni() + " CPR: "
-				+ user.getCpr() + " Roles: " + roles);
+		show(user.toString());
 	}
 }
