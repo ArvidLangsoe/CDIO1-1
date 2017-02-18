@@ -119,6 +119,32 @@ public class UserDTO implements Serializable {
 		return newString + "]";
 	}
 	
+
+	public boolean equals(UserDTO user){
+		
+		if(this.getUserId()!=user.getUserId()){
+			return false;
+		}
+		if(this.getUserName().equals(user.getUserName())){
+			return false;
+		}
+		if(this.getIni().equals(user.getIni())){
+			return false;
+		}
+		if(this.getCpr().equals(user.getCpr())){
+			return false;
+		}
+		if(this.getPassword().equals(user.getPassword())){
+			return false;
+		}
+		if(!this.getRoles().equals(this.getRoles())){
+			return false;
+		}
+		
+		
+		return true;
+	}
+	
 	public String generateInitials (String name)
 	{
 		String[] nameParts = name.split(" ");
@@ -188,6 +214,8 @@ public class UserDTO implements Serializable {
 		}
 		return password;
 	}
+	
+
 	
 	
 }
