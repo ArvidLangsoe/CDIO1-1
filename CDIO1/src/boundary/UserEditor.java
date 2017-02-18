@@ -244,8 +244,14 @@ public class UserEditor extends TUI {
 		switch (userChoice) {
 		case 1:
 			while (true) {
+				String roles="";
+				for(int i =0;i<Validator.validRoles.length-1;i++){
+					roles+=Validator.validRoles[i]+", ";
+				}
+				roles+= "or "+Validator.validRoles[Validator.validRoles.length-1];
+				
 				show("Please list the desired role to be added to " + userDTO.getUserName()
-						+ ": Admin, Pharmacist, Foreman or Operator.");
+						+ ": "+roles);
 
 				try {
 					String userRoleChoice = getString();
