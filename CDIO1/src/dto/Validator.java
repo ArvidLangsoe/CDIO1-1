@@ -127,11 +127,11 @@ public class Validator {
 	
 	public static boolean validateRole(String role) throws InputException {
 		for (int i = 0; i < validRoles.length; i++) {
-			if (!role.equals(validRoles[i])) {
-				throw new InputException("This is not a valid role.");
+			if (role.equals(validRoles[i])) {
+				return true;
 			}
 		}
-		return true;
+		throw new InputException("This is not a valid role.");
 	}
 
 	//Inner class - Exception class.
