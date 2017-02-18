@@ -24,7 +24,7 @@ public class UserViewer extends TUI {
 
 			show("\n Hvilke brugere vil du se?\n" + "1. Alle brugere.\n" + "2. Brugere med et bestemt id.\n"
 					+ "3. Brugere med initialer.\n" + "4. Brugere med et vidst CPR-nummer.\n"
-					+ "5. Brugere med en bestemt rolle."+"6. Forlad menu.");
+					+ "5. Brugere med en bestemt rolle.\n"+"6. Forlad menu.");
 
 			int decision = getInt();
 
