@@ -107,7 +107,7 @@ public class UserDAO implements IUserDAO {
 		saveUsers(users);
 	}
 	
-	private ArrayList<UserDTO> loadUsers() throws DALException {
+	public ArrayList<UserDTO> loadUsers() throws DALException {
 		ArrayList<UserDTO> users = new ArrayList<UserDTO>();
 		
 		ObjectInputStream OIS = null;
@@ -153,7 +153,7 @@ public class UserDAO implements IUserDAO {
 		return users;
 	}
 	
-	private void saveUsers(ArrayList<UserDTO> users) throws DALException {
+	public void saveUsers(ArrayList<UserDTO> users) throws DALException {
 		ObjectOutputStream OOS =null;
 		try 
 		{
