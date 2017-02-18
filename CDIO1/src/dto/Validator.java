@@ -37,7 +37,12 @@ public class Validator {
 		
 		// Save the cpr number in an array.
 		for (int i = 0; i < 10; i++) {
-			cprArray[i] = Integer.parseInt(cpr.substring(i, i));
+			try{
+			cprArray[i] = Integer.parseInt(cpr.substring(i, i+1));
+			}
+			catch(NumberFormatException e){
+				throw new InputException("Cpr number can only contain numbers.");
+			}
 		}
 		if (cprArray[0] > 3) {
 			throw new InputException(cprArray[0] + "" + cprArray[1] + " is not a valid date.");
