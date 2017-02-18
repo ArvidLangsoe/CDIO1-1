@@ -22,41 +22,41 @@ public class UserViewer extends TUI {
 				show("ERROR: Could not get the user list!");
 			}
 
-			show("\n Hvilke brugere vil du se?\n" + "1. Alle brugere.\n" + "2. Brugere med et bestemt id.\n"
-					+ "3. Brugere med initialer.\n" + "4. Brugere med et vidst CPR-nummer.\n"
-					+ "5. Brugere med en bestemt rolle.\n"+"6. Forlad menu.");
+			show("\n What users do you want to see?\n" + "1. All users.\n" + "2. Users with a specific id.\n"
+					+ "3. Users with specific initials. \n" + "4. Users with specifik CPR-numbes.\n"
+					+ "5. Users with a specific role..\n"+"6. Leave menu.");
 
 			int decision = getInt();
 
 			switch (decision) {
 			case 1:
-				show("Alle brugere vises:");
+				show("All users are shown:");
 				showAllUsers(userArray);
 				break;
 			case 2:
-				show("Hvilket id?");
+				show("What id do you want to see?");
 				int id = getInt();
 				showUserWithId(id, userArray);
 				break;
 			case 3:
-				show("Hvilke initialer?");
+				show("What initials do you want to see?");
 				String ini = getString();
 				showUserWithIni(ini, userArray);
 				break;
 			case 4:
-				show("Hvilket CPR-nummer?");
+				show("What CPR-number do you want to see?");
 				String cpr = getString();
 				showUserWithCpr(cpr, userArray);
 				break;
 			case 5:
-				show("Hvilken rolle?");
+				show("What role do you want to see?");
 				String role = getString();
 				showUsersWithRole(role, userArray);
 				break;
 			case 6: 
 				return;
 			default:
-				show("Ikke muligt!");
+				show("That is not an option. Please choose one of the above.");
 				break;
 			}
 		}
