@@ -1,7 +1,5 @@
 package dal;
 
-import dto.UserDTO;
-
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -10,6 +8,8 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
+
+import dataTransferObjects.UserDTO;
 
 
 public class UserDAO implements IUserDAO {

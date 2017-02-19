@@ -3,8 +3,8 @@ package boundary;
 import java.util.List;
 
 import dal.IUserDAO.DALException;
+import dataTransferObjects.UserDTO;
 import dal.IUserDAO;
-import dto.UserDTO;
 
 public class UserViewer extends TUI {
 	private IUserDAO userDAO;

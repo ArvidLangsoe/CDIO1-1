@@ -4,9 +4,9 @@ package boundary;
 
 import dal.IUserDAO;
 import dal.IUserDAO.DALException;
-import dto.UserDTO;
-import dto.Validator;
-import dto.Validator.InputException;
+import dataTransferObjects.UserDTO;
+import dataTransferObjects.Validator;
+import dataTransferObjects.Validator.InputException;
 
 public class UserCreator extends  TUI {
 

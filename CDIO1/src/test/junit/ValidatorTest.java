@@ -6,8 +6,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import dto.Validator;
-import dto.Validator.InputException;
+import dataTransferObjects.Validator;
+import dataTransferObjects.Validator.InputException;
 
 public class ValidatorTest {
 

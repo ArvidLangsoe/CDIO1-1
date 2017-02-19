@@ -5,8 +5,8 @@ import java.util.List;
 
 import dal.IUserDAO;
 import dal.IUserDAO.DALException;
+import dataTransferObjects.UserDTO;
 import dal.UserDAODiscImpl;
-import dto.UserDTO;
 
 public class DBTester {
 	//TODO refactor as JUnit test???

@@ -1,11 +1,11 @@
-package dto;
+package dataTransferObjects;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import dto.Validator.InputException;
+import dataTransferObjects.Validator.InputException;
 
 /**
  * The objects of the UserDTO is used as data transfer object. The class contains methods to add or 

@@ -10,8 +10,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import dal.IUserDAO.DALException;
+import dataTransferObjects.UserDTO;
 import dal.UserDAO;
-import dto.UserDTO;
 
 public class UserDAOTest {
 

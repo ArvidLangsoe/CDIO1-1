@@ -1,9 +1,9 @@
 package boundary;
 
-import dto.*;
-import dto.Validator.InputException;
 import dal.*;
 import dal.IUserDAO.DALException;
+import dataTransferObjects.*;
+import dataTransferObjects.Validator.InputException;
 
 public class UserEditor extends TUI {
 
