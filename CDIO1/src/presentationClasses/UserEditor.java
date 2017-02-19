@@ -28,7 +28,7 @@ public class UserEditor extends TUI {
 	 * Edits a user (UserDTO) by asking the user Administrator for 
 	 * the user ID of the user to be edited and afterwards what he wants to edit.
 	 */
-	public void editUser() {
+	public void editUserMenu() {
 
 		UserDTO userDTO;
 

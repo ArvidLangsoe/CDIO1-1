@@ -41,7 +41,7 @@ public class MenuAdministrator extends TUI {
 			view.showUserViewerMenu();
 			return true;
 		case 3:
-			edit.editUser();
+			edit.editUserMenu();
 			return true;
 		case 5:
 			return false;
