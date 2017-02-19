@@ -21,7 +21,6 @@ public class TUI implements UI {
 
 	/**
 	 * Asks the user for a String.
-	 * 
 	 * @return The String which the user entered.
 	 */
 	@Override
@@ -32,7 +31,6 @@ public class TUI implements UI {
 
 	/**
 	 * Asks the user for a integer.
-	 * 
 	 * @return The integer which the user entered.
 	 */
 	@Override
@@ -48,9 +46,7 @@ public class TUI implements UI {
 
 	/**
 	 * Shows a message from the system to the user.
-	 * 
-	 * @param msg
-	 *            The message to show the user.
+	 * @param msg The message to show the user.
 	 */
 	@Override
 	public void show(String msg) {
