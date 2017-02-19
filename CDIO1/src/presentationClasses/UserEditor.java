@@ -5,14 +5,29 @@ import dal.IUserDAO.DALException;
 import dataTransferObjects.*;
 import dataTransferObjects.Validator.InputException;
 
+/**
+ * The class UserEditor extends TUI.
+ * The responsibility of this class is to carry out the tasks of editing a user from the data.
+ * @author Group 22.
+ *
+ */
 public class UserEditor extends TUI {
 
+	//Instance variables.
 	private IUserDAO userDAO;
 
+	/**
+	 * Constructor
+	 * @param userDAO The data access object to use.
+	 */
 	public UserEditor(IUserDAO userDAO) {
 		this.userDAO = userDAO;
 	}
 
+	/**
+	 * Edits a user (UserDTO) by asking the user Administrator for 
+	 * the user ID of the user to be edited and afterwards what he wants to edit.
+	 */
 	public void editUser() {
 
 		UserDTO userDTO;
@@ -35,7 +50,7 @@ public class UserEditor extends TUI {
 
 			switch (userChoice) {
 			case 1:
-				changeUserName(userDTO);
+				changeUsername(userDTO);
 				break;
 
 			case 2:
@@ -70,7 +85,11 @@ public class UserEditor extends TUI {
 		}
 	}
 
-	public void changeUserName(UserDTO userDTO) {
+	/**
+	 * Changes the username of the user (UserDTO) if the user administrator wants to and if the new username is valid.
+	 * @param userDTO The user to change the username of.
+	 */
+	public void changeUsername(UserDTO userDTO) {
 
 		show("Are you sure you want to change the username for " + userDTO.getUserName() + "? \n" + "Type 1 for Yes. \n"
 				+ "Type 2 for No.");
@@ -97,11 +116,16 @@ public class UserEditor extends TUI {
 		case 2:
 			// show("The username has not been changed for " +
 			// userDTO.getUserName() + ". Returning to prior menu...");
+			// TODO What is this?
 			return;
 		}
 
 	}
 
+	/**
+	 * Changes the user initials of the user (UserDTO) If the user Administrator wants to and if the initials are valid.
+	 * @param userDTO The user to change the initials of.
+	 */
 	public void changeUserIni(UserDTO userDTO) {
 
 		show("Are you sure you want to change the initials for " + userDTO.getUserName() + "? \n" + "Type 1 for Yes. \n"
@@ -132,12 +156,17 @@ public class UserEditor extends TUI {
 			// show("The initials have not been changed for " +
 			// userDTO.getUserName()
 			// + ". Returning to prior menu...");
+			// TODO what is this?
 
 			break;
 		}
 
 	}
 
+	/**
+	 * Changes the CPR of the user (UserDTO) if the user Administrator wants to and if the CPR is valid.
+	 * @param userDTO The user to change the CPR of.
+	 */
 	public void changeUserCPR(UserDTO userDTO) {
 
 		show("Are you sure you want to change the CPR number for" + userDTO.getUserName() + "? \n"
@@ -166,12 +195,18 @@ public class UserEditor extends TUI {
 			// show("The CPR number has not been changed for " +
 			// userDTO.getUserName()
 			// + ". Returning to prior menu...");
+			// TODO what is this?
 			return;
 
 		}
 
 	}
 
+	/**
+	 * Changes the password of the user (UserDTO) if the user Administrator wants to and if the password is valid.
+	 * @param userDTO The user to change the password of.
+	 */
+	// TODO should an user administrator be allowed this? Shouldn't it be auto generated?
 	public void changeUserPassword(UserDTO userDTO) {
 
 		show("Are you sure you want to change the password for " + userDTO.getUserName() + "? \n" + "Type 1 for Yes. \n"
@@ -197,11 +232,16 @@ public class UserEditor extends TUI {
 			}
 		case 2:
 			// show("No new password selected. Returning to prior menu...");
+			// TODO what is this?
 			return;
 		}
 
 	}
 
+	/**
+	 * Manipulates the roles of the given user (UserDTO).
+	 * @param userDTO The user to change the roles of.
+	 */
 	public void manipulateUserRoles(UserDTO userDTO) {
 		while (true) {
 
@@ -218,12 +258,12 @@ public class UserEditor extends TUI {
 
 			case 2:
 				// show("Preparing to remove one role from user...");
-				removeOneUserRole(userDTO);
+				removeUserRole(userDTO);
 				break;
 
 			case 3:
 				// show("Preparing to remove all roles from user...");
-				removeUserRoles(userDTO);
+				removeAllUserRoles(userDTO);
 				break;
 
 			case 4:
@@ -237,6 +277,10 @@ public class UserEditor extends TUI {
 		}
 	}
 
+	/**
+	 * Adds a user role to the user (UserDTO) if the user administrator wants to and if the role entered is valid.
+	 * @param userDTO The user to add the role to.
+	 */
 	public void addUserRole(UserDTO userDTO) {
 
 		show("Are you sure you want to add a role to " + userDTO.getUserName() + "? \n" + "Type 1 for Yes. \n"
@@ -270,12 +314,16 @@ public class UserEditor extends TUI {
 			}
 		case 2:
 			// show("No roles added to " + userDTO.getUserName());
+			// TODO what is this???
 			return;
 		}
-
 	}
 
-	public void removeOneUserRole(UserDTO userDTO) {
+	/**
+	 * Removes a user role from the user (UserDTO) if the user administrator wants to and if the role exists.
+	 * @param userDTO The user to remove the role from.
+	 */
+	public void removeUserRole(UserDTO userDTO) {
 
 		show("Are you sure you want to remove a role from " + userDTO.getUserName() + "? \n" + "Type 1 for Yes. \n"
 				+ "Type 2 for No.");
@@ -303,12 +351,17 @@ public class UserEditor extends TUI {
 			// show("You have chosen not to remove any roles from " +
 			// userDTO.getUserName()
 			// + ". Returning to prior menu...");
+			// TODO what is this?
 			return;
 		}
 
 	}
 
-	public void removeUserRoles(UserDTO userDTO) {
+	/**
+	 * Removes all the the roles from the user (UserDTO) if the user administrator wants to.
+	 * @param userDTO The user to remove the roles from.
+	 */
+	public void removeAllUserRoles(UserDTO userDTO) {
 
 		show("Are you sure you want to remove *ALL* roles for " + userDTO.getUserName()
 				+ "? This choice is not revertable. \n" + "Type 1 for Yes. \n" + "Type 2 for No.");
@@ -324,14 +377,19 @@ public class UserEditor extends TUI {
 		case 2:
 			// show("No roles have been removed from " + userDTO.getUserName() +
 			// ". Returning to prior menu...");
+			//TODO what is this?
 			return;
 		}
 
 	}
 
+	/**
+	 * Asks the user administrator to enter the user ID of the user to be edited.
+	 * @return The user ID of the user to be edited.
+	 */
 	public int getId() {
 		while (true) {
-			show("Please specify wished userId");
+			show("Please specify wished userID");
 			while (true) {
 				try {
 					int userInput = getInt();
