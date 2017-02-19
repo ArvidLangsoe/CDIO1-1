@@ -7,6 +7,12 @@ import java.util.List;
 
 import dto.Validator.InputException;
 
+/**
+ * The objects of the UserDTO is used as data transfer object. The class contains methods to add or 
+ * remove information from the data transfer object. In addition the class also contains a few utility methods.
+ * @author Group 22
+ *
+ */
 public class UserDTO implements Serializable {
 	
 	//The serial id making us able to identify the object when saved and loaded.
