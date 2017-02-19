@@ -1,4 +1,4 @@
-package boundary;
+package presentationClasses;
 
 import dal.*;
 import dal.IUserDAO.DALException;

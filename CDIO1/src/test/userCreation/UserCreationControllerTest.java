@@ -6,9 +6,9 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import boundary.ITUI;
 import controller.UserCreationController;
 import entity.userCreation.IUserCreation;
+import presentationClasses.ITUI;
 
 public class UserCreationControllerTest {
 	private ITUI tui;

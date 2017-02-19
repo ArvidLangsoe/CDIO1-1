@@ -1,4 +1,4 @@
-package boundary;
+package presentationClasses;
 
 public class MenuAdministrator extends TUI {
 
