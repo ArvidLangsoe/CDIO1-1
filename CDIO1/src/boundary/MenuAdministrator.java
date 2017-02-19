@@ -34,16 +34,17 @@ public class MenuAdministrator extends TUI {
 		case 1:
 			create.createNewUser();
 			return true;
-		case 4:
-			delete.deleteUser();
-			return true;
 		case 2:
 			view.showUserViewerMenu();
 			return true;
 		case 3:
 			edit.editUser();
 			return true;
+		case 4:
+			delete.deleteUser();
+			return true;
 		case 5:
+			show("NOT IMPLEMENTED YET");
 			return false;
 		default: 
 			show("Not a valid options. Please choose an option above.");
