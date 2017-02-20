@@ -8,7 +8,7 @@ import dal.IUserDAO;
 import dal.IUserDAO.DALException;
 import dto.UserDTO;
 
-public class DataVerifier implements IDataVarifier
+public class DataVerifier implements IDataVerifier
 {
 
 	private IUserDAO data;
