@@ -3,7 +3,6 @@ package boundary;
 import dto.*;
 import dto.Validator.InputException;
 import dal.*;
-import dal.IDataVerifier.WrongDataException;
 import dal.IUserDAO.DALException;
 
 public class UserEditor extends TUI {
