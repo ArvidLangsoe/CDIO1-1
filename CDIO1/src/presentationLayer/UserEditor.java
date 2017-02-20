@@ -1,7 +1,10 @@
 package presentationLayer;
 
 import dataTransferObjects.UserDTO;
-import dal.IUserDAO;
+import staticClasses.Validator;
+import staticClasses.Validator.InputException;
+import DataAccessObjects.IUserDAO;
+import DataAccessObjects.IUserDAO.DALException;
 
 
 /**
