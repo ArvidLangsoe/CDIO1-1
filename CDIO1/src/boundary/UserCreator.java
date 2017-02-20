@@ -30,9 +30,7 @@ public class UserCreator extends  TUI {
 		getUserName();
 		getCpr();
 		getRoles();
-		
-		newUser.setPassword(newUser.generatePassword());
-		newUser.setIni(newUser.generateInitials(newUser.getUserName()));
+
 
 		try {
 			data.createUser(newUser);
