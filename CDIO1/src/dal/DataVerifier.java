@@ -26,20 +26,19 @@ public class DataVerifier
 			throw new WrongDataException("This userID is already taken: "+user.getUserId());
 			
 		} catch (DALException userID) {
-			//TODO: Add a generated password and intials to the user.	✓
+
 			//sets a newly generated password
 			user.setPassword(generatePassword());
 			//sets initials acording to their username
 			user.setIni(generateInitials(user.getUserName()));
 			
-			//TODO: Validate all the variables in UserDTO, throw exceptions if not.
+
 			try{
-				validator(user);
+				validate(user);
 			}catch(WrongDataException validate){
 				throw new WrongDataException(validate.getMessage());
 			}
 			
-			//TODO: Add to the data.
 
 			try{
 				data.createUser(user);
@@ -52,14 +51,14 @@ public class DataVerifier
 
 	public void updateUser(UserDTO user) throws WrongDataException{
 
-		//TODO: Validate all the variables in UserDTO, throw exceptions if not.
+		//validates if all the new data is legal
 		try{
-			validator(user);
+			validate(user);
 		}catch(WrongDataException validate){
 			throw new WrongDataException(validate.getMessage());
 		}
 
-		//TODO: Add to the data.
+		//Updates the user
 		try{
 			data.updateUser(user);
 		}catch (DALException e){
@@ -68,7 +67,7 @@ public class DataVerifier
 
 	}
 
-	public void validator(UserDTO user) throws WrongDataException
+	public void validate(UserDTO user) throws WrongDataException
 	{
 		try {
 			Validator.validateUsername(user.getUserName());
@@ -80,11 +79,11 @@ public class DataVerifier
 		} catch (InputException e) {
 			throw new WrongDataException(e.getMessage());
 		}
-		//		try {
-		//			Validator.validateRole(user.getRoles());
-		//		} catch (InputException e) {
-		//			throw new WrongDataException(e.getMessage());
-		//		}
+//				try {
+//					Validator.validateRole(user.get());
+//				} catch (InputException e) {
+//					throw new WrongDataException(e.getMessage());
+//				}
 		try {
 			Validator.validateUserID(user.getUserId());
 		} catch (InputException e) {
