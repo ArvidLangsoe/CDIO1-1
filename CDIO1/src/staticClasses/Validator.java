@@ -1,4 +1,4 @@
-package dataTransferObjects;
+package staticClasses;
 
 /**
  * The Validator class only contains static methods and is used to check if the user input is valid.

@@ -4,7 +4,8 @@ import DataAccessObjects.*;
 import DataAccessObjects.IUserDAO.DALException;
 import dal.IUserDAO;
 import dataTransferObjects.*;
-import dataTransferObjects.Validator.InputException;
+import staticClasses.Validator;
+import staticClasses.Validator.InputException;
 
 /**
  * The class UserEditor extends TUI.

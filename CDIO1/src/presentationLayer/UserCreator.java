@@ -3,8 +3,8 @@ package presentationLayer;
 import DataAccessObjects.IUserDAO;
 import DataAccessObjects.IUserDAO.DALException;
 import dataTransferObjects.UserDTO;
-import dataTransferObjects.Validator;
-import dataTransferObjects.Validator.InputException;
+import staticClasses.Validator;
+import staticClasses.Validator.InputException;
 
 /**
  * The class UserCreator extends the class TUI. 

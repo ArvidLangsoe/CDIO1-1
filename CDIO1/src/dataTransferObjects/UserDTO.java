@@ -5,7 +5,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import dataTransferObjects.Validator.InputException;
+import staticClasses.Validator;
+import staticClasses.Validator.InputException;
 
 /**
  * The objects of the UserDTO is used as data transfer object. The class contains methods to add or 
