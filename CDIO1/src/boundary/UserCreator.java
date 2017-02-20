@@ -2,6 +2,8 @@ package boundary;
 
 
 
+import dal.DataVerifier;
+import dal.DataVerifier.WrongDataException;
 import dal.IUserDAO;
 import dal.IUserDAO.DALException;
 import dto.UserDTO;
@@ -11,10 +13,11 @@ import dto.Validator.InputException;
 public class UserCreator extends  TUI {
 
 	private UserDTO newUser;
-	private IUserDAO data;
+	
+	private DataVerifier data;
 
-	public UserCreator(IUserDAO data2){
-		this.data=data2;
+	public UserCreator(DataVerifier data){
+		this.data=data;
 	}
 		
 
@@ -33,7 +36,7 @@ public class UserCreator extends  TUI {
 
 		try {
 			data.createUser(newUser);
-		} catch (DALException e) {
+		} catch (WrongDataException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

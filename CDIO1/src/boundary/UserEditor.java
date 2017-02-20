@@ -7,9 +7,9 @@ import dal.IUserDAO.DALException;
 
 public class UserEditor extends TUI {
 
-	private IUserDAO userDAO;
+	private DataVerifier userDAO;
 
-	public UserEditor(IUserDAO userDAO) {
+	public UserEditor(DataVerifier userDAO) {
 		this.userDAO = userDAO;
 	}
 
