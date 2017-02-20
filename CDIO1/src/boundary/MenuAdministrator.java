@@ -7,13 +7,6 @@ public class MenuAdministrator extends TUI {
 	private UserViewer view;
 	private UserEditor edit;
 
-	private String options = "\n"+"User administration, you have the following options:\n\n"
-			+ "1: Create user. \n"
-			+ "2: Show users. \n"
-			+ "3: Edit users. \n"
-			+ "4: Delete user. \n"
-			+ "5: Exit program.";
-
 	public MenuAdministrator(UserCreator create, UserRemover delete, UserViewer view, UserEditor edit) {
 		this.create = create;
 		this.delete = delete;
@@ -22,7 +15,12 @@ public class MenuAdministrator extends TUI {
 	}
 
 	public int getUserChoice(){
-		show(options);
+		show("\n"+"User administration, you have the following options:\n\n"
+				+ "1: Create user. \n"
+				+ "2: Show users. \n"
+				+ "3: Edit users. \n"
+				+ "4: Delete user. \n"
+				+ "5: Exit program.");
 		return getInt();
 	}
 
