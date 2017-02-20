@@ -23,7 +23,7 @@ public class UserEditor extends TUI {
 			show("The following user was found:");
 			show(userDTO.toString());
 		} catch (DALException e) {
-			e.getMessage();
+			show(e.getMessage());
 			return;
 		}
 
