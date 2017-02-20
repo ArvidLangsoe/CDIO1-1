@@ -3,6 +3,7 @@ package boundary;
 import dto.*;
 import dto.Validator.InputException;
 import dal.*;
+import dal.DataVerifier.WrongDataException;
 import dal.IUserDAO.DALException;
 
 public class UserEditor extends TUI {
@@ -60,7 +61,7 @@ public class UserEditor extends TUI {
 					userDAO.updateUser(userDTO);
 					show("Succesfully updated the user.");
 
-				} catch (DALException e) {
+				} catch (WrongDataException e) {
 					show(e.getMessage());
 					e.getStackTrace();
 				}
