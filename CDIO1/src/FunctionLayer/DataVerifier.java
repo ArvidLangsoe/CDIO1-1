@@ -1,4 +1,4 @@
-package DataAccessObjects;
+package FunctionLayer;
 import DataAccessObjects.IUserDAO;
 import DataAccessObjects.IUserDAO.DALException;
 import dataTransferObjects.UserDTO;
