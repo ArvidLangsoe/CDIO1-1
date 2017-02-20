@@ -119,7 +119,7 @@ public class DataVerifier implements IDataVerifier
 
 	}
 
-	private String generateInitials (String name)
+	public String generateInitials (String name)
 	{
 		String[] nameParts = name.split(" ");
 		String newIni = "";
@@ -137,7 +137,7 @@ public class DataVerifier implements IDataVerifier
 		return newIni;
 	}
 
-	private String generatePassword() {
+	public String generatePassword() {
 		String password = "";
 		int passLength = 8;
 		boolean passwordValid = false;
