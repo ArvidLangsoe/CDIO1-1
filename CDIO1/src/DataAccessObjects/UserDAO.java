@@ -1,4 +1,4 @@
-package dal;
+package DataAccessObjects;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -9,6 +9,8 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import dal.DALException;
+import dal.IUserDAO;
 import dataTransferObjects.UserDTO;
 
 /**

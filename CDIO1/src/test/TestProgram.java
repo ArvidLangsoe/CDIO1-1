@@ -1,6 +1,6 @@
 package test;
 
-import dal.UserDAO;
+import DataAccessObjects.UserDAO;
 
 public class TestProgram {
 

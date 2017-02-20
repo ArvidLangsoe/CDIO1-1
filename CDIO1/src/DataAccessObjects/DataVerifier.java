@@ -1,6 +1,6 @@
-package dal;
-import dal.IUserDAO;
-import dal.IUserDAO.DALException;
+package DataAccessObjects;
+import DataAccessObjects.IUserDAO;
+import DataAccessObjects.IUserDAO.DALException;
 import dataTransferObjects.UserDTO;
 import dataTransferObjects.Validator;
 import dataTransferObjects.Validator.InputException;

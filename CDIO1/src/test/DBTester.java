@@ -3,8 +3,8 @@ package test;
 
 import java.util.List;
 
-import dal.IUserDAO;
-import dal.IUserDAO.DALException;
+import DataAccessObjects.IUserDAO;
+import DataAccessObjects.IUserDAO.DALException;
 import dataTransferObjects.UserDTO;
 import dal.UserDAODiscImpl;
 

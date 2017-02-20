@@ -1,6 +1,7 @@
 package Main;
 
-import dal.*;
+import DataAccessObjects.*;
+import dal.IUserDAO;
 import presentationLayer.*;
 
 /**

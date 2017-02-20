@@ -1,8 +1,8 @@
 package presentationLayer;
 
 
-import dal.IUserDAO;
-import dal.IUserDAO.DALException;
+import DataAccessObjects.IUserDAO;
+import DataAccessObjects.IUserDAO.DALException;
 
 /**
  * The class UserRemover extends TUI.
