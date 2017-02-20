@@ -119,6 +119,7 @@ public class DataVerifier implements IDataVerifier
 
 	}
 
+	//generates initials from their name
 	public String generateInitials (String name)
 	{
 		String[] nameParts = name.split(" ");
