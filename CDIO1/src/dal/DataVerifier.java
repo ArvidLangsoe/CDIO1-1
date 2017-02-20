@@ -29,17 +29,18 @@ public class DataVerifier
 
 			//sets a newly generated password
 			user.setPassword(generatePassword());
+			
 			//sets initials acording to their username
 			user.setIni(generateInitials(user.getUserName()));
 			
-
+			//validates if alle the variables are legal
 			try{
 				validate(user);
 			}catch(WrongDataException validate){
 				throw new WrongDataException(validate.getMessage());
 			}
 			
-
+			//creates the user.
 			try{
 				data.createUser(user);
 			}catch (DALException e){
@@ -47,6 +48,10 @@ public class DataVerifier
 			}
 
 		}
+	}
+	public UserDTO getUser(int userId) throws DALException
+	{
+			return data.getUser(userId);	
 	}
 
 	public void updateUser(UserDTO user) throws WrongDataException{
@@ -69,11 +74,14 @@ public class DataVerifier
 
 	public void validate(UserDTO user) throws WrongDataException
 	{
+		//Validates if the username is legal
 		try {
 			Validator.validateUsername(user.getUserName());
 		} catch (InputException e) {
 			throw new WrongDataException(e.getMessage());
 		}
+		
+		//Validates if the CPR is legal
 		try {
 			Validator.validateCPR(user.getCpr());
 		} catch (InputException e) {
@@ -84,16 +92,22 @@ public class DataVerifier
 //				} catch (InputException e) {
 //					throw new WrongDataException(e.getMessage());
 //				}
+		
+		//Validates if the UserID is legal
 		try {
 			Validator.validateUserID(user.getUserId());
 		} catch (InputException e) {
 			throw new WrongDataException(e.getMessage());
 		}
+		
+		//Validates if the password is legal
 		try {
 			Validator.validatePassword(user.getPassword());
 		} catch (InputException e) {
 			throw new WrongDataException(e.getMessage());
 		}
+		
+		//Validates if the user initials is legal
 		try {
 			Validator.validateInitials(user.getIni());
 		} catch (InputException e) {
