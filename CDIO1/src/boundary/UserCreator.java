@@ -2,7 +2,7 @@ package boundary;
 
 
 
-import dal.DataVerifier;
+import dal.IDataVerifier;
 import dal.DataVerifier.WrongDataException;
 import dal.IUserDAO;
 import dal.IUserDAO.DALException;
@@ -14,9 +14,9 @@ public class UserCreator extends  TUI {
 
 	private UserDTO newUser;
 	
-	private DataVerifier data;
+	private IDataVerifier data;
 
-	public UserCreator(DataVerifier data){
+	public UserCreator(IDataVerifier data){
 		this.data=data;
 	}
 		
@@ -53,9 +53,8 @@ public class UserCreator extends  TUI {
 		String question="\n"+"Please enter the ID of the new user. It has to be between 11 and 99";
 		while (true) {
 			show(question);
-			String userInput = getString();
 			try {
-				int userID=Integer.parseInt(userInput);
+				int userID=getInt();
 				Validator.validateUserID(userID);
 				newUser.setUserId(userID);
 				break;

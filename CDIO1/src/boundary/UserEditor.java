@@ -3,14 +3,14 @@ package boundary;
 import dto.*;
 import dto.Validator.InputException;
 import dal.*;
-import dal.DataVerifier.WrongDataException;
+import dal.IDataVerifier.WrongDataException;
 import dal.IUserDAO.DALException;
 
 public class UserEditor extends TUI {
 
-	private DataVerifier userDAO;
+	private IDataVerifier userDAO;
 
-	public UserEditor(DataVerifier userDAO) {
+	public UserEditor(IDataVerifier userDAO) {
 		this.userDAO = userDAO;
 	}
 
