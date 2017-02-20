@@ -3,6 +3,8 @@ package boundary;
 
 import dal.IUserDAO;
 import dal.IUserDAO.DALException;
+import dto.Validator;
+import dto.Validator.InputException;
 
 public class UserRemover extends TUI {
 	private IUserDAO data;
@@ -26,19 +28,23 @@ public class UserRemover extends TUI {
 			//Try again
 			deleteUser();
 		}
+		catch(InputException e)
+		{
+			show("Incorrect ID. Must be between 11 and 99.\n ");
+			
+			//Try again
+			deleteUser();
+		}
 	}
 	
-	public int getId(){
+	public int getId() throws InputException{
 		
 		show("Please enter a UserID: ");
 		
 		int id = getInt();
 		
-		while(id <11 || id > 99){
-			id = getInt();
-			
-			show("Incorrect ID. Must be between 11 and 99.\n Please enter a valid UserID: ");
-		}		
+		Validator.validateUserID(id);
+
 		return id;
 	}
 }
