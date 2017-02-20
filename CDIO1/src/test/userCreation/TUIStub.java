@@ -2,7 +2,7 @@ package test.userCreation;
 
 import java.util.ArrayList;
 
-import presentationClasses.ITUI;
+import presentationLayer.ITUI;
 
 public class TUIStub implements ITUI{
 

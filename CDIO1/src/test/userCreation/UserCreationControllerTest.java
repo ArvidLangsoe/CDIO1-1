@@ -8,7 +8,7 @@ import org.junit.Test;
 
 import controller.UserCreationController;
 import entity.userCreation.IUserCreation;
-import presentationClasses.ITUI;
+import presentationLayer.ITUI;
 
 public class UserCreationControllerTest {
 	private ITUI tui;

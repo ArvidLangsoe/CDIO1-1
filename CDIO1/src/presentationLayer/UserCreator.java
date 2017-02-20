@@ -1,4 +1,4 @@
-package presentationClasses;
+package presentationLayer;
 
 import dal.IUserDAO;
 import dal.IUserDAO.DALException;

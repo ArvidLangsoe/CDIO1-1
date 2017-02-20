@@ -1,4 +1,4 @@
-package presentationClasses;
+package presentationLayer;
 
 /**
  * The user interface (UI) makes sure the boundaries either TUI or GUI have the 
