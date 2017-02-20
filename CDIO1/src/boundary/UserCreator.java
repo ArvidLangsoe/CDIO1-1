@@ -34,11 +34,11 @@ public class UserCreator extends  TUI {
 
 		try {
 			data.createUser(newUser);
+			show("User: " + newUser.getUserName()+ " has been added.");
 		} catch (WrongDataException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			show("Userid: " + newUser.getUserId()+ " is already in use.");
 		}
-		show("User: " + newUser.getUserName()+ " has been added.");
+		
 		
 	}
 
