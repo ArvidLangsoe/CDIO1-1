@@ -11,7 +11,11 @@ import java.util.List;
 
 import dataTransferObjects.UserDTO;
 
-
+/**
+ * The class UserDAO has the responsibility to access and update the data in the system
+ * @author Group 22
+ *
+ */
 public class UserDAO implements IUserDAO {
 
 	// Instance variables
