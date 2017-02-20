@@ -1,11 +1,14 @@
 package dal;
 import dto.Validator;
 import dto.Validator.InputException;
+
+import org.omg.PortableServer.IdAssignmentPolicyValue;
+
 import dal.IUserDAO;
 import dal.IUserDAO.DALException;
 import dto.UserDTO;
 
-public class DataVerifier 
+public class DataVerifier implements IDataVarifier
 {
 
 	private IUserDAO data;
@@ -72,7 +75,7 @@ public class DataVerifier
 
 	}
 
-	public void validate(UserDTO user) throws WrongDataException
+	private void validate(UserDTO user) throws WrongDataException
 	{
 		//Validates if the username is legal
 		try {
@@ -116,7 +119,7 @@ public class DataVerifier
 
 	}
 
-	public String generateInitials (String name)
+	private String generateInitials (String name)
 	{
 		String[] nameParts = name.split(" ");
 		String newIni = "";
@@ -134,7 +137,7 @@ public class DataVerifier
 		return newIni;
 	}
 
-	public String generatePassword() {
+	private String generatePassword() {
 		String password = "";
 		int passLength = 8;
 		boolean passwordValid = false;
