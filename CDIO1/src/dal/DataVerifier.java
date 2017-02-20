@@ -18,12 +18,14 @@ public class DataVerifier
 
 	public void createUser(UserDTO user) throws WrongDataException{
 		
-		boolean userUsed =true;
 		try {//TODO: Check if userid is already taken, throw exceptions if not.	✓
 			//if it returns an exception then the userID is not used
 			data.getUser(user.getUserId());
+			
+			//throws an exception if the userID is taken
+			throw new WrongDataException("This userID is already taken: "+user.getUserId());
+			
 		} catch (DALException userID) {
-			userUsed =false;
 			//TODO: Add a generated password and intials to the user.	✓
 			//sets a newly generated password
 			user.setPassword(generatePassword());
@@ -45,10 +47,6 @@ public class DataVerifier
 				throw new WrongDataException(e.getMessage());
 			}
 
-		}
-		//throws an exception if the userID is taken
-		if(userUsed){
-		throw new WrongDataException("This userID is already taken: "+user.getUserId());
 		}
 	}
 
