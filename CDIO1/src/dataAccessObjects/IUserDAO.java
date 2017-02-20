@@ -1,8 +1,7 @@
-package DataAccessObjects;
+package dataAccessObjects;
 
 import java.util.List;
 
-import dal.DALException;
 import dataTransferObjects.UserDTO;
 
 /**

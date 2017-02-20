@@ -2,8 +2,8 @@ package presentationLayer;
 
 import java.util.List;
 
-import DataAccessObjects.IUserDAO;
-import DataAccessObjects.IUserDAO.DALException;
+import dataAccessObjects.IUserDAO;
+import dataAccessObjects.IUserDAO.DALException;
 import dataTransferObjects.UserDTO;
 
 /**

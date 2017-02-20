@@ -1,6 +1,6 @@
 package test.userCreation;
 
-import DataAccessObjects.IUserDAO.DALException;
+import dataAccessObjects.IUserDAO.DALException;
 import entity.IFun.InputException;
 import entity.userCreation.IUserCreation;
 

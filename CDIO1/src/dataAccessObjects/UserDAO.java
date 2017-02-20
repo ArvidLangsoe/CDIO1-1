@@ -1,4 +1,4 @@
-package DataAccessObjects;
+package dataAccessObjects;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;

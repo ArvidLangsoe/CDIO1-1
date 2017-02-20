@@ -1,8 +1,12 @@
 package Main;
 
-import DataAccessObjects.*;
-import dal.IUserDAO;
-import presentationLayer.*;
+import dataAccessObjects.IUserDAO;
+import dataAccessObjects.UserDAO;
+import presentationLayer.MenuAdministrator;
+import presentationLayer.UserCreator;
+import presentationLayer.UserEditor;
+import presentationLayer.UserRemover;
+import presentationLayer.UserViewer;
 
 /**
  * The Main class is the where the program starts.

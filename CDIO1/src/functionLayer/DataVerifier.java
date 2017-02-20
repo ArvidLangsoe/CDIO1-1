@@ -1,6 +1,6 @@
-package FunctionLayer;
-import DataAccessObjects.IUserDAO;
-import DataAccessObjects.IUserDAO.DALException;
+package functionLayer;
+import dataAccessObjects.IUserDAO;
+import dataAccessObjects.IUserDAO.DALException;
 import dataTransferObjects.UserDTO;
 import staticClasses.Validator;
 import staticClasses.Validator.InputException;
