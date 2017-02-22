@@ -91,7 +91,7 @@ public class UserEditor extends TUI {
 	 * Changes the username of the user (UserDTO) if the user administrator wants to and if the new username is valid.
 	 * @param userDTO The user to change the username of.
 	 */
-	public void changeUsername(UserDTO userDTO) {
+	private void changeUsername(UserDTO userDTO) {
 
 		show("Are you sure you want to change the username for " + userDTO.getUserName() + "? \n" + "Type 1 for Yes. \n"
 				+ "Type 2 for No.");
@@ -128,7 +128,7 @@ public class UserEditor extends TUI {
 	 * Changes the user initials of the user (UserDTO) If the user Administrator wants to and if the initials are valid.
 	 * @param userDTO The user to change the initials of.
 	 */
-	public void changeUserIni(UserDTO userDTO) {
+	private void changeUserIni(UserDTO userDTO) {
 
 		show("Are you sure you want to change the initials for " + userDTO.getUserName() + "? \n" + "Type 1 for Yes. \n"
 				+ "Type 2 for No.");
@@ -169,7 +169,7 @@ public class UserEditor extends TUI {
 	 * Changes the CPR of the user (UserDTO) if the user Administrator wants to and if the CPR is valid.
 	 * @param userDTO The user to change the CPR of.
 	 */
-	public void changeUserCPR(UserDTO userDTO) {
+	private void changeUserCPR(UserDTO userDTO) {
 
 		show("Are you sure you want to change the CPR number for" + userDTO.getUserName() + "? \n"
 				+ "Type 1 for Yes. \n" + "Type 2 for No.");
@@ -209,7 +209,7 @@ public class UserEditor extends TUI {
 	 * @param userDTO The user to change the password of.
 	 */
 	// TODO should an user administrator be allowed this? Shouldn't it be auto generated?
-	public void changeUserPassword(UserDTO userDTO) {
+	private void changeUserPassword(UserDTO userDTO) {
 
 		show("Are you sure you want to change the password for " + userDTO.getUserName() + "? \n" + "Type 1 for Yes. \n"
 				+ "Type 2 for No.");
@@ -244,7 +244,7 @@ public class UserEditor extends TUI {
 	 * Manipulates the roles of the given user (UserDTO).
 	 * @param userDTO The user to change the roles of.
 	 */
-	public void manipulateUserRoles(UserDTO userDTO) {
+	private void manipulateUserRoles(UserDTO userDTO) {
 		while (true) {
 
 			show("Please select how you wish to manipulate user roles for " + userDTO.getUserName() + ". \n"
@@ -283,7 +283,7 @@ public class UserEditor extends TUI {
 	 * Adds a user role to the user (UserDTO) if the user administrator wants to and if the role entered is valid.
 	 * @param userDTO The user to add the role to.
 	 */
-	public void addUserRole(UserDTO userDTO) {
+	private void addUserRole(UserDTO userDTO) {
 
 		show("Are you sure you want to add a role to " + userDTO.getUserName() + "? \n" + "Type 1 for Yes. \n"
 				+ "Type 2 for No.");
@@ -325,7 +325,7 @@ public class UserEditor extends TUI {
 	 * Removes a user role from the user (UserDTO) if the user administrator wants to and if the role exists.
 	 * @param userDTO The user to remove the role from.
 	 */
-	public void removeUserRole(UserDTO userDTO) {
+	private void removeUserRole(UserDTO userDTO) {
 
 		show("Are you sure you want to remove a role from " + userDTO.getUserName() + "? \n" + "Type 1 for Yes. \n"
 				+ "Type 2 for No.");
@@ -363,7 +363,7 @@ public class UserEditor extends TUI {
 	 * Removes all the the roles from the user (UserDTO) if the user administrator wants to.
 	 * @param userDTO The user to remove the roles from.
 	 */
-	public void removeAllUserRoles(UserDTO userDTO) {
+	private void removeAllUserRoles(UserDTO userDTO) {
 
 		show("Are you sure you want to remove *ALL* roles for " + userDTO.getUserName()
 				+ "? This choice is not revertable. \n" + "Type 1 for Yes. \n" + "Type 2 for No.");
@@ -389,7 +389,7 @@ public class UserEditor extends TUI {
 	 * Asks the user administrator to enter the user ID of the user to be edited.
 	 * @return The user ID of the user to be edited.
 	 */
-	public int getId() {
+	private int getId() {
 		while (true) {
 			show("Please specify wished userID");
 			while (true) {
