@@ -10,7 +10,7 @@ public class DataVerifier
 
 	private IUserDAO data;
 
-	public DataVerifier(IUserDAO data) 
+	public DataVerifier(IUserDAO data)
 	{
 		this.data =data;
 	}
