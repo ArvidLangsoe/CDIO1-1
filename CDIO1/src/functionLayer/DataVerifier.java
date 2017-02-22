@@ -1,16 +1,17 @@
 package functionLayer;
+
 import dataAccessObjects.IUserDAO;
 import dataAccessObjects.IUserDAO.DALException;
 import dataTransferObjects.UserDTO;
 import staticClasses.Validator;
 import staticClasses.Validator.InputException;
 
-public class DataVerifier 
+public class DataVerifier implements IDataVerifier
 {
 
 	private IUserDAO data;
 
-	public DataVerifier(IUserDAO data)
+	public DataVerifier(IUserDAO data) 
 	{
 		this.data =data;
 	}
@@ -18,27 +19,29 @@ public class DataVerifier
 
 	public void createUser(UserDTO user) throws WrongDataException{
 		
-		boolean userUsed =true;
 		try {//TODO: Check if userid is already taken, throw exceptions if not.	✓
 			//if it returns an exception then the userID is not used
 			data.getUser(user.getUserId());
+			
+			//throws an exception if the userID is taken
+			throw new WrongDataException("This userID is already taken: "+user.getUserId());
+			
 		} catch (DALException userID) {
-			userUsed =false;
-			//TODO: Add a generated password and intials to the user.	✓
+
 			//sets a newly generated password
 			user.setPassword(generatePassword());
+			
 			//sets initials acording to their username
 			user.setIni(generateInitials(user.getUserName()));
 			
-			//TODO: Validate all the variables in UserDTO, throw exceptions if not.
+			//validates if alle the variables are legal
 			try{
-				validator(user);
+				validate(user);
 			}catch(WrongDataException validate){
 				throw new WrongDataException(validate.getMessage());
 			}
 			
-			//TODO: Add to the data.
-
+			//creates the user.
 			try{
 				data.createUser(user);
 			}catch (DALException e){
@@ -46,22 +49,22 @@ public class DataVerifier
 			}
 
 		}
-		//throws an exception if the userID is taken
-		if(userUsed){
-		throw new WrongDataException("This userID is already taken: "+user.getUserId());
-		}
+	}
+	public UserDTO getUser(int userId) throws DALException
+	{
+			return data.getUser(userId);	
 	}
 
 	public void updateUser(UserDTO user) throws WrongDataException{
 
-		//TODO: Validate all the variables in UserDTO, throw exceptions if not.
+		//validates if all the new data is legal
 		try{
-			validator(user);
+			validate(user);
 		}catch(WrongDataException validate){
 			throw new WrongDataException(validate.getMessage());
 		}
 
-		//TODO: Add to the data.
+		//Updates the user
 		try{
 			data.updateUser(user);
 		}catch (DALException e){
@@ -70,33 +73,42 @@ public class DataVerifier
 
 	}
 
-	public void validator(UserDTO user) throws WrongDataException
+	private void validate(UserDTO user) throws WrongDataException
 	{
+		//Validates if the username is legal
 		try {
 			Validator.validateUsername(user.getUserName());
 		} catch (InputException e) {
 			throw new WrongDataException(e.getMessage());
 		}
+		
+		//Validates if the CPR is legal
 		try {
 			Validator.validateCPR(user.getCpr());
 		} catch (InputException e) {
 			throw new WrongDataException(e.getMessage());
 		}
-		//		try {
-		//			Validator.validateRole(user.getRoles());
-		//		} catch (InputException e) {
-		//			throw new WrongDataException(e.getMessage());
-		//		}
+//				try {
+//					Validator.validateRole(user.get());
+//				} catch (InputException e) {
+//					throw new WrongDataException(e.getMessage());
+//				}
+		
+		//Validates if the UserID is legal
 		try {
 			Validator.validateUserID(user.getUserId());
 		} catch (InputException e) {
 			throw new WrongDataException(e.getMessage());
 		}
+		
+		//Validates if the password is legal
 		try {
 			Validator.validatePassword(user.getPassword());
 		} catch (InputException e) {
 			throw new WrongDataException(e.getMessage());
 		}
+		
+		//Validates if the user initials is legal
 		try {
 			Validator.validateInitials(user.getIni());
 		} catch (InputException e) {
@@ -105,6 +117,7 @@ public class DataVerifier
 
 	}
 
+	//generates initials from their name
 	public String generateInitials (String name)
 	{
 		String[] nameParts = name.split(" ");
