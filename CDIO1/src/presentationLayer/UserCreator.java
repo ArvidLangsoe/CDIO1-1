@@ -53,7 +53,8 @@ public class UserCreator extends TUI {
 	 * Asks the user Administrator to enter a new user ID if the first entered user ID was already in the database.
 	 * @return
 	 */
-	public UserDTO editUserId() {
+	// TODO Never used?
+	private UserDTO editUserId() {
 		show("The userId already exist in the database. Please chose another:");
 		getUserID();
 		return newUser;
