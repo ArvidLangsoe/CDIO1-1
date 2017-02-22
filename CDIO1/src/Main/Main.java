@@ -9,7 +9,7 @@ import presentationLayer.UserRemover;
 import presentationLayer.UserViewer;
 
 /**
- * The Main class is the where the program starts.
+ * The Main class has the responsibility of intializing the objects used by the program and afterwards call the start method.
  * @author Group 22
  *
  */
