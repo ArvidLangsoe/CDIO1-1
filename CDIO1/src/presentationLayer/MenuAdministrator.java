@@ -42,7 +42,7 @@ public class MenuAdministrator extends TUI {
 	 * Shows the administrator the menu with the choices he has and prompts him for an integer answer.
 	 * @return The integer answer corresponding to the menu he wants access to.
 	 */
-	public int getUserChoice(){
+	private int getUserChoice(){
 		show(options);
 		return getInt();
 	}
@@ -54,7 +54,7 @@ public class MenuAdministrator extends TUI {
 	 * @return True if the administrator enters a decision corresponding to a menu or 
 	 * the administrator enters something not valid. False otherwise.
 	 */
-	public boolean choiceHandler(int decision) {
+	private boolean choiceHandler(int decision) {
 		switch (decision) {
 		case 1:
 			create.createNewUser();
