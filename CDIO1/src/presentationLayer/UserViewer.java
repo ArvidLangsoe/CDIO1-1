@@ -85,7 +85,7 @@ public class UserViewer extends TUI {
 	 * Shows all users in the data.
 	 * @param userArray The list containing all the users in the data.
 	 */
-	public void showAllUsers(List<UserDTO> userArray) {
+	private void showAllUsers(List<UserDTO> userArray) {
 		if(userArray.isEmpty()){
 			show("No users exist.");
 			return;
@@ -101,7 +101,7 @@ public class UserViewer extends TUI {
 	 * @param id The id of the user you want to see.
 	 * @param userArray The list containing all users in the data.
 	 */
-	public void showUserWithId(int id, List<UserDTO> userArray) {
+	private void showUserWithId(int id, List<UserDTO> userArray) {
 		int count=0;
 		for (UserDTO user : userArray) {
 			if (id == user.getUserId()) {
@@ -121,7 +121,7 @@ public class UserViewer extends TUI {
 	 * @param ini The initials of the user you want to see.
 	 * @param userArray The list of all the users in the data.
 	 */
-	public void showUserWithIni(String ini, List<UserDTO> userArray) {
+	private void showUserWithIni(String ini, List<UserDTO> userArray) {
 		int count=0;
 		for (UserDTO user : userArray) {
 			if (ini.equals(user.getIni())) {
@@ -140,7 +140,7 @@ public class UserViewer extends TUI {
 	 * @param cpr The CPR of the user you want to see.
 	 * @param userArray The list of all the users in the data.
 	 */
-	public void showUserWithCpr(String cpr, List<UserDTO> userArray) {
+	private void showUserWithCpr(String cpr, List<UserDTO> userArray) {
 		int count=0;
 		for (UserDTO user : userArray) {
 			if (cpr.equals(user.getCpr())) {
@@ -159,7 +159,7 @@ public class UserViewer extends TUI {
 	 * @param role The role that you want to see the users with.
 	 * @param userArray The list of all the users in the data.
 	 */
-	public void showUsersWithRole(String role, List<UserDTO> userArray) {
+	private void showUsersWithRole(String role, List<UserDTO> userArray) {
 		int count=0;
 		for (UserDTO user : userArray) {
 			String roles = userRoles(user);
