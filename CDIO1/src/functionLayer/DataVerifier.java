@@ -188,16 +188,6 @@ public class DataVerifier implements IDataVerifier
 		return password;
 	}
 
-	public class WrongDataException extends Exception {
-		/**
-		 * 
-		 */
-		private static final long serialVersionUID = -7195625358850756914L;
 
-		public WrongDataException(String msg)
-		{
-			super(msg);
-		}
-	}
 }
 
