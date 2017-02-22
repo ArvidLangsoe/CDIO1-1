@@ -54,7 +54,7 @@ public class UserCreator extends TUI {
 	 * @return
 	 */
 	// TODO Never used?
-	private UserDTO editUserId() {
+	private UserDTO editUserID() {
 		show("The userId already exist in the database. Please chose another:");
 		getUserID();
 		return newUser;
