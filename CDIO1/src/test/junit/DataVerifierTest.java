@@ -23,6 +23,8 @@ public class DataVerifierTest {
 
 	@After
 	public void tearDown() throws Exception {
+		user = null;
+		data = null;
 	}
 
 	@Test
