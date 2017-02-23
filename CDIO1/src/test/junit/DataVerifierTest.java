@@ -6,11 +6,10 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-
-import dal.DataVerifier;
-import dto.UserDTO;
-import dto.Validator;
-import dto.Validator.InputException;
+import dataTransferObjects.UserDTO;
+import functionLayer.DataVerifier;
+import staticClasses.Validator;
+import staticClasses.Validator.InputException;
 
 public class DataVerifierTest {
 	UserDTO user;
