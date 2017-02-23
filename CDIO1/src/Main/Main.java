@@ -20,15 +20,15 @@ public class Main {
 	 * Administration program and afterwards starts the program.
 	 * @param args is not used.
 	 */
-	public static void main(String[] args) 
-	{
-		IUserDAO data = new UserDAO(null);
-		UserViewer view = new UserViewer(data);
-		UserRemover delete = new UserRemover(data);
-		UserCreator create = new UserCreator(data);
-		UserEditor edit = new UserEditor(data);
-		MenuAdministrator menu = new MenuAdministrator(create, delete, view, edit);
-		menu.start();
+	public static void main(String[] args) {
+			IUserDAO data = new UserDAO(null);
+			IDataVerifier func= new DataVerifier(data);
+			UserViewer view = new UserViewer(data);
+			UserRemover delete = new UserRemover(data);
+			UserCreator create = new UserCreator(func);
+			UserEditor edit = new UserEditor(func);
+			MenuAdministrator menu = new MenuAdministrator(create, delete, view, edit);
+			menu.start();
 	}
 
 }
