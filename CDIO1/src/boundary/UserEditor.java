@@ -121,7 +121,7 @@ public class UserEditor extends TUI {
 					Validator.validateInitials(changedUserIni);
 
 					userDTO.setIni(changedUserIni);
-					show("Username updated for " + userDTO.getUserName());
+					show("Initials updated for " + userDTO.getUserName());
 					return;
 
 				} catch (InputException e) {
@@ -155,7 +155,7 @@ public class UserEditor extends TUI {
 					String changedUserCpr = getString();
 					Validator.validateCPR(changedUserCpr);
 					userDTO.setCpr(changedUserCpr);
-					show("User CPR number updated for " + userDTO.getCpr());
+					show("CPR number updated for " + userDTO.getCpr());
 
 					return;
 				} catch (InputException e) {
@@ -188,7 +188,7 @@ public class UserEditor extends TUI {
 					String changedUserPassword = getString();
 					Validator.validatePassword(changedUserPassword);
 					userDTO.setPassword(changedUserPassword);
-					show("User CPR number updated for " + userDTO.getUserName());
+					show("Password updated for " + userDTO.getUserName());
 					return;
 
 				} catch (InputException e) {
