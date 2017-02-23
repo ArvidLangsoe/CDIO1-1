@@ -8,7 +8,7 @@ import dataTransferObjects.UserDTO;
 
 /**
  * The class UserViewer extends TUI.
- * The responsiblity of this class is to carry out the tasks of the showing the user administrator the wanted user/users from the data 
+ * The responsibility of this class is to carry out the tasks of the showing the user administrator the wanted user/users from the data 
  * @author Group 22
  *
  */
@@ -23,7 +23,6 @@ public class UserViewer extends TUI {
 	 */
 	public UserViewer(IUserDAO userDAO) {
 		this.userDAO = userDAO;
-		//TODO Idea, make a instance variable that is the userArray, so that you don't have to give it to every method.
 	}
 
 	/**
@@ -75,10 +74,7 @@ public class UserViewer extends TUI {
 				show("That is not an option. Please choose one of the above.");
 				break;
 			}
-			
-			//TODO does anything needs to be validated? Or does it not matter because we don't change anything in the data.
 		}
-
 	}
 
 	/**

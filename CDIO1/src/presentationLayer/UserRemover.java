@@ -56,14 +56,10 @@ public class UserRemover extends TUI {
 	 * Asks the user administrator for the user ID of the user (UserDTO) to be removed from the data.
 	 * @return The user ID to be deleted.
 	 */
-public int getId() throws InputException{
-		
+public int getId() throws InputException {
 		show("Please enter a UserID: ");
-		
 		int id = getInt();
-		
 		Validator.validateUserID(id);
-
 		return id;
 	}
 }

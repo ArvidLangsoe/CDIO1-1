@@ -43,14 +43,21 @@ public class DataVerifierTest {
 	}
 
 	@Test
-	public void testGeneratePassword() throws InputException {
+	public void testGeneratePassword() {
 		int tester=0;
 		int times =1000000;
 		for(int i=0;i<times;i++)
 		{
+			try
+			{
 			if(Validator.validatePassword(data.generatePassword()))
 			{
 				tester++;
+			}
+			}
+			catch(InputException e)
+			{
+				fail("In valid password generated.");
 			}
 		}
 		if(tester == times);
