@@ -171,5 +171,5 @@ public class UserDTO implements Serializable {
 			return false;
 		}
 		return true;
-	}	
+	}
 }
