@@ -116,7 +116,7 @@ public class UserDAO implements IUserDAO {
 	 * @return An ArrayList of users from the given file.
 	 * @throws DALException The exception to be thrown something goes wrong under the reading and decoding.
 	 */
-	private ArrayList<UserDTO> loadUsers() throws DALException {
+	public ArrayList<UserDTO> loadUsers() throws DALException {
 		ArrayList<UserDTO> users = new ArrayList<UserDTO>();
 		
 		ObjectInputStream OIS = null;
@@ -167,7 +167,7 @@ public class UserDAO implements IUserDAO {
 	 * @param users The user data to be saved.
 	 * @throws DALException The exception to be thrown if something goes wrong under the saving.
 	 */
-	private void saveUsers(ArrayList<UserDTO> users) throws DALException {
+	public void saveUsers(ArrayList<UserDTO> users) throws DALException {
 		ObjectOutputStream OOS =null;
 		try 
 		{
