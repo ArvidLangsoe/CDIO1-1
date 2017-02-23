@@ -47,7 +47,7 @@ public class UserCreator extends TUI {
 			data.createUser(newUser);
 			show("User: " + newUser.getUserName()+ " has been added.");
 		} catch (WrongDataException e) {
-			show("Userid: " + newUser.getUserId()+ " is already in use.");
+			show(e.getMessage());
 		}
 		
 		
