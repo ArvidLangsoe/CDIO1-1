@@ -1,30 +1,39 @@
-package boundary;
+package presentationLayer;
 
+import dataTransferObjects.UserDTO;
+import functionLayer.IDataVerifier;
+import functionLayer.IDataVerifier.WrongDataException;
+import staticClasses.Validator;
+import staticClasses.Validator.InputException;
 
+/**
+ * The class UserCreator extends the class TUI. 
+ * The responsibility of this class is to carry out the tasks of creating a new user and add it to the data.
+ * @author Group 22
+ *
+ */
+public class UserCreator extends TUI {
 
-import dal.IDataVerifier;
-import dal.DataVerifier.WrongDataException;
-import dal.IUserDAO;
-import dal.IUserDAO.DALException;
-import dto.UserDTO;
-import dto.Validator;
-import dto.Validator.InputException;
-
-public class UserCreator extends  TUI {
-
-	private UserDTO newUser;
+	// Instance variables.
+	private UserDTO newUser; 
 	
 	private IDataVerifier data;
 
-	public UserCreator(IDataVerifier data){
-		this.data=data;
+	/**
+	 * Constructor
+	 * 
+	 * @param data
+	 *            The data access object to use.
+	 */
+	public UserCreator(IDataVerifier data) {
+		this.data = data;
 	}
-		
 
+	/**
+	 * Creates a new user (UserDTO) by asking the user administrator for the information required and generates the rest.
+	 */
 	public void createNewUser() {
 		newUser = new UserDTO();
-		
-		
 		
 		getUserID();
 		getUserName();
@@ -36,19 +45,15 @@ public class UserCreator extends  TUI {
 			data.createUser(newUser);
 			show("User: " + newUser.getUserName()+ " has been added.");
 		} catch (WrongDataException e) {
-			show("Userid: " + newUser.getUserId()+ " is already in use.");
+			show(e.getMessage());
 		}
 		
 		
 	}
 
-
-	public UserDTO editUserId() {
-		show("The userId already exist in the database. Please chose another:");
-		getUserID();
-		return newUser;
-	}
-
+	/**
+	 * Asks the user administrator which userID should be assigned to the new user (UserDTO).
+	 */
 	private void getUserID() {
 		String question="\n"+"Please enter the ID of the new user. It has to be between 11 and 99";
 		while (true) {
@@ -66,6 +71,9 @@ public class UserCreator extends  TUI {
 		}
 	}
 
+	/**
+	 * Asks the user administrator which username should be assigned to the new user (UserDTO)
+	 */
 	private void getUserName() {
 		String question = "\n"+"Please enter a username. The username has to have a length between 2 and 20.";
 		while (true) {
@@ -82,7 +90,9 @@ public class UserCreator extends  TUI {
 
 	}
 
-
+	/**
+	 * Asks the user administrator which CPR should be assigned to the new user (UserDTO).
+	 */
 	private void getCpr() {
 		String question = "\n"+"Please enter the users cpr number.";
 		while (true) {
@@ -99,6 +109,9 @@ public class UserCreator extends  TUI {
 
 	}
 
+	/**
+	 * Asks the user administrator which roles should be assigned to the new user (UserDTO).
+	 */
 	private void getRoles() {
 		String question = "\n"+"What roles do you want to assign to the user? Enter a number corresponding to a role:";
 		String[] validRoles = Validator.validRoles;
@@ -133,5 +146,4 @@ public class UserCreator extends  TUI {
 		}
 
 	}
-
 }

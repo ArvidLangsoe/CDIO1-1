@@ -1,21 +1,37 @@
-package boundary;
+package presentationLayer;
 
-import dto.*;
-import dto.Validator.InputException;
-import dal.*;
-import dal.DataVerifier.WrongDataException;
-import dal.IUserDAO.DALException;
+import dataAccessObjects.IUserDAO.DALException;
+import dataTransferObjects.UserDTO;
+import functionLayer.IDataVerifier;
+import functionLayer.IDataVerifier.WrongDataException;
+import staticClasses.Validator;
+import staticClasses.Validator.InputException;
 
+/**
+ * The class UserEditor extends TUI.
+ * The responsibility of this class is to carry out the tasks of editing a user from the data.
+ * @author Group 22.
+ *
+ */
 public class UserEditor extends TUI {
 
+	//Instance variables.
 	private IDataVerifier userDAO;
 
+	/**
+	 * Constructor
+	 * @param IDataVerifier The data access object to use.
+	 */
 	public UserEditor(IDataVerifier userDAO) {
 		this.userDAO = userDAO;
 	}
 
-	public void editUser() {
-
+	/**
+	 * Edits a user (UserDTO) by asking the user Administrator for 
+	 * the user ID of the user to be edited and afterwards what he wants to edit.
+	 */
+	public void editUserMenu() {
+		
 		UserDTO userDTO;
 
 		try {
@@ -71,6 +87,10 @@ public class UserEditor extends TUI {
 		}
 	}
 
+	/**
+	 * Changes the username of the user (UserDTO) if the user administrator wants to and if the new username is valid.
+	 * @param userDTO The user to change the username of.
+	 */
 	public void changeUserName(UserDTO userDTO) {
 
 		show("Are you sure you want to change the username for " + userDTO.getUserName() + "? \n" + "Type 1 for Yes. \n"
@@ -96,13 +116,15 @@ public class UserEditor extends TUI {
 
 			}
 		case 2:
-			// show("The username has not been changed for " +
-			// userDTO.getUserName() + ". Returning to prior menu...");
 			return;
 		}
 
 	}
 
+	/**
+	 * Changes the user initials of the user (UserDTO) If the user Administrator wants to and if the initials are valid.
+	 * @param userDTO The user to change the initials of.
+	 */
 	public void changeUserIni(UserDTO userDTO) {
 
 		show("Are you sure you want to change the initials for " + userDTO.getUserName() + "? \n" + "Type 1 for Yes. \n"
@@ -121,7 +143,7 @@ public class UserEditor extends TUI {
 					Validator.validateInitials(changedUserIni);
 
 					userDTO.setIni(changedUserIni);
-					show("Initials updated for " + userDTO.getUserName());
+					show("Username updated for " + userDTO.getUserName());
 					return;
 
 				} catch (InputException e) {
@@ -136,9 +158,13 @@ public class UserEditor extends TUI {
 
 			break;
 		}
-
 	}
 
+
+	/**
+	 * Changes the CPR of the user (UserDTO) if the user Administrator wants to and if the CPR is valid.
+	 * @param userDTO The user to change the CPR of.
+	 */
 	public void changeUserCPR(UserDTO userDTO) {
 
 		show("Are you sure you want to change the CPR number for" + userDTO.getUserName() + "? \n"
@@ -155,7 +181,7 @@ public class UserEditor extends TUI {
 					String changedUserCpr = getString();
 					Validator.validateCPR(changedUserCpr);
 					userDTO.setCpr(changedUserCpr);
-					show("CPR number updated for " + userDTO.getCpr());
+					show("User CPR number updated for " + userDTO.getCpr());
 
 					return;
 				} catch (InputException e) {
@@ -173,6 +199,11 @@ public class UserEditor extends TUI {
 
 	}
 
+	/**
+	 * Changes the password of the user (UserDTO) if the user Administrator wants to and if the password is valid.
+	 * @param userDTO The user to change the password of.
+	 */
+	// TODO should an user administrator be allowed this? Shouldn't it be auto generated?
 	public void changeUserPassword(UserDTO userDTO) {
 
 		show("Are you sure you want to change the password for " + userDTO.getUserName() + "? \n" + "Type 1 for Yes. \n"
@@ -188,7 +219,7 @@ public class UserEditor extends TUI {
 					String changedUserPassword = getString();
 					Validator.validatePassword(changedUserPassword);
 					userDTO.setPassword(changedUserPassword);
-					show("Password updated for " + userDTO.getUserName());
+					show("User CPR number updated for " + userDTO.getUserName());
 					return;
 
 				} catch (InputException e) {
@@ -203,6 +234,10 @@ public class UserEditor extends TUI {
 
 	}
 
+	/**
+	 * Manipulates the roles of the given user (UserDTO).
+	 * @param userDTO The user to change the roles of.
+	 */
 	public void manipulateUserRoles(UserDTO userDTO) {
 		while (true) {
 
@@ -238,6 +273,10 @@ public class UserEditor extends TUI {
 		}
 	}
 
+	/**
+	 * Adds a user role to the user (UserDTO) if the user administrator wants to and if the role entered is valid.
+	 * @param userDTO The user to add the role to.
+	 */
 	public void addUserRole(UserDTO userDTO) {
 
 		show("Are you sure you want to add a role to " + userDTO.getUserName() + "? \n" + "Type 1 for Yes. \n"
@@ -276,6 +315,10 @@ public class UserEditor extends TUI {
 
 	}
 
+	/**
+	 * Removes a user role from the user (UserDTO) if the user administrator wants to and if the role exists.
+	 * @param userDTO The user to remove the role from.
+	 */
 	public void removeOneUserRole(UserDTO userDTO) {
 
 		show("Are you sure you want to remove a role from " + userDTO.getUserName() + "? \n" + "Type 1 for Yes. \n"
@@ -309,6 +352,10 @@ public class UserEditor extends TUI {
 
 	}
 
+	/**
+	 * Removes all the the roles from the user (UserDTO) if the user administrator wants to.
+	 * @param userDTO The user to remove the roles from.
+	 */
 	public void removeUserRoles(UserDTO userDTO) {
 
 		show("Are you sure you want to remove *ALL* roles for " + userDTO.getUserName()
@@ -330,6 +377,10 @@ public class UserEditor extends TUI {
 
 	}
 
+	/**
+	 * Asks the user administrator to enter the user ID of the user to be edited.
+	 * @return The user ID of the user to be edited.
+	 */
 	public int getId() {
 		while (true) {
 			show("Please specify wished userId");

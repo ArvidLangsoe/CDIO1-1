@@ -1,12 +1,10 @@
-package dal;
-import dto.Validator;
-import dto.Validator.InputException;
+package functionLayer;
 
-import org.omg.PortableServer.IdAssignmentPolicyValue;
-
-import dal.IUserDAO;
-import dal.IUserDAO.DALException;
-import dto.UserDTO;
+import dataAccessObjects.IUserDAO;
+import dataAccessObjects.IUserDAO.DALException;
+import dataTransferObjects.UserDTO;
+import staticClasses.Validator;
+import staticClasses.Validator.InputException;
 
 public class DataVerifier implements IDataVerifier
 {
@@ -36,12 +34,9 @@ public class DataVerifier implements IDataVerifier
 			//sets initials acording to their username
 			user.setIni(generateInitials(user.getUserName()));
 			
-			//validates if alle the variables are legal
-			try{
+			//validates if all the variables are legal
 				validate(user);
-			}catch(WrongDataException validate){
-				throw new WrongDataException(validate.getMessage());
-			}
+			
 			
 			//creates the user.
 			try{
@@ -60,11 +55,9 @@ public class DataVerifier implements IDataVerifier
 	public void updateUser(UserDTO user) throws WrongDataException{
 
 		//validates if all the new data is legal
-		try{
-			validate(user);
-		}catch(WrongDataException validate){
-			throw new WrongDataException(validate.getMessage());
-		}
+
+		validate(user);
+		
 
 		//Updates the user
 		try{
@@ -190,16 +183,6 @@ public class DataVerifier implements IDataVerifier
 		return password;
 	}
 
-	public class WrongDataException extends Exception {
-		/**
-		 * 
-		 */
-		private static final long serialVersionUID = -7195625358850756914L;
 
-		public WrongDataException(String msg)
-		{
-			super(msg);
-		}
-	}
 }
 

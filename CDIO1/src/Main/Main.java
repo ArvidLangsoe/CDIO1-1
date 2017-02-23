@@ -1,10 +1,27 @@
 package Main;
 
-import boundary.*;
-import dal.*;
+import dataAccessObjects.IUserDAO;
+import dataAccessObjects.UserDAO;
+import functionLayer.DataVerifier;
+import functionLayer.IDataVerifier;
+import presentationLayer.MenuAdministrator;
+import presentationLayer.UserCreator;
+import presentationLayer.UserEditor;
+import presentationLayer.UserRemover;
+import presentationLayer.UserViewer;
 
+/**
+ * The Main class has the responsibility of intializing the objects used by the program and afterwards call the start method.
+ * @author Group 22
+ *
+ */
 public class Main {
 
+	/**
+	 * The main method initializes the objects needed to run the user 
+	 * Administration program and afterwards starts the program.
+	 * @param args is not used.
+	 */
 	public static void main(String[] args) {
 			IUserDAO data = new UserDAO(null);
 			IDataVerifier func= new DataVerifier(data);

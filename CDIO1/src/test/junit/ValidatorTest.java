@@ -2,12 +2,10 @@ package test.junit;
 
 import static org.junit.Assert.*;
 
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 
-import dto.Validator;
-import dto.Validator.InputException;
+import staticClasses.Validator;
+import staticClasses.Validator.InputException;
 
 public class ValidatorTest {
 
@@ -76,7 +74,7 @@ public class ValidatorTest {
 		try {
 			userName=null;
 			Validator.validateUsername(userName);
-			fail("User name: '"+ userName+ "' of length:"+userName.length()+ " was a valid username, but it should be.");
+			fail("User name: '"+ userName+ "' of length:"+null+ " was a valid username, but it should be.");
 		} catch (InputException e) {
 			
 		}
@@ -118,7 +116,7 @@ public class ValidatorTest {
 		try {
 			ini=null;
 			Validator.validateInitials(ini);
-			fail("Initals: '"+ ini+ "' of length:"+ini.length()+ " was a valid username set of initials, but it shouldn't be.");
+			fail("Initals: '"+ ini+ "' of length:"+null+ " was a valid username set of initials, but it shouldn't be.");
 		} catch (InputException e) {
 			
 		}

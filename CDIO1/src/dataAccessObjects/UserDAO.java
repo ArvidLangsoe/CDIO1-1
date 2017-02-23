@@ -1,6 +1,4 @@
-package dal;
-
-import dto.UserDTO;
+package dataAccessObjects;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -11,15 +9,21 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import dataTransferObjects.UserDTO;
 
+/**
+ * The class UserDAO has the responsibility to access and update the data in the system
+ * @author Group 22
+ *
+ */
 public class UserDAO implements IUserDAO {
 
 	// Instance variables
 	private ArrayList<UserDTO> users;
 
 	/**
-	 * Constructor. Constructs a user Data Access object which contains a single
-	 * user, the super admin.
+	 * Constructor. Constructs a user Data Access object. 
+	 * If there exists no user data it creates space for some otherwise it loads the user data from the given file.
 	 */
 	public UserDAO(String fileName){
 		if (fileName == null)
@@ -67,7 +71,7 @@ public class UserDAO implements IUserDAO {
 	}
 
 	/**
-	 * Adds a user to the DAO object.
+	 * Adds a user to the DAO object and save it to the data.
 	 * 
 	 * @param user.
 	 *            The user to be added.
@@ -78,7 +82,7 @@ public class UserDAO implements IUserDAO {
 	}
 
 	/**
-	 * Deletes a user from the DAO object with the specified userId.
+	 * Deletes a user from the DAO object with the specified userId and updates the information in the data.
 	 * 
 	 * @param userId
 	 *            The id of the user to be deleted.
@@ -98,7 +102,7 @@ public class UserDAO implements IUserDAO {
 	}
 
 	/**
-	 * Updates a user.
+	 * Updates a user in the data.
 	 * 
 	 * @param user
 	 *            The updated user.
@@ -107,6 +111,11 @@ public class UserDAO implements IUserDAO {
 		saveUsers(users);
 	}
 	
+	/**
+	 * Reads and decodes a file with user data and converts the data into objects.
+	 * @return An ArrayList of users from the given file.
+	 * @throws DALException The exception to be thrown something goes wrong under the reading and decoding.
+	 */
 	public ArrayList<UserDTO> loadUsers() throws DALException {
 		ArrayList<UserDTO> users = new ArrayList<UserDTO>();
 		
@@ -153,6 +162,11 @@ public class UserDAO implements IUserDAO {
 		return users;
 	}
 	
+	/**
+	 * Saves the user data to a text file.
+	 * @param users The user data to be saved.
+	 * @throws DALException The exception to be thrown if something goes wrong under the saving.
+	 */
 	public void saveUsers(ArrayList<UserDTO> users) throws DALException {
 		ObjectOutputStream OOS =null;
 		try 
