@@ -2,6 +2,8 @@ package Main;
 
 import dataAccessObjects.IUserDAO;
 import dataAccessObjects.UserDAO;
+import functionLayer.DataVerifier;
+import functionLayer.IDataVerifier;
 import presentationLayer.MenuAdministrator;
 import presentationLayer.UserCreator;
 import presentationLayer.UserEditor;
