@@ -6,16 +6,14 @@ import dataTransferObjects.UserDTO;
 
 /**
  * Interface IUserDAO has the responsibility of making sure that 
- * the UserDAO class has the correct methods to access and update the data in the system.
+ * the UserDAO class has the methods to insert, delete, access and update the data in the system.
  * @author Group 22
- *
  */
 public interface IUserDAO 
 {
-	//Methods in the interface.
 	/**
 	 * Returns a user from the data with the given user ID.
-	 * @param userId The ID of the user which needs to be returned.
+	 * @param userID The ID of the user which needs to be returned.
 	 * @return The user with the given ID:
 	 * @throws DALException The exception to be thrown if something goes wrong in the data.
 	 */
@@ -36,7 +34,7 @@ public interface IUserDAO
 	public void createUser(UserDTO user) throws DALException;
 	
 	/**
-	 * Updates a user and save the update in the data.
+	 * Updates a user and saves the updated user in the data.
 	 * @param user The user to be updated.
 	 * @throws DALException The exception to be thrown if something goes wrong in the data.
 	 */
@@ -44,22 +42,22 @@ public interface IUserDAO
 	
 	/**
 	 * Deletes and removes the user from the data.
-	 * @param userId The ID of the user which needs to be deleted.
+	 * @param userID The ID of the user which needs to be deleted.
 	 * @throws DALException The exception to be thrown if something goes wrong in the data.
 	 */
-	public void deleteUser(int userId) throws DALException;
+	public void deleteUser(int userID) throws DALException;
 	
 	/**
-	 * DALException is an Inner class which extends Exception. The exception needs to be thown if something goes wrong in the data.
+	 * DALException is an Inner class which extends Exception. 
+	 * The exception needs to be thrown if something goes wrong in the data.
 	 * @author Group 22
-	 *
 	 */
 	public class DALException extends Exception 
 	{
 		private static final long serialVersionUID = 7355418246336739229L;
 		
 		/**
-		 * Constructor
+		 * Constructor.
 		 * @param msg The error message to pass on.
 		 * @param e The exception to pass on.
 		 */
@@ -69,7 +67,7 @@ public interface IUserDAO
 		}
 		
 		/**
-		 * Constrcutor
+		 * Constructor.
 		 * @param msg The error message to pass on.
 		 */
 		public DALException(String msg) 
