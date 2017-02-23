@@ -112,7 +112,13 @@ public class DataVerifier implements IDataVerifier
 
 	}
 
-	//generates initials from their name
+	/**
+	 * Generates initials from a given name.
+	 * 
+	 * @param name
+	 *            The name the initials needs to be created from.
+	 * @return The generated initials.
+	 */
 	public String generateInitials (String name)
 	{
 		String[] nameParts = name.split(" ");
@@ -123,14 +129,21 @@ public class DataVerifier implements IDataVerifier
 		}
 		else
 		{
-			for(String namePart : nameParts)
+			int length = Math.min(nameParts.length, 4);
+			for(int i = 0; i < length; i++)
 			{
-				newIni = newIni + namePart.substring(0, 1);
+				newIni = newIni + nameParts[i].substring(0, 1);
 			}
 		}
 		return newIni;
 	}
 
+	/**
+	 * Generates a password for the userDTO accepting the rules of DTU
+	 * passwords.
+	 * 
+	 * @return The generated password.
+	 */
 	public String generatePassword() {
 		String password = "";
 		int passLength = 8;
