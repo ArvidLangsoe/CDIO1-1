@@ -9,20 +9,12 @@ package presentationLayer;
  */
 public class MenuAdministrator extends TUI {
 
-	//Constant.
-	private final String options = "\n"+"User administration, you have the following options:\n\n"
-		+ "1: Create user. \n"
-		+ "2: Show users. \n"
-		+ "3: Edit users. \n"
-		+ "4: Delete user. \n"
-		+ "5: Exit program.";
-	
 	//Instance variables.
 	private UserCreator create;
 	private UserRemover delete;
 	private UserViewer view;
 	private UserEditor edit;
-
+	
 	
 	/**
 	 * Constructor
@@ -37,13 +29,18 @@ public class MenuAdministrator extends TUI {
 		this.view = view;
 		this.edit = edit;
 	}
-
+	
 	/**
 	 * Shows the administrator the menu with the choices he has and prompts him for an integer answer.
 	 * @return The integer answer corresponding to the menu he wants access to.
 	 */
-	private int getUserChoice(){
-		show(options);
+	public int getUserChoice(){
+		show("\n"+"User administration, you have the following options:\n\n"
+				+ "1: Create user. \n"
+				+ "2: Show users. \n"
+				+ "3: Edit users. \n"
+				+ "4: Delete user. \n"
+				+ "5: Exit program.");
 		return getInt();
 	}
 
@@ -54,19 +51,19 @@ public class MenuAdministrator extends TUI {
 	 * @return True if the administrator enters a decision corresponding to a menu or 
 	 * the administrator enters something not valid. False otherwise.
 	 */
-	private boolean choiceHandler(int decision) {
+	public boolean choiceHandler(int decision) {
 		switch (decision) {
 		case 1:
 			create.createNewUser();
-			return true;
-		case 4:
-			delete.deleteUser();
 			return true;
 		case 2:
 			view.showUserViewerMenu();
 			return true;
 		case 3:
-			edit.editUserMenu();
+			edit.editUser();
+			return true;
+		case 4:
+			delete.deleteUser();
 			return true;
 		case 5:
 			return false;
@@ -74,6 +71,7 @@ public class MenuAdministrator extends TUI {
 			show("Not a valid options. Please choose an option above.");
 			return true;
 		}
+
 	}
 
 	/**

@@ -3,6 +3,8 @@ package presentationLayer;
 
 import dataAccessObjects.IUserDAO;
 import dataAccessObjects.IUserDAO.DALException;
+import staticClasses.Validator;
+import staticClasses.Validator.InputException;
 
 /**
  * The class UserRemover extends TUI.
@@ -41,23 +43,27 @@ public class UserRemover extends TUI {
 			//Try again
 			deleteUser();
 		}
+		catch(InputException e)
+		{
+			show("Incorrect ID. Must be between 11 and 99.\n ");
+			
+			//Try again
+			deleteUser();
+		}
 	}
 	
 	/**
 	 * Asks the user administrator for the user ID of the user (UserDTO) to be removed from the data.
 	 * @return The user ID to be deleted.
 	 */
-	private int getId(){
+public int getId() throws InputException{
 		
 		show("Please enter a UserID: ");
 		
 		int id = getInt();
 		
-		while(id <11 || id > 99){
-			id = getInt();
-			
-			show("Incorrect ID. Must be between 11 and 99.\n Please enter a valid UserID: ");
-		}		
+		Validator.validateUserID(id);
+
 		return id;
 	}
 }

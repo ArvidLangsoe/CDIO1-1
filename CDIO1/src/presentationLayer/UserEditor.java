@@ -1,11 +1,11 @@
 package presentationLayer;
 
-import dataAccessObjects.IUserDAO;
 import dataAccessObjects.IUserDAO.DALException;
 import dataTransferObjects.UserDTO;
+import functionLayer.IDataVerifier;
+import functionLayer.IDataVerifier.WrongDataException;
 import staticClasses.Validator;
 import staticClasses.Validator.InputException;
-
 
 /**
  * The class UserEditor extends TUI.
@@ -16,13 +16,13 @@ import staticClasses.Validator.InputException;
 public class UserEditor extends TUI {
 
 	//Instance variables.
-	private IUserDAO userDAO;
+	private IDataVerifier userDAO;
 
 	/**
 	 * Constructor
-	 * @param userDAO The data access object to use.
+	 * @param IDataVerifier The data access object to use.
 	 */
-	public UserEditor(IUserDAO userDAO) {
+	public UserEditor(IDataVerifier userDAO) {
 		this.userDAO = userDAO;
 	}
 
@@ -31,7 +31,7 @@ public class UserEditor extends TUI {
 	 * the user ID of the user to be edited and afterwards what he wants to edit.
 	 */
 	public void editUserMenu() {
-
+		
 		UserDTO userDTO;
 
 		try {
@@ -39,7 +39,7 @@ public class UserEditor extends TUI {
 			show("The following user was found:");
 			show(userDTO.toString());
 		} catch (DALException e) {
-			e.getMessage();
+			show(e.getMessage());
 			return;
 		}
 
@@ -52,7 +52,7 @@ public class UserEditor extends TUI {
 
 			switch (userChoice) {
 			case 1:
-				changeUsername(userDTO);
+				changeUserName(userDTO);
 				break;
 
 			case 2:
@@ -77,7 +77,7 @@ public class UserEditor extends TUI {
 					userDAO.updateUser(userDTO);
 					show("Succesfully updated the user.");
 
-				} catch (DALException e) {
+				} catch (WrongDataException e) {
 					show(e.getMessage());
 					e.getStackTrace();
 				}
@@ -91,7 +91,7 @@ public class UserEditor extends TUI {
 	 * Changes the username of the user (UserDTO) if the user administrator wants to and if the new username is valid.
 	 * @param userDTO The user to change the username of.
 	 */
-	private void changeUsername(UserDTO userDTO) {
+	public void changeUserName(UserDTO userDTO) {
 
 		show("Are you sure you want to change the username for " + userDTO.getUserName() + "? \n" + "Type 1 for Yes. \n"
 				+ "Type 2 for No.");
@@ -116,9 +116,6 @@ public class UserEditor extends TUI {
 
 			}
 		case 2:
-			// show("The username has not been changed for " +
-			// userDTO.getUserName() + ". Returning to prior menu...");
-			// TODO What is this?
 			return;
 		}
 
@@ -128,7 +125,7 @@ public class UserEditor extends TUI {
 	 * Changes the user initials of the user (UserDTO) If the user Administrator wants to and if the initials are valid.
 	 * @param userDTO The user to change the initials of.
 	 */
-	private void changeUserIni(UserDTO userDTO) {
+	public void changeUserIni(UserDTO userDTO) {
 
 		show("Are you sure you want to change the initials for " + userDTO.getUserName() + "? \n" + "Type 1 for Yes. \n"
 				+ "Type 2 for No.");
@@ -158,18 +155,17 @@ public class UserEditor extends TUI {
 			// show("The initials have not been changed for " +
 			// userDTO.getUserName()
 			// + ". Returning to prior menu...");
-			// TODO what is this?
 
 			break;
 		}
-
 	}
+
 
 	/**
 	 * Changes the CPR of the user (UserDTO) if the user Administrator wants to and if the CPR is valid.
 	 * @param userDTO The user to change the CPR of.
 	 */
-	private void changeUserCPR(UserDTO userDTO) {
+	public void changeUserCPR(UserDTO userDTO) {
 
 		show("Are you sure you want to change the CPR number for" + userDTO.getUserName() + "? \n"
 				+ "Type 1 for Yes. \n" + "Type 2 for No.");
@@ -197,7 +193,6 @@ public class UserEditor extends TUI {
 			// show("The CPR number has not been changed for " +
 			// userDTO.getUserName()
 			// + ". Returning to prior menu...");
-			// TODO what is this?
 			return;
 
 		}
@@ -209,7 +204,7 @@ public class UserEditor extends TUI {
 	 * @param userDTO The user to change the password of.
 	 */
 	// TODO should an user administrator be allowed this? Shouldn't it be auto generated?
-	private void changeUserPassword(UserDTO userDTO) {
+	public void changeUserPassword(UserDTO userDTO) {
 
 		show("Are you sure you want to change the password for " + userDTO.getUserName() + "? \n" + "Type 1 for Yes. \n"
 				+ "Type 2 for No.");
@@ -234,7 +229,6 @@ public class UserEditor extends TUI {
 			}
 		case 2:
 			// show("No new password selected. Returning to prior menu...");
-			// TODO what is this?
 			return;
 		}
 
@@ -244,7 +238,7 @@ public class UserEditor extends TUI {
 	 * Manipulates the roles of the given user (UserDTO).
 	 * @param userDTO The user to change the roles of.
 	 */
-	private void manipulateUserRoles(UserDTO userDTO) {
+	public void manipulateUserRoles(UserDTO userDTO) {
 		while (true) {
 
 			show("Please select how you wish to manipulate user roles for " + userDTO.getUserName() + ". \n"
@@ -260,12 +254,12 @@ public class UserEditor extends TUI {
 
 			case 2:
 				// show("Preparing to remove one role from user...");
-				removeUserRole(userDTO);
+				removeOneUserRole(userDTO);
 				break;
 
 			case 3:
 				// show("Preparing to remove all roles from user...");
-				removeAllUserRoles(userDTO);
+				removeUserRoles(userDTO);
 				break;
 
 			case 4:
@@ -283,7 +277,7 @@ public class UserEditor extends TUI {
 	 * Adds a user role to the user (UserDTO) if the user administrator wants to and if the role entered is valid.
 	 * @param userDTO The user to add the role to.
 	 */
-	private void addUserRole(UserDTO userDTO) {
+	public void addUserRole(UserDTO userDTO) {
 
 		show("Are you sure you want to add a role to " + userDTO.getUserName() + "? \n" + "Type 1 for Yes. \n"
 				+ "Type 2 for No.");
@@ -316,16 +310,16 @@ public class UserEditor extends TUI {
 			}
 		case 2:
 			// show("No roles added to " + userDTO.getUserName());
-			// TODO what is this???
 			return;
 		}
+
 	}
 
 	/**
 	 * Removes a user role from the user (UserDTO) if the user administrator wants to and if the role exists.
 	 * @param userDTO The user to remove the role from.
 	 */
-	private void removeUserRole(UserDTO userDTO) {
+	public void removeOneUserRole(UserDTO userDTO) {
 
 		show("Are you sure you want to remove a role from " + userDTO.getUserName() + "? \n" + "Type 1 for Yes. \n"
 				+ "Type 2 for No.");
@@ -353,7 +347,6 @@ public class UserEditor extends TUI {
 			// show("You have chosen not to remove any roles from " +
 			// userDTO.getUserName()
 			// + ". Returning to prior menu...");
-			// TODO what is this?
 			return;
 		}
 
@@ -363,7 +356,7 @@ public class UserEditor extends TUI {
 	 * Removes all the the roles from the user (UserDTO) if the user administrator wants to.
 	 * @param userDTO The user to remove the roles from.
 	 */
-	private void removeAllUserRoles(UserDTO userDTO) {
+	public void removeUserRoles(UserDTO userDTO) {
 
 		show("Are you sure you want to remove *ALL* roles for " + userDTO.getUserName()
 				+ "? This choice is not revertable. \n" + "Type 1 for Yes. \n" + "Type 2 for No.");
@@ -379,7 +372,6 @@ public class UserEditor extends TUI {
 		case 2:
 			// show("No roles have been removed from " + userDTO.getUserName() +
 			// ". Returning to prior menu...");
-			//TODO what is this?
 			return;
 		}
 
@@ -389,9 +381,9 @@ public class UserEditor extends TUI {
 	 * Asks the user administrator to enter the user ID of the user to be edited.
 	 * @return The user ID of the user to be edited.
 	 */
-	private int getId() {
+	public int getId() {
 		while (true) {
-			show("Please specify wished userID");
+			show("Please specify wished userId");
 			while (true) {
 				try {
 					int userInput = getInt();

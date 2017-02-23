@@ -12,7 +12,7 @@ import dto.Validator.InputException;
 
 public class UserCreator extends  TUI {
 
-	private UserDTO newUser;
+	private UserDTO newUser; 
 	
 	private IDataVerifier data;
 
@@ -23,8 +23,6 @@ public class UserCreator extends  TUI {
 
 	public void createNewUser() {
 		newUser = new UserDTO();
-		
-		
 		
 		getUserID();
 		getUserName();

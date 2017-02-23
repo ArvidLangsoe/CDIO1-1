@@ -34,12 +34,9 @@ public class DataVerifier implements IDataVerifier
 			//sets initials acording to their username
 			user.setIni(generateInitials(user.getUserName()));
 			
-			//validates if alle the variables are legal
-			try{
+			//validates if all the variables are legal
 				validate(user);
-			}catch(WrongDataException validate){
-				throw new WrongDataException(validate.getMessage());
-			}
+			
 			
 			//creates the user.
 			try{
@@ -58,11 +55,9 @@ public class DataVerifier implements IDataVerifier
 	public void updateUser(UserDTO user) throws WrongDataException{
 
 		//validates if all the new data is legal
-		try{
-			validate(user);
-		}catch(WrongDataException validate){
-			throw new WrongDataException(validate.getMessage());
-		}
+
+		validate(user);
+		
 
 		//Updates the user
 		try{

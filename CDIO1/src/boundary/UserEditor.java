@@ -15,7 +15,7 @@ public class UserEditor extends TUI {
 	}
 
 	public void editUser() {
-
+		
 		UserDTO userDTO;
 
 		try {
