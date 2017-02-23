@@ -57,7 +57,7 @@ public class DataVerifierTest {
 			}
 			catch(InputException e)
 			{
-				fail("In valid password generated.");
+				fail("Invalid password generated.");
 			}
 		}
 		if(tester == times);
