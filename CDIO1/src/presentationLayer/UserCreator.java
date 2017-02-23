@@ -1,7 +1,5 @@
 package presentationLayer;
 
-import dataAccessObjects.IUserDAO;
-import dataAccessObjects.IUserDAO.DALException;
 import dataTransferObjects.UserDTO;
 import functionLayer.IDataVerifier;
 import functionLayer.IDataVerifier.WrongDataException;
