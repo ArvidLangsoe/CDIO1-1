@@ -42,7 +42,7 @@ public class MenuAdministrator extends TUI {
 			delete.deleteUser();
 			return true;
 		case 5:
-			show("NOT IMPLEMENTED YET");
+			show("Exiting program...");
 			return false;
 		default: 
 			show("Not a valid options. Please choose an option above.");
